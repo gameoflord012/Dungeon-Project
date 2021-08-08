@@ -14,6 +14,23 @@ public class ProjectileWeapon : Weapon
     [SerializeField]
     float accuracyAngle = 10;
 
+    [SerializeField]
+    float timeBetweenFire = 0.1f;
+
+    [field: SerializeField]
+    public bool isAutoFireOn { get; set; } = false;
+
+    private bool waitForNextFire = false;
+
+    private void Update()
+    {
+        if (isAutoFireOn && !waitForNextFire)
+        {            
+            UseWeapon();
+            StartCoroutine(WaitNextFireRoutine());
+        }
+    }
+
     public override void UseWeapon()
     {
         SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
@@ -33,5 +50,12 @@ public class ProjectileWeapon : Weapon
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawRay(gunMuzzle.position, gunMuzzle.transform.right);
+    }
+
+    IEnumerator WaitNextFireRoutine()
+    {
+        waitForNextFire = true;
+        yield return new WaitForSeconds(timeBetweenFire);
+        waitForNextFire = false;
     }
 }

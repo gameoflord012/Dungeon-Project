@@ -474,8 +474,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 905180037}
         m_TargetAssemblyTypeName: ProjectileWeapon, Assembly-CSharp
-        m_MethodName: UseWeapon
-        m_Mode: 1
+        m_MethodName: set_isAutoFireOn
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnFireButtonReleased:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 905180037}
+        m_TargetAssemblyTypeName: ProjectileWeapon, Assembly-CSharp
+        m_MethodName: set_isAutoFireOn
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -484,9 +499,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnFireButtonReleased:
-    m_PersistentCalls:
-      m_Calls: []
   isFireButtonPressed: 0
 --- !u!1 &905180034
 GameObject:
@@ -587,6 +599,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7031612816456528955, guid: 2436e0b86a5f35240b5c7e892b97ca58, type: 3}
   gunMuzzle: {fileID: 451828287}
   accuracyAngle: 10
+  timeBetweenFire: 0.1
+  <isAutoFireOn>k__BackingField: 0
 --- !u!1 &1534932438
 GameObject:
   m_ObjectHideFlags: 0
