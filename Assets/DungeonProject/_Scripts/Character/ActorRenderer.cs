@@ -15,10 +15,10 @@ public class ActorRenderer : MonoBehaviour
     {
         Vector2 pointerDirection = pointerPosition - (Vector2)transform.position;
 
-        if (pointerPosition.x < 0)
+        if (pointerDirection.x < 0)
             spriteRenderer.flipX = true;
 
-        else if (pointerPosition.x > 0)
+        else if (pointerDirection.x > 0)
             spriteRenderer.flipX = false;
     }
 }
