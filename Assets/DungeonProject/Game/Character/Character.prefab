@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 2230022133185030980}
   - component: {fileID: 2230022133185030981}
   - component: {fileID: 3531557314986664394}
+  - component: {fileID: 7317567397287457607}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -299,6 +300,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!70 &7317567397287457607
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230022133185030984}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.029217958, y: -0.14243749}
+  m_Size: {x: 0.6164187, y: 0.9196506}
+  m_Direction: 0
 --- !u!1 &2230022133457943192
 GameObject:
   m_ObjectHideFlags: 0
