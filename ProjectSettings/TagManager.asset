@@ -41,6 +41,30 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Ground1
+    uniqueID: 600249569
+    locked: 0
+  - name: Ground2
+    uniqueID: 1958883183
+    locked: 0
+  - name: Item1
+    uniqueID: 596492413
+    locked: 0
+  - name: Item2
+    uniqueID: 226677581
+    locked: 0
+  - name: Instance
     uniqueID: 478474353
+    locked: 0
+  - name: Bullet
+    uniqueID: 1207420875
+    locked: 0
+  - name: Front1
+    uniqueID: 1576514629
+    locked: 0
+  - name: Front2
+    uniqueID: 3783954711
+    locked: 0
+  - name: Collision
+    uniqueID: 665236325
     locked: 0
