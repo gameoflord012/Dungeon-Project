@@ -26,5 +26,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if(LayerMaskManager.IsAttackable(collision.gameObject.layer))
+        {
+            Debug.Log(collision.name + " Get Hit!");
+            Destroy(gameObject);
+        }
     }
 }

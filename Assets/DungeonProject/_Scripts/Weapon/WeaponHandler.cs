@@ -16,7 +16,19 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        currentWeapon_ = GetComponentInChildren<Weapon>();
+        EquipWeapon(GetComponentInChildren<Weapon>());
+    }
+
+    private void EquipWeapon(Weapon weaponToEquip)
+    {
+        currentWeapon_ = weaponToEquip;
+        if(currentWeapon_ != null)
+            currentWeapon_.weaponOwner = GetWeaponOwner();
+    }
+
+    private GameObject GetWeaponOwner()
+    {
+        return transform.root.GetComponentInChildren<ActorMovement>().gameObject;
     }
 
     public void UseCurrentWeapon()

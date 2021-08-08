@@ -23,7 +23,6 @@ public class ProjectileWeapon : Weapon
     [SerializeField]
     private bool isAutoFireOn_ = false;
 
-
     private bool waitForNextFire = false;
 
     private void Update()
@@ -51,18 +50,23 @@ public class ProjectileWeapon : Weapon
 
     private void FireWeapon()
     {
-        SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
+        SpawnBullet(
+            gunMuzzle.rotation * GetAccuracyAngle(), 
+            LayerMaskManager.GetAttackLayer(weaponOwner.layer));
     }
 
-    private void SpawnBullet(Quaternion accuracyAngle)
+    private void SpawnBullet(Quaternion accuracyAngle, LayerMask attackLayer)
     {
         Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, accuracyAngle);
         bullet.Direction = accuracyAngle * Vector3.right;
+        bullet.gameObject.layer = attackLayer;
     }
 
     private Quaternion GetAccuracyAngle()
     {
-        return Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracyAngle, accuracyAngle), Vector3.forward);
+        return Quaternion.AngleAxis(
+            UnityEngine.Random.Range(-accuracyAngle, accuracyAngle), 
+            Vector3.forward);
     }    
 
     IEnumerator WaitNextFireRoutine()

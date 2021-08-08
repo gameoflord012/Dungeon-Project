@@ -6,4 +6,6 @@ public abstract class Weapon : MonoBehaviour
 {
     public abstract void StartWeapon();
     public abstract void StopWeapon();
+
+    public GameObject weaponOwner;
 }
