@@ -586,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7031612816456528955, guid: 2436e0b86a5f35240b5c7e892b97ca58, type: 3}
   gunMuzzle: {fileID: 451828287}
+  accuracyAngle: 90
 --- !u!1 &1534932438
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,23 @@ public class ProjectileWeapon : Weapon
     [SerializeField]
     Transform gunMuzzle;
 
+    [SerializeField]
+    float accuracyAngle = 10;
+
     public override void UseWeapon()
     {
-        Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, gunMuzzle.rotation);
-        bullet.Direction = transform.right;
+        SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
+    }
+
+    private void SpawnBullet(Quaternion accuracyAngle)
+    {
+        Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, accuracyAngle);
+        bullet.Direction = accuracyAngle * Vector3.right;
+    }
+
+    private Quaternion GetAccuracyAngle()
+    {
+        return Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracyAngle, accuracyAngle), Vector3.forward);
     }
 
     private void OnDrawGizmosSelected()
