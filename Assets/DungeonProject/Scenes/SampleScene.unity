@@ -213,8 +213,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 478474353
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 8999996067587195337, guid: eca865b8ffdc0924d8f7c307f2ffd395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -251,6 +251,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdcb4a2f6e9ae1419a5ca12e6b6160e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &451828286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451828287}
+  m_Layer: 0
+  m_Name: GunMuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451828287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451828286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.256, y: 0.066, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 905180035}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593152069
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +384,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &815700377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +469,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnFireButtonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 905180037}
+        m_TargetAssemblyTypeName: ProjectileWeapon, Assembly-CSharp
+        m_MethodName: UseWeapon
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnFireButtonReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  isFireButtonPressed: 0
 --- !u!1 &905180034
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,8 +498,9 @@ GameObject:
   m_Component:
   - component: {fileID: 905180035}
   - component: {fileID: 905180036}
+  - component: {fileID: 905180037}
   m_Layer: 0
-  m_Name: Weapons_0
+  m_Name: ShortGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -464,9 +514,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905180034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.949, y: 0, z: 0}
+  m_LocalPosition: {x: 0.911, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 451828287}
   m_Father: {fileID: 1534932439}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -507,8 +558,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 478474353
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 5601323976189978565, guid: 04c19eca89ebf89478278a7ff1494a09, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -521,6 +572,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &905180037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905180034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed60e812d38a4f49bfd3c48c442503c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7031612816456528955, guid: 2436e0b86a5f35240b5c7e892b97ca58, type: 3}
+  gunMuzzle: {fileID: 451828287}
 --- !u!1 &1534932438
 GameObject:
   m_ObjectHideFlags: 0
