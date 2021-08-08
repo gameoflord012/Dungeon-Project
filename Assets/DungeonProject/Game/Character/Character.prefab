@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 2230022133185030986}
   - component: {fileID: 2230022133185030980}
   - component: {fileID: 2230022133185030981}
-  - component: {fileID: 2230022133185030983}
+  - component: {fileID: 3531557314986664394}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -215,7 +215,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2230022133185030983
+--- !u!114 &3531557314986664394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2230022133185030984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 264cfd2e5b2f7224eb066839141a0791, type: 3}
+  m_Script: {fileID: 11500000, guid: 36181f13ab439cb4c9be2e24f45d3e0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <OnMovementKeyPressed>k__BackingField:
@@ -245,9 +245,9 @@ MonoBehaviour:
   <OnPointerPositionChanged>k__BackingField:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2230022133862565637}
-        m_TargetAssemblyTypeName: WeaponHandler, Assembly-CSharp
-        m_MethodName: RotateToPointerPosition
+      - m_Target: {fileID: 2230022132641471955}
+        m_TargetAssemblyTypeName: ActorRenderer, Assembly-CSharp
+        m_MethodName: FacingToPointerPosition
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -257,9 +257,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2230022132641471955}
-        m_TargetAssemblyTypeName: ActorRenderer, Assembly-CSharp
-        m_MethodName: FacingToPointerPosition
+      - m_Target: {fileID: 2230022133862565637}
+        m_TargetAssemblyTypeName: WeaponHandler, Assembly-CSharp
+        m_MethodName: RotateToPointerPosition
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

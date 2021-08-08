@@ -3,27 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerInput : MonoBehaviour, IActorInput
+public class PlayerInputHandler : MonoBehaviour
 {
-    [field: SerializeField]
-    public UnityEvent<Vector2> OnMovementKeyPressed { get; set; }
-    [field: SerializeField]
-    public UnityEvent<Vector2> OnPointerPositionChanged { get; set; }
-
-    [field: SerializeField]
-    public UnityEvent OnFireButtonPressed { get; set; }
-    [field: SerializeField]
-    public UnityEvent OnFireButtonReleased { get; set; }
-
-    private bool isFireButtonPressed = false;
-
     private Camera mainCamera;
-
-    
+    private bool isFireButtonPressed = false;
+    private ActorInputEvents inputEvents;
 
     private void Awake()
     {
         mainCamera = Camera.main;
+        inputEvents = GetComponent<ActorInputEvents>();
     }
 
     private void Update()
@@ -35,12 +24,12 @@ public class PlayerInput : MonoBehaviour, IActorInput
 
     private void PointerInput()
     {
-        OnPointerPositionChanged?.Invoke(GetMousePosition());
+        inputEvents.OnPointerPositionChanged?.Invoke(GetMousePosition());
     }
 
     private void MovementInput()
     {
-        OnMovementKeyPressed?.Invoke(new Vector2(
+        inputEvents.OnMovementKeyPressed?.Invoke(new Vector2(
                     Input.GetAxisRaw("Horizontal"),
                     Input.GetAxisRaw("Vertical"))
                     );
@@ -53,7 +42,7 @@ public class PlayerInput : MonoBehaviour, IActorInput
             if (!isFireButtonPressed)
             {
                 isFireButtonPressed = true;
-                OnFireButtonPressed?.Invoke();
+                inputEvents.OnFireButtonPressed?.Invoke();
             }
         }
         else
@@ -61,7 +50,7 @@ public class PlayerInput : MonoBehaviour, IActorInput
             if (isFireButtonPressed)
             {
                 isFireButtonPressed = false;
-                OnFireButtonReleased?.Invoke();
+                inputEvents.OnFireButtonReleased?.Invoke();
             }
         }
     }
