@@ -248,7 +248,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 268742409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1caf8e798991e3d42977688a46364040, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fdcb4a2f6e9ae1419a5ca12e6b6160e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &815700373
@@ -318,8 +318,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e38d1d3a96745aae576d6a794d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  acceleration: 5
+  maxSpeed: 6
+  acceleration: 8
   deacceleration: 8
   OnActorMoving:
     m_PersistentCalls:
@@ -354,6 +354,21 @@ MonoBehaviour:
       - m_Target: {fileID: 815700377}
         m_TargetAssemblyTypeName: ActorMovement, Assembly-CSharp
         m_MethodName: MoveWithDirection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnPointerPositionChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 268742414}
+        m_TargetAssemblyTypeName: ActorRenderer, Assembly-CSharp
+        m_MethodName: FacingToPointerPosition
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
