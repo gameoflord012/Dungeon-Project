@@ -19,4 +19,12 @@ public class Bullet : MonoBehaviour
             GetComponent<Rigidbody2D>().velocity = direction * speed;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 593152070}
   - component: {fileID: 593152071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MovementCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
