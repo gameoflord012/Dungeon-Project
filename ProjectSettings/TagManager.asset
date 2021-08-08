@@ -17,8 +17,8 @@ TagManager:
   - EnemyMovement
   - Player
   - Enemy
-  - 
-  - 
+  - PlayerAttack
+  - EnemyAttack
   - 
   - 
   - 

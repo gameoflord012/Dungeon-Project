@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -12,7 +13,15 @@ public class Health : MonoBehaviour
         get => currentHealth;
         set
         {
-            currentHealth = Mathf.Clamp(value, 0, maxHealth);
+            float newValue = Mathf.Clamp(value, 0, maxHealth);
+            if (Mathf.Approximately(currentHealth, newValue)) return;
+            currentHealth = newValue;
         }
+    }
+
+    private void Update()
+    {
+        if (Mathf.Approximately(CurrentHealth, 0f))
+            Destroy(gameObject);
     }
 }
