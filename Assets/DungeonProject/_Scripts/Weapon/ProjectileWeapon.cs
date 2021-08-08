@@ -17,21 +17,39 @@ public class ProjectileWeapon : Weapon
     [SerializeField]
     float timeBetweenFire = 0.1f;
 
-    [field: SerializeField]
-    public bool isAutoFireOn { get; set; } = false;
+    [SerializeField]
+    public bool isWeaponAutoFire = false;
+
+    [SerializeField]
+    private bool isAutoFireOn_ = false;
+
 
     private bool waitForNextFire = false;
 
     private void Update()
     {
-        if (isAutoFireOn && !waitForNextFire)
-        {            
-            UseWeapon();
+        if (isAutoFireOn_ && !waitForNextFire)
+        {
+            FireWeapon();
             StartCoroutine(WaitNextFireRoutine());
         }
+    }    
+
+    public override void StartWeapon()
+    {
+        if (isWeaponAutoFire)
+            isAutoFireOn_ = true;
+        else
+            FireWeapon();
     }
 
-    public override void UseWeapon()
+    public override void StopWeapon()
+    {
+        if (isWeaponAutoFire)
+            isAutoFireOn_ = false;
+    }
+
+    private void FireWeapon()
     {
         SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
     }
@@ -45,17 +63,17 @@ public class ProjectileWeapon : Weapon
     private Quaternion GetAccuracyAngle()
     {
         return Quaternion.AngleAxis(UnityEngine.Random.Range(-accuracyAngle, accuracyAngle), Vector3.forward);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawRay(gunMuzzle.position, gunMuzzle.transform.right);
-    }
+    }    
 
     IEnumerator WaitNextFireRoutine()
     {
         waitForNextFire = true;
         yield return new WaitForSeconds(timeBetweenFire);
         waitForNextFire = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawRay(gunMuzzle.position, gunMuzzle.transform.right);
     }
 }

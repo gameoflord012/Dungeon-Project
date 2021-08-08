@@ -3,16 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponRotation : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     [SerializeField]
     int weaponOwnerSortingOrder = 0;
+
+    [SerializeField]
+    private Weapon currentWeapon_;
 
     private SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        currentWeapon_ = GetComponentInChildren<Weapon>();
+    }
+
+    public void UseCurrentWeapon()
+    {
+        if(currentWeapon_ != null) currentWeapon_.StartWeapon();
+    }
+
+    public void StopCurrentWeapon()
+    {
+        if (currentWeapon_ != null) currentWeapon_.StopWeapon();
     }
 
     public void RotateToPointerPosition(Vector2 pointerPosition)

@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ActorInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour, IActorInput
 {
-    public UnityEvent<Vector2> OnMovementKeyPressed;
-    public UnityEvent<Vector2> OnPointerPositionChanged;
+    [field: SerializeField]
+    public UnityEvent<Vector2> OnMovementKeyPressed { get; set; }
+    [field: SerializeField]
+    public UnityEvent<Vector2> OnPointerPositionChanged { get; set; }
 
-    public UnityEvent OnFireButtonPressed;
-    public UnityEvent OnFireButtonReleased;
+    [field: SerializeField]
+    public UnityEvent OnFireButtonPressed { get; set; }
+    [field: SerializeField]
+    public UnityEvent OnFireButtonReleased { get; set; }
 
-    public bool isFireButtonPressed = false;
+    private bool isFireButtonPressed = false;
 
     private Camera mainCamera;
+
+    
 
     private void Awake()
     {

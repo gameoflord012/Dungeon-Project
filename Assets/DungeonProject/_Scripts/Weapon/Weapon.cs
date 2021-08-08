@@ -4,5 +4,6 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    public abstract void UseWeapon();
+    public abstract void StartWeapon();
+    public abstract void StopWeapon();
 }
