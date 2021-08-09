@@ -1,0 +1,355 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6232093062209880800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 65ad06de-6cac-4b42-9a54-ca68d07d20b7
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Of course, you can!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1051
+    y: 34
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: Give Quest
+  condition:
+    and: []
+--- !u!114 &-3994610526801550656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 5c02396c-c042-4847-b64e-5543df9ffb58
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Your village is so beautiful!
+  children:
+  - 73fa4078-65e2-4a8e-abb6-cb3b0415af39
+  rect:
+    serializedVersion: 2
+    x: 312
+    y: 172
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-2697572561263852130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 0109303b-f5a0-496b-a3ab-0763db0e58f1
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Oh! Thanks! Can I go round your village?
+  children:
+  - 73fa4078-65e2-4a8e-abb6-cb3b0415af39
+  rect:
+    serializedVersion: 2
+    x: 792
+    y: 136
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-1746264013485892137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: a3cdba08-1f4d-4816-a0dd-44428f4d1dbf
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: This is Wealthy Village. Welcome!
+  children:
+  - d936a2d4-d727-44b5-9dea-5eaab0b6034e
+  - 0109303b-f5a0-496b-a3ab-0763db0e58f1
+  rect:
+    serializedVersion: 2
+    x: 543
+    y: 84
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178d2c69291de42c0b19667a2a577255, type: 3}
+  m_Name: Give coins-collecting quest
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 9152212498015511924}
+  - {fileID: 8295251600683987205}
+  - {fileID: -3994610526801550656}
+  - {fileID: 4087457150787228602}
+  - {fileID: -1746264013485892137}
+  - {fileID: 238313426427577543}
+  - {fileID: -2697572561263852130}
+  - {fileID: -6232093062209880800}
+  - {fileID: 2950827078656983801}
+  - {fileID: 4585799645976577205}
+  - {fileID: 4828387029174909009}
+  - {fileID: 5568178668542750104}
+  newNodeOffset: {x: 250, y: 0}
+--- !u!114 &238313426427577543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: d936a2d4-d727-44b5-9dea-5eaab0b6034e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Oh! It is really wealthy. I can see many gold coins on the street.
+  children:
+  - 65ad06de-6cac-4b42-9a54-ca68d07d20b7
+  rect:
+    serializedVersion: 2
+    x: 801
+    y: 13
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &2950827078656983801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 99bbd1da-027c-4035-b519-fee03a219413
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Where can I take coins?
+  children:
+  - 6b2462a8-2178-46a8-8f3e-5c5bfccbf15b
+  rect:
+    serializedVersion: 2
+    x: 296
+    y: 302
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: Has quest
+        parameters:
+        - Collect all coins
+        negate: 0
+--- !u!114 &4087457150787228602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 73fa4078-65e2-4a8e-abb6-cb3b0415af39
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Oh! Welcome! Have a nice trip!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1094
+    y: 256
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &4585799645976577205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 6b2462a8-2178-46a8-8f3e-5c5bfccbf15b
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Everywhere in our village, boy.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 552
+    y: 334
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &4828387029174909009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 725a85bf-fb32-4720-afec-fed2cfe02fc1
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: We have meet before, haven't we?
+  children:
+  - a2988e28-b243-4688-bfe6-fd72d64d3195
+  rect:
+    serializedVersion: 2
+    x: 279
+    y: 476
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and:
+    - or:
+      - predicate: Has quest
+        parameters:
+        - Collect all coins
+        negate: 0
+    - or:
+      - predicate: Has quest
+        parameters:
+        - Fight the guards
+        negate: 1
+--- !u!114 &5568178668542750104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: a2988e28-b243-4688-bfe6-fd72d64d3195
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Oh yes, we meet again!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 554
+    y: 499
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &8295251600683987205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 48c567a4-6b8d-4c24-bb24-ff8c3ce0f111
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Hi! This is where?
+  children:
+  - a3cdba08-1f4d-4816-a0dd-44428f4d1dbf
+  rect:
+    serializedVersion: 2
+    x: 306
+    y: 43
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &9152212498015511924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: bb651eb7-12ae-465e-88bc-5291de2bbb50
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Hi! Nice to meet you!
+  children:
+  - 48c567a4-6b8d-4c24-bb24-ff8c3ce0f111
+  - 5c02396c-c042-4847-b64e-5543df9ffb58
+  - 99bbd1da-027c-4035-b519-fee03a219413
+  - 725a85bf-fb32-4720-afec-fed2cfe02fc1
+  rect:
+    serializedVersion: 2
+    x: 21
+    y: 94
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []

@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9128362725576483813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 65cb319e-740b-4ed3-98ef-35623edf24a6
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Hi! Who are you?
+  children:
+  - 4e492910-4956-49cc-9cd1-6de832737dbb
+  - 61d40d70-0869-4d1c-843e-3c2aa1091519
+  rect:
+    serializedVersion: 2
+    x: 28
+    y: 147
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-8119435206019288123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 4e492910-4956-49cc-9cd1-6de832737dbb
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I am a soldier and I will kill you all.
+  children:
+  - d60326a2-5a40-4e28-8ae8-7f77f720d5ca
+  rect:
+    serializedVersion: 2
+    x: 456
+    y: 25
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &-2655953852311930384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: d60326a2-5a40-4e28-8ae8-7f77f720d5ca
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: You don't like to die here.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1010
+    y: 75
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: Attack
+  condition:
+    and: []
+--- !u!114 &-1599877581116721073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: e372d9d3-3e72-494f-9b21-f2172049e9f2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: What a beautiful village!
+  children:
+  - 2ae91088-a9ff-44ba-ab86-3b24f987acb5
+  rect:
+    serializedVersion: 2
+    x: 771
+    y: 274
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178d2c69291de42c0b19667a2a577255, type: 3}
+  m_Name: In new town
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -9128362725576483813}
+  - {fileID: -8119435206019288123}
+  - {fileID: 4149189136152333180}
+  - {fileID: -2655953852311930384}
+  - {fileID: 8986065825474659779}
+  - {fileID: -1599877581116721073}
+  - {fileID: 3177723380397667156}
+  - {fileID: 5820928552837367853}
+  newNodeOffset: {x: 250, y: 0}
+--- !u!114 &3177723380397667156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 07077534-c7bc-4c93-9821-648f6e9011cc
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Like shit and all of you wil die!
+  children:
+  - d60326a2-5a40-4e28-8ae8-7f77f720d5ca
+  rect:
+    serializedVersion: 2
+    x: 771
+    y: 163
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &4149189136152333180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 61d40d70-0869-4d1c-843e-3c2aa1091519
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I am a visitor.
+  children:
+  - b941f8a3-3f44-42ae-996e-4b9cb253d0f2
+  rect:
+    serializedVersion: 2
+    x: 267
+    y: 215
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
+--- !u!114 &5820928552837367853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: 2ae91088-a9ff-44ba-ab86-3b24f987acb5
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Welcome! Welcome!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1027
+    y: 213
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: Welcome
+  condition:
+    and: []
+--- !u!114 &8986065825474659779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df85476a1b0044d1bb4a5a37453c02fb, type: 3}
+  m_Name: b941f8a3-3f44-42ae-996e-4b9cb253d0f2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: How do you thing about our village?
+  children:
+  - e372d9d3-3e72-494f-9b21-f2172049e9f2
+  - 07077534-c7bc-4c93-9821-648f6e9011cc
+  rect:
+    serializedVersion: 2
+    x: 516
+    y: 231
+    width: 200
+    height: 100
+  onEnterAction: 
+  onExitAction: 
+  condition:
+    and: []
