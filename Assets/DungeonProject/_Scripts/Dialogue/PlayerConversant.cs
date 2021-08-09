@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
-using Core;
 
 namespace Dialogue
 {
@@ -66,7 +65,7 @@ namespace Dialogue
 
         public IEnumerable<DialogueNode> GetChoices()
         {
-            return FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode));
+            return currentDialogue.GetPlayerChildren(currentNode);
         }
 
         public void SelectChoice(DialogueNode chosenNode)
@@ -80,7 +79,7 @@ namespace Dialogue
 
         public void Next()
         {
-            if (FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode)).Count() > 0)
+            if (currentDialogue.GetPlayerChildren(currentNode).Count() > 0)
             {
                 isChoosing = true;
 
@@ -89,7 +88,7 @@ namespace Dialogue
                 return;
             }
 
-            DialogueNode[] children = FilterOnCondition(currentDialogue.GetAIChildren(currentNode)).ToArray();
+            DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
             int index = UnityEngine.Random.Range(0, children.Count());
 
             TriggerExitAction();
@@ -101,19 +100,7 @@ namespace Dialogue
 
         public bool HasNext()
         {
-            return FilterOnCondition(currentDialogue.GetAllChildren(currentNode)).Count() > 0;
-        }
-
-        private IEnumerable<DialogueNode> FilterOnCondition(IEnumerable<DialogueNode> inputNodes)
-        {
-            foreach (DialogueNode node in inputNodes)
-                if (node.IsSatisfiedCondition(GetEvaluators()))
-                    yield return node;
-        }
-
-        private IEnumerable<IPredicateEvaluator> GetEvaluators()
-        {
-            return GetComponents<IPredicateEvaluator>();
+            return currentDialogue.GetAllChildren(currentNode).Count() > 0;
         }
 
         private void TriggerEnterAction()

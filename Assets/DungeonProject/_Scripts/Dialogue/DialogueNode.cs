@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using Core;
 
 namespace Dialogue
 {
@@ -14,7 +13,6 @@ namespace Dialogue
         [SerializeField] Rect rect = new Rect(100, 100, 200, 100);
         [SerializeField] string onEnterAction;
         [SerializeField] string onExitAction;
-        [SerializeField] Condition condition;
 
         public Rect GetRect()
         {
@@ -84,11 +82,6 @@ namespace Dialogue
         public string GetOnExitAction()
         {
             return onExitAction;
-        }
-
-        public bool IsSatisfiedCondition(IEnumerable<IPredicateEvaluator> evaluators)
-        {
-            return condition.IsSatisfied(evaluators);
         }
     }
 }
