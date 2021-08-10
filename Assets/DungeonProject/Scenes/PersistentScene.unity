@@ -128,23 +128,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5711993988522109370, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
   m_PrefabInstance: {fileID: 931168783}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &300194356 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 644094011, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-  m_PrefabInstance: {fileID: 931168783}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &300194363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300194356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d83be409ab34154fa9e8911f968718e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &931168783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,70 +135,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 300194363}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TriggerMeleeRightAttackParameter
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MeleeWeaponAnimatorController, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094007, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: OnWeaponStartAttacking.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.333
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094008, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 644094009, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_FlipY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 220581772569696187, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 562ad9853f04c354f8006a291c817433, type: 2}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player

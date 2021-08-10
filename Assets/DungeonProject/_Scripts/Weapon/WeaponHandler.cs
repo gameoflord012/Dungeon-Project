@@ -45,15 +45,16 @@ public class WeaponHandler : MonoBehaviour
     {
         Vector2 direction = pointerPosition - (Vector2)transform.position;
         float zAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(zAngle, Vector3.forward);
 
+        transform.rotation = Quaternion.AngleAxis(zAngle, Vector3.forward);
         FacingWeaponAlignedWithRotation(zAngle);
         AdjustSortingOrder(zAngle);
     }
 
     private void FacingWeaponAlignedWithRotation(float angle)
     {
-        spriteRenderer.flipY = angle > 90 || angle < -90;
+        if(angle > 90 || angle < -90)
+            transform.rotation *= Quaternion.AngleAxis(180, Vector3.right);
     }
 
     private void AdjustSortingOrder(float angle)

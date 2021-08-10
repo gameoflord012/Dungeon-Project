@@ -10,13 +10,8 @@ public class MeleeWeaponAnimatorController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void TriggerMeleeRightAttackParameter()
+    public void TriggerMeleeAttackParameter()
     {
-        animator.SetTrigger("RightAttack");
-    }
-
-    public void TriggerMeleeLeftAttackParameter()
-    {
-        animator.SetTrigger("LeftAttack");
+        animator.SetTrigger("Attack");
     }
 }
