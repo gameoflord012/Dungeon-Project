@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Collider2D))]
 public class MeleeWeapon : Weapon
 {
     [SerializeField]
-    Collider attackArea;
+    UnityEvent OnWeaponStartAttacking;
 
     [SerializeField]
     bool SpreadToMultipleTargets;
@@ -23,6 +24,8 @@ public class MeleeWeapon : Weapon
 
     public override void StartWeapon()
     {
+        OnWeaponStartAttacking?.Invoke();
+
         if (SpreadToMultipleTargets)
         {
             foreach (Health attackTarget in attackTargets)

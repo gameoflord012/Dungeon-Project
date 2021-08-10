@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Damager))]
@@ -17,6 +15,7 @@ public class Bullet : MonoBehaviour
     }
 
     private Vector2 direction;
+
     public Vector2 Direction
     {
         get => direction;
@@ -39,10 +38,10 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if(LayerMaskManager.IsAttackable(collision.gameObject.layer))
-        {            
-            if(collision.TryGetComponent(out Health damageTarget))
-            {                
+        else if (LayerMaskManager.IsAttackable(collision.gameObject.layer))
+        {
+            if (collision.TryGetComponent(out Health damageTarget))
+            {
                 damageTarget.TakeDamage(damager);
                 Destroy(gameObject);
             }
