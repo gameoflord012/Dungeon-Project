@@ -149,11 +149,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 176
-        width: 16
+        y: 32
+        width: 32
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: NativeWeapons_1
       rect:
         serializedVersion: 2
-        x: 16
-        y: 160
-        width: 16
-        height: 32
+        x: 32
+        y: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -190,12 +190,12 @@ TextureImporter:
       name: NativeWeapons_2
       rect:
         serializedVersion: 2
-        x: 32
-        y: 160
-        width: 16
-        height: 32
+        x: 64
+        y: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -211,12 +211,12 @@ TextureImporter:
       name: NativeWeapons_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 128
-        width: 16
-        height: 48
+        x: 96
+        y: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -232,12 +232,12 @@ TextureImporter:
       name: NativeWeapons_4
       rect:
         serializedVersion: 2
-        x: 16
-        y: 128
-        width: 16
-        height: 32
+        x: 128
+        y: 32
+        width: 48
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: NativeWeapons_5
       rect:
         serializedVersion: 2
-        x: 32
-        y: 128
+        x: 176
+        y: 32
         width: 16
-        height: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,11 +275,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 16
-        height: 32
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -295,12 +295,12 @@ TextureImporter:
       name: NativeWeapons_7
       rect:
         serializedVersion: 2
-        x: 16
-        y: 96
-        width: 16
-        height: 32
+        x: 32
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -316,12 +316,12 @@ TextureImporter:
       name: NativeWeapons_8
       rect:
         serializedVersion: 2
-        x: 32
-        y: 96
-        width: 16
-        height: 32
+        x: 64
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -337,12 +337,12 @@ TextureImporter:
       name: NativeWeapons_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 64
-        width: 16
-        height: 32
+        x: 96
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -358,12 +358,12 @@ TextureImporter:
       name: NativeWeapons_10
       rect:
         serializedVersion: 2
-        x: 16
-        y: 64
-        width: 16
-        height: 32
+        x: 128
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -379,12 +379,12 @@ TextureImporter:
       name: NativeWeapons_11
       rect:
         serializedVersion: 2
-        x: 32
-        y: 64
-        width: 16
-        height: 32
+        x: 160
+        y: 16
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -401,11 +401,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 16
-        height: 32
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -421,12 +421,12 @@ TextureImporter:
       name: NativeWeapons_13
       rect:
         serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 32
+        x: 32
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -442,12 +442,12 @@ TextureImporter:
       name: NativeWeapons_14
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 32
+        x: 64
+        y: 0
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -463,12 +463,12 @@ TextureImporter:
       name: NativeWeapons_15
       rect:
         serializedVersion: 2
-        x: 0
+        x: 96
         y: 0
-        width: 16
-        height: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -484,12 +484,12 @@ TextureImporter:
       name: NativeWeapons_16
       rect:
         serializedVersion: 2
-        x: 16
+        x: 128
         y: 0
-        width: 16
-        height: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -505,12 +505,12 @@ TextureImporter:
       name: NativeWeapons_17
       rect:
         serializedVersion: 2
-        x: 32
+        x: 160
         y: 0
-        width: 16
-        height: 32
+        width: 32
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
