@@ -45,7 +45,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.29168433, y: 0.02750568}
@@ -137,7 +137,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 147c56fe89919054e9a6e20784a0a2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackArea: {fileID: 0}
+  OnWeaponStartAttacking:
+    m_PersistentCalls:
+      m_Calls: []
   SpreadToMultipleTargets: 0
 --- !u!95 &4152907792606413956
 Animator:
