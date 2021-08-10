@@ -19,6 +19,11 @@ public class Health : MonoBehaviour
         }
     }
 
+    public void TakeDamage(Damager damager)
+    {
+        CurrentHealth -= damager.Damage;
+    }
+
     private void Update()
     {
         if (Mathf.Approximately(CurrentHealth, 0f))

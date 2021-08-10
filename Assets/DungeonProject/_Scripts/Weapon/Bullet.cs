@@ -42,8 +42,8 @@ public class Bullet : MonoBehaviour
         else if(LayerMaskManager.IsAttackable(collision.gameObject.layer))
         {            
             if(collision.TryGetComponent(out Health damageTarget))
-            {
-                damageTarget.CurrentHealth -= damager.Damage;
+            {                
+                damageTarget.TakeDamage(damager);
                 Destroy(gameObject);
             }
         }
