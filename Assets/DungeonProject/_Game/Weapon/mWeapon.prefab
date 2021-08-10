@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4228244903103335177}
   - component: {fileID: 4228244903103335176}
   - component: {fileID: 4152907792606413956}
+  - component: {fileID: 300194363}
   m_Layer: 0
   m_Name: mWeapon
   m_TagString: Untagged
@@ -59,7 +60,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3543705, y: 1.3210697}
+  m_Size: {x: 1.29, y: 1.07}
   m_EdgeRadius: 0
 --- !u!212 &4228244903103335174
 SpriteRenderer:
@@ -139,7 +140,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnWeaponStartAttacking:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 300194363}
+        m_TargetAssemblyTypeName: MeleeWeaponAnimatorController, Assembly-CSharp
+        m_MethodName: TriggerMeleeAttackParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   SpreadToMultipleTargets: 0
 --- !u!95 &4152907792606413956
 Animator:
@@ -151,7 +164,7 @@ Animator:
   m_GameObject: {fileID: 4228244903103335172}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 562ad9853f04c354f8006a291c817433, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -160,3 +173,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &300194363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4228244903103335172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d83be409ab34154fa9e8911f968718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
