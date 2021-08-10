@@ -11,7 +11,7 @@ public abstract class Weapon : MonoBehaviour
 
     private GameObject weaponOwner;
 
-    public GameObject WeaponOwner { 
+    public virtual GameObject WeaponOwner { 
         get => weaponOwner; 
         set
         {

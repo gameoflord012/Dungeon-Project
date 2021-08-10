@@ -11,11 +11,21 @@ public class MeleeWeapon : Weapon
     UnityEvent OnWeaponStartAttacking;
 
     [SerializeField]
-    bool SpreadToMultipleTargets;
+    bool SpreadToMultipleTargets = true;
 
     Damager damager;
 
     List<Health> attackTargets = new List<Health>();
+
+    public override GameObject WeaponOwner
+    {
+        get => base.WeaponOwner;
+        set
+        {
+            base.WeaponOwner = value;
+            gameObject.layer = AttackLayer;
+        }
+    }
 
     private void Awake()
     {
@@ -25,7 +35,16 @@ public class MeleeWeapon : Weapon
     public override void StartWeapon()
     {
         OnWeaponStartAttacking?.Invoke();
+        
+    }
 
+    public override void StopWeapon()
+    {
+
+    }
+
+    public void TriggerAttackArea()
+    {
         if (SpreadToMultipleTargets)
         {
             foreach (Health attackTarget in attackTargets)
@@ -33,11 +52,6 @@ public class MeleeWeapon : Weapon
         }
         else if (attackTargets.Count > 0)
             attackTargets[0].TakeDamage(damager);
-    }
-
-    public override void StopWeapon()
-    {
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -58,7 +72,6 @@ public class MeleeWeapon : Weapon
         {
             if (collision.TryGetComponent(out Health damageTarget))
             {
-                damageTarget.CurrentHealth -= damager.Damage;
                 return true;
             }
         }
