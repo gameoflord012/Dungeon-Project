@@ -58,8 +58,7 @@ public class ProjectileWeapon : Weapon
     private void SpawnBullet(Quaternion accuracyAngle, LayerMask attackLayer)
     {
         Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, accuracyAngle);
-        bullet.Direction = accuracyAngle * Vector3.right;
-        bullet.gameObject.layer = attackLayer;
+        bullet.Init(accuracyAngle, attackLayer);
     }
 
     private Quaternion GetAccuracyAngle()

@@ -27,6 +27,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    public void Init(Quaternion spawnAngle, LayerMask attackLayer)
+    {
+        Direction = spawnAngle * Vector3.right;
+        gameObject.layer = attackLayer;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
