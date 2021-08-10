@@ -39,6 +39,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: mWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Size.y
+      value: 1.07
+      objectReference: {fileID: 0}
     - target: {fileID: 4228244903103335175, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: m_RootOrder
       value: 0

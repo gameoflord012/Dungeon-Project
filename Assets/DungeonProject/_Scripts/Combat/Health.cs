@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
+        Debug.Log(damager + " Attack " + this);
     }
 
     private void Update()
