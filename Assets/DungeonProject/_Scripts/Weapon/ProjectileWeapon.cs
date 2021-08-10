@@ -50,15 +50,13 @@ public class ProjectileWeapon : Weapon
 
     private void FireWeapon()
     {
-        SpawnBullet(
-            gunMuzzle.rotation * GetAccuracyAngle(), 
-            LayerMaskManager.GetAttackLayer(weaponOwner.layer));
+        SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
     }
 
-    private void SpawnBullet(Quaternion accuracyAngle, LayerMask attackLayer)
+    private void SpawnBullet(Quaternion accuracyAngle)
     {
         Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, accuracyAngle);
-        bullet.Init(accuracyAngle, attackLayer);
+        bullet.Init(accuracyAngle, AttackLayer);
     }
 
     private Quaternion GetAccuracyAngle()

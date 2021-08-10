@@ -23,7 +23,7 @@ public class WeaponHandler : MonoBehaviour
     {
         currentWeapon_ = weaponToEquip;
         if(currentWeapon_ != null)
-            currentWeapon_.weaponOwner = GetWeaponOwner();
+            currentWeapon_.WeaponOwner = GetWeaponOwner();
     }
 
     private GameObject GetWeaponOwner()
