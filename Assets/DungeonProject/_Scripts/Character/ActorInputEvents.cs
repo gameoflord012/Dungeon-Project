@@ -12,4 +12,5 @@ public class ActorInputEvents : MonoBehaviour
     public UnityEvent OnFireButtonPressed { get; set; }
     [field: SerializeField]
     public UnityEvent OnFireButtonReleased { get; set; }
+
 }

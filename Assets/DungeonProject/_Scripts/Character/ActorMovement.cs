@@ -9,7 +9,8 @@ public class ActorMovement : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 5, acceleration = 5, deacceleration = 8;
 
-    public UnityEvent<bool> OnActorMoving;    
+    public UnityEvent<Vector2> OnDirectionChange;
+    public UnityEvent<bool> OnActorMoving;
 
     private Vector2 direction;
     private Rigidbody2D rb;
@@ -21,7 +22,12 @@ public class ActorMovement : MonoBehaviour
 
     public void MoveWithDirection(Vector2 movementInput)
     {
-        direction = movementInput.normalized;
+        Vector2 newDirection = movementInput.normalized;
+        if(direction != newDirection)
+        {
+            OnDirectionChange?.Invoke(newDirection);
+            direction = movementInput.normalized;
+        }
     }
 
     private void FixedUpdate()
