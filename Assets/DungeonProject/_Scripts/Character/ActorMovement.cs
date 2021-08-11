@@ -9,8 +9,15 @@ public class ActorMovement : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 5, acceleration = 5, deacceleration = 8;
 
+    [SerializeField]
+    public float velocityThreshold = 6f;
+
+    [SerializeField]
+    bool inThresoldCheck;
+
     public UnityEvent<Vector2> OnDirectionChange;
     public UnityEvent<bool> OnActorMoving;
+    public UnityEvent OnVelocityChangeSuddenly;
 
     private Vector2 direction;
     private Rigidbody2D rb;
@@ -23,24 +30,48 @@ public class ActorMovement : MonoBehaviour
     public void MoveWithDirection(Vector2 movementInput)
     {
         Vector2 newDirection = movementInput.normalized;
-        if(direction != newDirection)
+
+        if ((newDirection - direction).sqrMagnitude > 0)
         {
             OnDirectionChange?.Invoke(newDirection);
-            direction = movementInput.normalized;
+            direction = newDirection;
         }
-    }
+    }    
 
     private void FixedUpdate()
     {
-        if(direction.sqrMagnitude > 0)
+        Vector2 newVelocity;
+        if (direction.sqrMagnitude > 0)
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, direction * maxSpeed, acceleration * Time.fixedDeltaTime);
+            newVelocity = direction * maxSpeed;
+            rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, acceleration * Time.fixedDeltaTime);
             OnActorMoving?.Invoke(true);
         }
         else
         {
-            rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, deacceleration * Time.fixedDeltaTime);
+            newVelocity = Vector2.zero;
+            rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, deacceleration * Time.fixedDeltaTime);
             OnActorMoving?.Invoke(false);
+        }
+        ThresoldCheck(newVelocity);
+    }
+
+    private void ThresoldCheck(Vector2 newVelocity)
+    {
+        float thresoldMagnitude = (rb.velocity - newVelocity).magnitude;
+        Debug.Log(thresoldMagnitude);
+
+        if (thresoldMagnitude > velocityThreshold)
+        {
+            if (!inThresoldCheck)
+            {
+                inThresoldCheck = true;
+                OnVelocityChangeSuddenly?.Invoke();
+            }
+        }
+        else
+        {
+            inThresoldCheck = false;
         }
     }
 }
