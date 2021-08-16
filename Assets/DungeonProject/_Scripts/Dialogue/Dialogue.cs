@@ -9,7 +9,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] string[] dialogues;
     [SerializeField] bool startBySpeaker = true;
 
-    private void Start()
+    private void StartDialogue()
     {
         dialogueUI.StartDialogue(this);
     }
