@@ -23,12 +23,22 @@ public class PathNode : MonoBehaviour
 
     private void OnEnable()
     {
-        Selection.selectionChanged += OnSelectionChanged;
+        Selection.selectionChanged += OnSelectionChanged;        
+    }
+
+    private void OnDisable()
+    {
+        Selection.selectionChanged -= OnSelectionChanged;
     }
 
     private void OnSelectionChanged()
     {
         isSelected = Selection.activeGameObject == gameObject;
+
+        if(isSelected)
+        {
+            SceneViewExtension.Focus();
+        }
     }
 
     public float radius = .5f;
@@ -36,6 +46,7 @@ public class PathNode : MonoBehaviour
 
     public void AddNeighbor(PathNode neighbor)
     {
+        Undo.RecordObject(this, "Add neighbor");
         neighbors.Add(neighbor);
     }
 

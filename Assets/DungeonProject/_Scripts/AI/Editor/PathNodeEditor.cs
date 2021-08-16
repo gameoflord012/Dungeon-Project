@@ -6,26 +6,23 @@ using UnityEditor;
 [CustomEditor(typeof(PathNode))]
 public class PathNodeEditor : Editor
 {
-    PathNode pathNode;
-
-    private void OnEnable()
-    {
-        pathNode = (PathNode)target;
-    }
-
     private void OnSceneGUI()
     {
-        if (NewNodeKeyPressed())
+        if (CreateNodeKeyPressed())
         {
-            PathNode newPathNode = pathNode.CreateNeighbor();
-            newPathNode.transform.position = GetMousePosition();
-            Selection.activeObject = newPathNode;
-
-            Debug.Log("Hello");
+            CreateNewNode();
         }
     }
 
-    bool NewNodeKeyPressed()
+    private void CreateNewNode()
+    {
+        PathNode pathNode = (PathNode)target;
+        PathNode newPathNode = pathNode.CreateNeighbor();
+        newPathNode.transform.position = GetMousePosition();
+        Selection.activeObject = newPathNode;
+    }
+
+    bool CreateNodeKeyPressed()
     {
         Event e = Event.current;
         return e.type == EventType.KeyDown && e.keyCode == KeyCode.N;
