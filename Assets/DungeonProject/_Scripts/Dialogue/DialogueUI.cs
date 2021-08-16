@@ -11,29 +11,21 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] Button skipButton;
     [SerializeField] Button quitButton;
 
-    string[] speakerNames = new string[2];
+    string[] speakerNames = null;
     string[] dialogues = null;
     int currentIndex = 0;
 
     public void StartDialogue(Dialogue dialogue)
     {
         if (dialogue.IsStartBySpeaker())
-        {
-            speakerNames[0] = dialogue.GetSpeakerName();
-            speakerNames[1] = "player";
-        }
+            speakerNames = new string[2] { dialogue.GetSpeakerName(), "player" };
         else
-        {
-            speakerNames[0] = "player";
-            speakerNames[1] = dialogue.GetSpeakerName();
-        }
+            speakerNames = new string[2] { "player", dialogue.GetSpeakerName() };
 
         dialogues = dialogue.GetDialogues();
         currentIndex = 0;
 
-        nextButton.gameObject.SetActive(true);
-        skipButton.gameObject.SetActive(true);
-        quitButton.gameObject.SetActive(false);
+        SetActiveButtons(false);
         RefreshUI();
     }
 
@@ -60,15 +52,18 @@ public class DialogueUI : MonoBehaviour
         dialogue.text = dialogues[currentIndex];
 
         if (!HasNext())
-        {
-            nextButton.gameObject.SetActive(false);
-            skipButton.gameObject.SetActive(false);
-            quitButton.gameObject.SetActive(true);
-        }
+            SetActiveButtons(true);
     }
 
     private bool HasNext()
     {
         return currentIndex < dialogues.Length - 1;
+    }
+
+    private void SetActiveButtons(bool canQuit)
+    {
+        nextButton.gameObject.SetActive(!canQuit);
+        skipButton.gameObject.SetActive(!canQuit);
+        quitButton.gameObject.SetActive(canQuit);
     }
 }
