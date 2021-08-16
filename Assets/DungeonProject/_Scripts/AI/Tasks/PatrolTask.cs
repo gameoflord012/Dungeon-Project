@@ -2,17 +2,14 @@
 
 
 public class PatrolTask : MonoBehaviour
-{
-    public int currentPatrolPoint = 0;
-    // Use this for initialization
-    void Start()
+{    
+    [SerializeField] PathNode currentPathNode;
+
+    
+    bool AdvancedPath()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (currentPathNode.neighbors.Count == 0) return false;
+        currentPathNode = currentPathNode.neighbors[Random.Range(0, currentPathNode.neighbors.Count - 1)];
+        return true;
     }
 }

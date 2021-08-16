@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [ExecuteAlways]
-public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
+public class PathNode : MonoBehaviour
 {
     PatrolPath patrolPath;
     bool isSelected = false;
@@ -12,10 +12,7 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
     public bool IsSelected { get => isSelected; }
 
     public float radius = .5f;
-    public HashSet<PathNode> neighbors = new HashSet<PathNode>();
-
-    [SerializeField, HideInInspector]
-    List<PathNode> serializedNeighbors;
+    public List<PathNode> neighbors = new List<PathNode>();
 
     public PatrolPath PatrolPath
     {
@@ -50,7 +47,7 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
 
     public void AddNeighbor(PathNode neighbor)
     {
-        if (neighbor == this) return;
+        if (neighbor == this || neighbors.Contains(neighbor)) return;
         Undo.RecordObject(this, "Add neighbor");
         neighbors.Add(neighbor);
     }
@@ -83,15 +80,5 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
         {
             DrawArrow.ForGizmo(transform.position, neighbor.transform.position);
         }
-    }
-
-    public void OnBeforeSerialize()
-    {
-        serializedNeighbors = neighbors.ToList();
-    }
-
-    public void OnAfterDeserialize()
-    {
-        neighbors = new HashSet<PathNode>(serializedNeighbors);
     }
 }
