@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponHandler : MonoBehaviour
@@ -22,7 +19,7 @@ public class WeaponHandler : MonoBehaviour
     private void EquipWeapon(Weapon weaponToEquip)
     {
         currentWeapon_ = weaponToEquip;
-        if(currentWeapon_ != null)
+        if (currentWeapon_ != null)
             currentWeapon_.WeaponOwner = GetWeaponOwner();
     }
 
@@ -33,7 +30,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void UseCurrentWeapon()
     {
-        if(currentWeapon_ != null) currentWeapon_.StartWeapon();
+        if (currentWeapon_ != null) currentWeapon_.StartWeapon();
     }
 
     public void StopCurrentWeapon()
@@ -53,13 +50,13 @@ public class WeaponHandler : MonoBehaviour
 
     private void FacingWeaponAlignedWithRotation(float angle)
     {
-        if(angle > 90 || angle < -90)
+        if (angle > 90 || angle < -90)
             transform.rotation *= Quaternion.AngleAxis(180, Vector3.right);
     }
 
     private void AdjustSortingOrder(float angle)
     {
-        if(angle > 0 && angle < 180)
+        if (angle > 0 && angle < 180)
         {
             spriteRenderer.sortingOrder = weaponOwnerSortingOrder - 1;
         }

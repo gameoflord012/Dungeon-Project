@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using System;
+using UnityEngine;
 
 [CustomEditor(typeof(PathNode))]
 public class PathNodeEditor : Editor
-{    
+{
     bool isOnCreatingEdge = false;
 
     PathNode GetNode()
     {
-        return (PathNode)target;        
-    }   
+        return (PathNode)target;
+    }
 
     private void OnSceneGUI()
     {
@@ -29,7 +26,7 @@ public class PathNodeEditor : Editor
 
     public void CreatingEdgeInputHandle()
     {
-        if(isOnCreatingEdge)
+        if (isOnCreatingEdge)
         {
             Handles.DrawLine(GetNode().transform.position, GetMousePosition());
             HandleUtility.Repaint();
@@ -37,7 +34,7 @@ public class PathNodeEditor : Editor
             if (CreateEdgeKeyPressed())
             {
                 PathNode targetNode = GetPointingAtPathNode();
-                if(targetNode != null) GetNode().AddNeighbor(targetNode);
+                if (targetNode != null) GetNode().AddNeighbor(targetNode);
 
                 isOnCreatingEdge = false;
             }
@@ -57,7 +54,7 @@ public class PathNodeEditor : Editor
 
     bool CreateNodeKeyPressed()
     {
-        Event e = Event.current;        
+        Event e = Event.current;
         return e.type == EventType.KeyDown && e.keyCode == KeyCode.N;
     }
 
@@ -71,12 +68,12 @@ public class PathNodeEditor : Editor
     {
         return HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin;
     }
-    
+
     public PathNode GetPointingAtPathNode()
     {
-        foreach(PathNode node in GetNode().PatrolPath.GetNodes())
+        foreach (PathNode node in GetNode().PatrolPath.GetNodes())
         {
-            if(node.IsPointingTo(GetMousePosition()))
+            if (node.IsPointingTo(GetMousePosition()))
             {
                 return node;
             }

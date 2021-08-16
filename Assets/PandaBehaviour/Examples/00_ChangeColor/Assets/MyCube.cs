@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Panda;
 
 namespace Panda.Examples.ChangeColor
 {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -27,12 +25,12 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
                 patrolPath = GetComponentInParent<PatrolPath>();
 
             return patrolPath;
-        }        
+        }
     }
 
     private void OnEnable()
     {
-        Selection.selectionChanged += OnSelectionChanged;        
+        Selection.selectionChanged += OnSelectionChanged;
     }
 
     private void OnDisable()
@@ -44,11 +42,11 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
     {
         isSelected = Selection.activeGameObject == gameObject;
 
-        if(isSelected)
+        if (isSelected)
         {
             SceneViewExtension.Focus();
         }
-    }    
+    }
 
     public void AddNeighbor(PathNode neighbor)
     {
@@ -69,9 +67,9 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
 
     private void OnDestroy()
     {
-        foreach(var from in FindObjectsOfType<PathNode>())
+        foreach (var from in FindObjectsOfType<PathNode>())
         {
-            from.neighbors.Remove(this); 
+            from.neighbors.Remove(this);
         }
     }
 
@@ -81,7 +79,7 @@ public class PathNode : MonoBehaviour, ISerializationCallbackReceiver
         Gizmos.DrawSphere(transform.position, radius);
 
         Gizmos.color = PatrolPath.customColor;
-        foreach(PathNode neighbor in neighbors)
+        foreach (PathNode neighbor in neighbors)
         {
             DrawArrow.ForGizmo(transform.position, neighbor.transform.position);
         }

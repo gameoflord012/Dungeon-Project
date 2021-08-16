@@ -1,8 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using Panda;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Panda.Examples.Shooter
 {
@@ -39,9 +36,9 @@ namespace Panda.Examples.Shooter
         }
 
         [Task]
-        bool SetTarget_Angle( float angle )
+        bool SetTarget_Angle(float angle)
         {
-            var p = this.transform.position +  Quaternion.AngleAxis( angle, Vector3.up)*this.transform.forward;
+            var p = this.transform.position + Quaternion.AngleAxis(angle, Vector3.up) * this.transform.forward;
             self.SetTarget(p);
             return true;
         }
@@ -130,7 +127,7 @@ namespace Panda.Examples.Shooter
         {
             bool succeeded = false;
 
-            if( enemy != null )
+            if (enemy != null)
             {
                 self.SetDestination(enemy.transform.position);
                 succeeded = true;
@@ -164,39 +161,39 @@ namespace Panda.Examples.Shooter
         {
             bool hasLoS = false;
             var attacker = self.shotBy != null ? self.shotBy : enemy;
-            if (attacker != null  )
+            if (attacker != null)
             {
                 var ignoreList = new List<GameObject>() { this.gameObject, attacker.gameObject };
                 var src = attacker.transform.position;
-                var dst =  self.destination ;
+                var dst = self.destination;
                 hasLoS = HasLoS(src, dst, ignoreList);
             }
             return hasLoS;
         }
 
         [Task]
-        bool LastBulletSeenTime_LessThan( float duration )
+        bool LastBulletSeenTime_LessThan(float duration)
         {
             float t = Time.time - vision.lastBulletSeenTime;
-            if( Task.isInspected )
+            if (Task.isInspected)
                 Task.current.debugInfo = string.Format("t={0:0.00}", t);
             return t < duration;
         }
 
-        bool HasLoS( Vector3 source, Vector3 destination, List<GameObject>  ignoreList )
+        bool HasLoS(Vector3 source, Vector3 destination, List<GameObject> ignoreList)
         {
             bool hasLos = true;
             var delta = (destination - source);
             var ray = new Ray(source, delta.normalized);
-            var hits = Physics.RaycastAll(ray, delta.magnitude );
-            foreach( var hit in hits)
+            var hits = Physics.RaycastAll(ray, delta.magnitude);
+            foreach (var hit in hits)
             {
                 var type = hit.collider.GetComponent<TriggerType>();
                 if (type == null || !type.collidesWithBullet)
                     continue;
-                    
-                var go = hit.collider.attachedRigidbody != null ? hit.collider.attachedRigidbody.gameObject: hit.collider.gameObject;
-                if(! ignoreList.Contains( go ) && Vector3.Distance( hit.point, destination ) > 2.0f)
+
+                var go = hit.collider.attachedRigidbody != null ? hit.collider.attachedRigidbody.gameObject : hit.collider.gameObject;
+                if (!ignoreList.Contains(go) && Vector3.Distance(hit.point, destination) > 2.0f)
                 {
                     hasLos = false;
                     break;
@@ -232,9 +229,9 @@ namespace Panda.Examples.Shooter
                     for (int i = 0; i < s; i++)
                     {
                         float a = Random.value * Mathf.PI * 2.0f;
-                        var dst = pos + new Vector3(Mathf.Cos(a), 0.0f ,Mathf.Sin(a)) * searchRadius;
+                        var dst = pos + new Vector3(Mathf.Cos(a), 0.0f, Mathf.Sin(a)) * searchRadius;
 
-                        if ( ! HasLoS(src, dst, ignoreList) )
+                        if (!HasLoS(src, dst, ignoreList))
                             possibleCovers.Add(dst);
 
                     }
@@ -246,16 +243,16 @@ namespace Panda.Examples.Shooter
                 UnityEngine.AI.NavMeshPath attackerPath = new UnityEngine.AI.NavMeshPath();
                 Vector3 closest = pos;
                 float minD = float.PositiveInfinity;
-                foreach ( var p in possibleCovers)
+                foreach (var p in possibleCovers)
                 {
-                    if( self.navMeshAgent.CalculatePath(p, selfPath) && selfPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete )
+                    if (self.navMeshAgent.CalculatePath(p, selfPath) && selfPath.status == UnityEngine.AI.NavMeshPathStatus.PathComplete)
                     {
                         float attackerDistance = 0.0f;
                         if (attacker != null && attacker.navMeshAgent != null && attacker.navMeshAgent.CalculatePath(p, attackerPath))
                             attackerDistance = PathLength(attackerPath);
 
-                        float d = PathLength(selfPath) - attackerDistance*0.1f;
-                        if( d < minD)
+                        float d = PathLength(selfPath) - attackerDistance * 0.1f;
+                        if (d < minD)
                         {
                             minD = d;
                             closest = p;
@@ -271,14 +268,14 @@ namespace Panda.Examples.Shooter
 
         }
 
-        static float PathLength( UnityEngine.AI.NavMeshPath path )
+        static float PathLength(UnityEngine.AI.NavMeshPath path)
         {
             float d = float.PositiveInfinity;
 
             if (path != null && path.corners.Length > 1)
             {
                 d = 0.0f;
-                for (int i = 0; i < path.corners.Length-1; i++)
+                for (int i = 0; i < path.corners.Length - 1; i++)
                 {
                     var p0 = path.corners[i + 0];
                     var p1 = path.corners[i + 1];

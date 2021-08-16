@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -11,8 +9,9 @@ public abstract class Weapon : MonoBehaviour
 
     private GameObject weaponOwner;
 
-    public virtual GameObject WeaponOwner { 
-        get => weaponOwner; 
+    public virtual GameObject WeaponOwner
+    {
+        get => weaponOwner;
         set
         {
             weaponOwner = value;

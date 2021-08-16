@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,7 +34,7 @@ public class ActorMovement : MonoBehaviour
             OnDirectionChange?.Invoke(newDirection);
             direction = newDirection;
         }
-    }    
+    }
 
     private void FixedUpdate()
     {

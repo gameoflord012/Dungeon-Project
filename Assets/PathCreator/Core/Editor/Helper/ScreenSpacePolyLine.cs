@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using PathCreation;
+﻿using PathCreation;
 using PathCreation.Utility;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace PathCreationEditor
 {
@@ -42,7 +42,7 @@ namespace PathCreationEditor
             // Split path in vertices based on angle error
             verticesWorld = new List<Vector3>();
             vertexToPathSegmentMap = new List<int>();
-            segmentStartIndices = new int[bezierPath.NumSegments+1];
+            segmentStartIndices = new int[bezierPath.NumSegments + 1];
 
             verticesWorld.Add(bezierPath[0]);
             vertexToPathSegmentMap.Add(0);
@@ -56,7 +56,7 @@ namespace PathCreationEditor
                 Vector3[] segmentPoints = bezierPath.GetPointsInSegment(segmentIndex);
                 verticesWorld.Add(segmentPoints[0]);
                 vertexToPathSegmentMap.Add(segmentIndex);
-                segmentStartIndices[segmentIndex] = verticesWorld.Count-1;
+                segmentStartIndices[segmentIndex] = verticesWorld.Count - 1;
 
                 prevPointOnPath = segmentPoints[0];
                 lastAddedPoint = prevPointOnPath;
@@ -122,7 +122,8 @@ namespace PathCreationEditor
             for (int i = 0; i < verticesWorld.Count; i++)
             {
                 verticesWorld[i] = MathUtility.TransformPoint(verticesWorld[i], transform, bezierPath.Space);
-                if (i > 0) {
+                if (i > 0)
+                {
                     pathLengthWorld += (verticesWorld[i - 1] - verticesWorld[i]).magnitude;
                     cumululativeLengthWorld[i] = pathLengthWorld;
                 }
@@ -176,17 +177,18 @@ namespace PathCreationEditor
             float timeAlongPath = distanceAlongPathWorld / pathLengthWorld;
 
             // Calculate how far between the current bezier segment the closest point on the line is
-            
+
             int bezierSegmentStartIndex = segmentStartIndices[closestBezierSegmentIndex];
-            int bezierSegmentEndIndex = segmentStartIndices[closestBezierSegmentIndex+1];
+            int bezierSegmentEndIndex = segmentStartIndices[closestBezierSegmentIndex + 1];
             float bezierSegmentLength = cumululativeLengthWorld[bezierSegmentEndIndex] - cumululativeLengthWorld[bezierSegmentStartIndex];
             float distanceAlongBezierSegment = distanceAlongPathWorld - cumululativeLengthWorld[bezierSegmentStartIndex];
-            float timeAlongBezierSegment = distanceAlongBezierSegment/bezierSegmentLength;
+            float timeAlongBezierSegment = distanceAlongBezierSegment / bezierSegmentLength;
 
             return new MouseInfo(minDst, closestPoint3D, distanceAlongPathWorld, timeAlongPath, timeAlongBezierSegment, closestBezierSegmentIndex);
         }
 
-        public bool TransformIsOutOfDate() {
+        public bool TransformIsOutOfDate()
+        {
             return transform.position != transformPosition || transform.rotation != transformRotation || transform.localScale != transformScale;
         }
 
@@ -199,7 +201,7 @@ namespace PathCreationEditor
             public readonly float timeOnPath;
             public readonly float timeOnBezierSegment;
             public readonly int closestSegmentIndex;
-            
+
 
             public MouseInfo(float mouseDstToLine, Vector3 closestWorldPointToMouse, float distanceAlongPathWorld, float timeOnPath, float timeOnBezierSegment, int closestSegmentIndex)
             {

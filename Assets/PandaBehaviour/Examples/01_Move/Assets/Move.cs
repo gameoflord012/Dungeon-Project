@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
-using Panda;
 namespace Panda.Examples.Move
 {
     public class Move : MonoBehaviour
@@ -18,7 +15,7 @@ namespace Panda.Examples.Move
         {
             Vector3 destination = new Vector3(x, y, 0.0f);
             Vector3 delta = (destination - transform.position);
-            Vector3 velocity = speed*delta.normalized;
+            Vector3 velocity = speed * delta.normalized;
 
             transform.position = transform.position + velocity * Time.deltaTime;
 
@@ -28,7 +25,7 @@ namespace Panda.Examples.Move
             if (Task.isInspected)
                 Task.current.debugInfo = string.Format("d={0:0.000}", d);
 
-            if ( Vector3.Dot(delta, newDelta) <= 0.0f || d < 1e-3)
+            if (Vector3.Dot(delta, newDelta) <= 0.0f || d < 1e-3)
             {
                 transform.position = destination;
                 Task.current.Succeed();
@@ -57,12 +54,12 @@ namespace Panda.Examples.Move
 
             // The Task.isStarting property is true on the first tick of a task.
             // We used it to perform initialization.
-            if ( task.isStarting ) 
+            if (task.isStarting)
             {
                 // Compute tweeing data
                 rt.startTime = Time.time;
                 rt.startRotation = this.transform.localRotation;
-                rt.endRotation   = Quaternion.AngleAxis( angle, Vector3.forward)*transform.localRotation;
+                rt.endRotation = Quaternion.AngleAxis(angle, Vector3.forward) * transform.localRotation;
 
                 // Task.item is a placeholder attached to a Task.
                 // It is useful for storing any data used for the progression of a task.
@@ -79,7 +76,7 @@ namespace Panda.Examples.Move
 
 
             // Display the tweening progression withing the code viewer in the Inspector.
-            if( Task.isInspected )
+            if (Task.isInspected)
                 task.debugInfo = string.Format("t={0:0.00}", t);
 
             // Succeed the task when the tweening is complete.

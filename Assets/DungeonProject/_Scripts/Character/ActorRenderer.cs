@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ActorRenderer : MonoBehaviour
@@ -10,7 +8,7 @@ public class ActorRenderer : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+
     public void FacingToPointerPosition(Vector2 pointerPosition)
     {
         Vector2 pointerDirection = pointerPosition - (Vector2)transform.position;

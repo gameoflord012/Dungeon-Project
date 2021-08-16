@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-
-using Panda;
 
 namespace Panda.Examples.PlayTag
 {
@@ -16,14 +13,14 @@ namespace Panda.Examples.PlayTag
         RectTransform rectTransform;
 
         [Task]
-        void EnableText(bool show )
+        void EnableText(bool show)
         {
             text.enabled = show;
             Task.current.Succeed();
         }
 
 
-        public void SetText( string text  )
+        public void SetText(string text)
         {
             this.text.text = text;
         }
@@ -38,7 +35,7 @@ namespace Panda.Examples.PlayTag
         void Start()
         {
             text = this.GetComponent<Text>();
-            bt =  this.GetComponent<PandaBehaviour>();
+            bt = this.GetComponent<PandaBehaviour>();
             rectTransform = this.GetComponent<RectTransform>();
             bt.enabled = false;
         }
@@ -46,7 +43,7 @@ namespace Panda.Examples.PlayTag
         // Update is called once per frame
         void Update()
         {
-            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, speaker.transform.position + Vector3.forward*1.0f);
+            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, speaker.transform.position + Vector3.forward * 1.0f);
             rectTransform.position = screenPoint;
         }
     }

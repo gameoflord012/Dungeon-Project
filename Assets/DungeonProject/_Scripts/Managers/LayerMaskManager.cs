@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +23,7 @@ public static class LayerMaskManager
                 resultLayerName = "EnemyAttack";
                 break;
             default:
-                throw new UnityException("Invalid layer: " + layer);                
+                throw new UnityException("Invalid layer: " + layer);
         }
 
         return LayerMask.NameToLayer(resultLayerName);

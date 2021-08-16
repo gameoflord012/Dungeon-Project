@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEditor;
 
 public static class SceneViewExtension
 {

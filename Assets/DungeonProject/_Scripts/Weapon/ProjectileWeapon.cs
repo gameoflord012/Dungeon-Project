@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileWeapon : Weapon
@@ -32,7 +30,7 @@ public class ProjectileWeapon : Weapon
             FireWeapon();
             StartCoroutine(WaitNextFireRoutine());
         }
-    }    
+    }
 
     public override void StartWeapon()
     {
@@ -62,9 +60,9 @@ public class ProjectileWeapon : Weapon
     private Quaternion GetAccuracyAngle()
     {
         return Quaternion.AngleAxis(
-            UnityEngine.Random.Range(-accuracyAngle, accuracyAngle), 
+            UnityEngine.Random.Range(-accuracyAngle, accuracyAngle),
             Vector3.forward);
-    }    
+    }
 
     IEnumerator WaitNextFireRoutine()
     {

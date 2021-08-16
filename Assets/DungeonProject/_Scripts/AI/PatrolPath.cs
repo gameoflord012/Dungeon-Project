@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class PatrolPath : MonoBehaviour
-{    
+{
     public Color customColor = Color.red;
 
     public IEnumerable<PathNode> GetNodes()
@@ -20,7 +19,7 @@ public class PatrolPath : MonoBehaviour
         PathNode newNode = GO.AddComponent<PathNode>();
         newNode.transform.SetParent(transform);
 
-        if(fromNode != null)
+        if (fromNode != null)
         {
             fromNode.AddNeighbor(newNode);
         }

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Panda;
 
 namespace Panda.Examples.Shooter
 {
@@ -19,7 +17,7 @@ namespace Panda.Examples.Shooter
         // Update is called once per frame
         void Update()
         {
-            if( Time.time - startTime > duration )
+            if (Time.time - startTime > duration)
             {
                 Destroy(this.gameObject);
             }

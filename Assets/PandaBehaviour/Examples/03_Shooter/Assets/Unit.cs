@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Panda;
 
 
 namespace Panda.Examples.Shooter
 {
-    public class Unit: MonoBehaviour
+    public class Unit : MonoBehaviour
     {
 
 
@@ -38,7 +36,7 @@ namespace Panda.Examples.Shooter
         public Vector3 target;      // The position to aim to.
 
         [HideInInspector]
-        public float startHealth; 
+        public float startHealth;
 
 
 
@@ -63,7 +61,7 @@ namespace Panda.Examples.Shooter
 
         void Update()
         {
-            if( (Time.time - lastReloadTime) * reloadRate >= 1.0f )
+            if ((Time.time - lastReloadTime) * reloadRate >= 1.0f)
             {
                 ammo++;
                 if (ammo > startAmmo) ammo = startAmmo;
@@ -84,7 +82,7 @@ namespace Panda.Examples.Shooter
         #region navigation tasks
 
         [Task]
-        public bool IsHealthLessThan( float health )
+        public bool IsHealthLessThan(float health)
         {
             return this.health < health;
         }
@@ -92,7 +90,7 @@ namespace Panda.Examples.Shooter
         [Task]
         public bool IsHealth_PercentLessThan(float percent)
         {
-            return (this.health / startHealth)*100.0 < percent;
+            return (this.health / startHealth) * 100.0 < percent;
         }
 
         [Task]
@@ -102,9 +100,9 @@ namespace Panda.Examples.Shooter
         }
 
         [Task]
-        public bool Ammo_LessThan( int i )
+        public bool Ammo_LessThan(int i)
         {
-            if( Task.isInspected)
+            if (Task.isInspected)
                 Task.current.debugInfo = string.Format("a={0}", ammo);
             return ammo < i;
         }
@@ -113,10 +111,10 @@ namespace Panda.Examples.Shooter
         [Task]
         public bool SetDestination(Vector3 p)
         {
-            destination =  p;
+            destination = p;
             navMeshAgent.destination = destination;
 
-            if( Task.isInspected )
+            if (Task.isInspected)
                 Task.current.debugInfo = string.Format("({0}, {1})", destination.x, destination.y);
             return true;
         }
@@ -131,9 +129,9 @@ namespace Panda.Examples.Shooter
                 task.Succeed();
                 d = 0.0f;
             }
-           
-            if( Task.isInspected )
-                task.debugInfo = string.Format("d-{0:0.00}", d );
+
+            if (Task.isInspected)
+                task.debugInfo = string.Format("d-{0:0.00}", d);
         }
 
         [Task]
@@ -178,7 +176,7 @@ namespace Panda.Examples.Shooter
 
             if (dir.magnitude > 0.0f)
             {
-                var pos =this.transform.position + dir.normalized;
+                var pos = this.transform.position + dir.normalized;
                 SetDestination(pos);
                 isSet = true;
             }
@@ -199,7 +197,7 @@ namespace Panda.Examples.Shooter
         public bool LastShotTime_LessThan(float duration)
         {
             var t = (Time.time - lastShotTime);
-            if( Task.isInspected )
+            if (Task.isInspected)
                 Task.current.debugInfo = string.Format("t={0:0.00}", t);
             return t < duration;
         }
@@ -211,13 +209,13 @@ namespace Panda.Examples.Shooter
         public bool Fire()
         {
 
-            var bulletOb = ammo > 0? GameObject.Instantiate(bulletPrefab): GameObject.Instantiate(jammedEffectPrefab);
+            var bulletOb = ammo > 0 ? GameObject.Instantiate(bulletPrefab) : GameObject.Instantiate(jammedEffectPrefab);
 
             bulletOb.transform.position = this.transform.position;
             bulletOb.transform.rotation = this.transform.rotation;
             if (ammo > 0)
             {
-                
+
 
                 var bullet = bulletOb.GetComponent<Bullet>();
                 bullet.shooter = this.gameObject;
@@ -227,7 +225,7 @@ namespace Panda.Examples.Shooter
             }
             else
             {
-                lastReloadTime = Time.time + (1.0f/reloadRate);
+                lastReloadTime = Time.time + (1.0f / reloadRate);
                 bulletOb.transform.parent = this.transform;
             }
 
@@ -236,7 +234,7 @@ namespace Panda.Examples.Shooter
         }
 
         [Task]
-        public bool SetTarget( Vector3 target )
+        public bool SetTarget(Vector3 target)
         {
             this.target = target;
             this.target.y = this.transform.position.y;
@@ -275,7 +273,7 @@ namespace Panda.Examples.Shooter
 
                 float dot = Vector3.Dot(axis, newAxis);
 
-                if (dot < 0.01f) 
+                if (dot < 0.01f)
                 {// We overshooted the target
                     var snapRot = Quaternion.FromToRotation(this.transform.forward, targetDir);
                     this.transform.rotation = snapRot * this.transform.rotation;
@@ -290,7 +288,7 @@ namespace Panda.Examples.Shooter
                 Task.current.Succeed();
             }
 
-            if( Task.isInspected )
+            if (Task.isInspected)
                 Task.current.debugInfo = string.Format("angle={0}", Vector3.Angle(targetDir, this.transform.forward));
 
 

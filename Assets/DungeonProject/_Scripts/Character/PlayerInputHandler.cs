@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -57,7 +54,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private Vector2 GetMousePosition()
     {
-        return  mainCamera.ScreenToWorldPoint(new Vector3(
+        return mainCamera.ScreenToWorldPoint(new Vector3(
             Input.mousePosition.x,
             Input.mousePosition.y,
             mainCamera.nearClipPlane

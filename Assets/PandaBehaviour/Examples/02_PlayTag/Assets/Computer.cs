@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-
-using Panda;
 
 namespace Panda.Examples.PlayTag
 {
@@ -43,7 +40,7 @@ namespace Panda.Examples.PlayTag
         void IsPlayerNear()
         {
             float distanceToPlayer = Vector3.Distance(player.transform.position, this.transform.position);
-            Task.current.Complete(  distanceToPlayer < 4.0f );
+            Task.current.Complete(distanceToPlayer < 4.0f);
         }
 
         /*
@@ -112,7 +109,7 @@ namespace Panda.Examples.PlayTag
          */
         [Task]
         bool IsDirectionSafe
-        { 
+        {
             get
             {
                 Vector3 playerDirection = (player.transform.position - this.transform.position).normalized;
@@ -126,16 +123,16 @@ namespace Panda.Examples.PlayTag
          * Set the current speed and succeeds. 
          */
         [Task]
-        bool SetSpeed( float speed )
+        bool SetSpeed(float speed)
         {
             this.speed = speed;
             return true;
         }
 
 
-         /*
-         * Tag and apply the color accordingly.
-         */
+        /*
+        * Tag and apply the color accordingly.
+        */
         [Task]
         bool Tag()
         {
@@ -163,14 +160,14 @@ namespace Panda.Examples.PlayTag
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject == player.gameObject )
-                _IsColliding_Player = true;      
+            if (other.gameObject == player.gameObject)
+                _IsColliding_Player = true;
         }
 
         void OnTriggerExit(Collider other)
         {
             if (other.gameObject == player.gameObject)
-                _IsColliding_Player = false;       
+                _IsColliding_Player = false;
         }
 
     }

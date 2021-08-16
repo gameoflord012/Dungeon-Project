@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 class FeedbackPlayer : MonoBehaviour
-{    
+{
     Feedback[] feedbacks;
 
     private void Awake()

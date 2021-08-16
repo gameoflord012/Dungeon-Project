@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -9,7 +6,8 @@ public class Health : MonoBehaviour
     [Range(0, 500)]
     private float currentHealth = 50, maxHealth = 50;
 
-    public float CurrentHealth {
+    public float CurrentHealth
+    {
         get => currentHealth;
         set
         {

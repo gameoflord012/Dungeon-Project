@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using PathCreation;
+using System.Collections.Generic;
 using UnityEditor;
-using PathCreation;
+using UnityEngine;
 
 namespace PathCreationEditor
 {
@@ -155,7 +155,7 @@ namespace PathCreationEditor
                     {
                         if (cam.orthographic)
                         {
-                            lookForward= -cam.transform.forward;
+                            lookForward = -cam.transform.forward;
                         }
                         else
                         {
@@ -210,10 +210,12 @@ namespace PathCreationEditor
                 // This is a bit of a shot in the dark at fixing a reported bug that I've been unable to reproduce.
                 // The problem is that multiple handles are being selected when just one is clicked on.
                 // I assume this is because they're somehow being assigned the same id.
-                while (idHash.Contains(id)) {
-                    numIts ++;
+                while (idHash.Contains(id))
+                {
+                    numIts++;
                     id += numIts * numIts;
-                    if (numIts > 100) {
+                    if (numIts > 100)
+                    {
                         Debug.LogError("Failed to generate unique handle id.");
                         break;
                     }

@@ -1,8 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-
-using Panda;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 namespace Panda.Examples.Shooter
@@ -17,7 +14,7 @@ namespace Panda.Examples.Shooter
             get
             {
                 var wp = new List<Transform>();
-                foreach( Transform c in this.transform)
+                foreach (Transform c in this.transform)
                 {
                     wp.Add(c);
                 }
@@ -69,10 +66,10 @@ namespace Panda.Examples.Shooter
                 Gizmos.DrawLine(p0, p1);
             }
 
-            if( loop && wp.Length > 1 )
+            if (loop && wp.Length > 1)
             {
                 var p0 = wp[0].position;
-                var p1 = wp[wp.Length-1].position;
+                var p1 = wp[wp.Length - 1].position;
                 Gizmos.DrawLine(p0, p1);
             }
         }

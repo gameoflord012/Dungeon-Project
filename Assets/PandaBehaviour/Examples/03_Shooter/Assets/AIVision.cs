@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 
@@ -21,10 +20,10 @@ namespace Panda.Examples.Shooter
 
         public float lastBulletSeenTime;
 
-        void OnTriggerEnter( Collider other )
+        void OnTriggerEnter(Collider other)
         {
             var triggerType = other.GetComponent<TriggerType>();
-            if( triggerType != null && triggerType.collidesWithVision && !colliders.Contains(other) )
+            if (triggerType != null && triggerType.collidesWithVision && !colliders.Contains(other))
             {
                 colliders.Add(other);
                 colliders.RemoveAll((c) => c == null);
@@ -44,12 +43,12 @@ namespace Panda.Examples.Shooter
         void UpdateVisibility()
         {
             visibles.Clear();
-            foreach( var c in colliders)
+            foreach (var c in colliders)
             {
                 if (c == null)
                     continue;
 
-                var go = c.attachedRigidbody != null ? c.attachedRigidbody.gameObject: null;
+                var go = c.attachedRigidbody != null ? c.attachedRigidbody.gameObject : null;
 
                 bool isVisible = false;
 
@@ -61,18 +60,18 @@ namespace Panda.Examples.Shooter
                     bool isInClosedField = Vector3.Distance(go.transform.position, this.transform.position) <= closeFieldDistance;
                     bool isInFieldOfView = Mathf.Abs(angle) <= fieldOfView * 0.5f;
 
-                     
-                    isVisible = isInClosedField || (isInFieldOfView  && HasLoS( go.gameObject ));
+
+                    isVisible = isInClosedField || (isInFieldOfView && HasLoS(go.gameObject));
 
                 }
 
                 if (isVisible && !visibles.Contains(go))
                 {
                     var bullet = go.GetComponent<Bullet>();
-                    if ( bullet != null)
+                    if (bullet != null)
                     {
-                        var attacker = bullet.shooter != null? bullet.shooter.GetComponent<Unit>(): null;
-                        if( attacker != null && attacker.team != shooter.team)
+                        var attacker = bullet.shooter != null ? bullet.shooter.GetComponent<Unit>() : null;
+                        if (attacker != null && attacker.team != shooter.team)
                             lastBulletSeenTime = Time.time;
                     }
                     visibles.Add(go);
@@ -81,7 +80,7 @@ namespace Panda.Examples.Shooter
             }
         }
 
-        bool HasLoS( GameObject target ) // Line of sight test.
+        bool HasLoS(GameObject target) // Line of sight test.
         {
             bool has = false;
             var targetDirection = (target.transform.position - this.transform.position).normalized;
@@ -92,7 +91,7 @@ namespace Panda.Examples.Shooter
             float minD = float.PositiveInfinity;
             GameObject closest = null;
 
-            foreach( var h in hits)
+            foreach (var h in hits)
             {
                 var ct = h.collider.GetComponent<TriggerType>();
                 if (ct == null || !ct.collidesWithVision)
@@ -100,7 +99,7 @@ namespace Panda.Examples.Shooter
 
                 float d = Vector3.Distance(h.point, this.transform.position);
                 var o = h.collider.attachedRigidbody != null ? h.collider.attachedRigidbody.gameObject : h.collider.gameObject;
-                if ( d <= minD && o != this.gameObject)
+                if (d <= minD && o != this.gameObject)
                 {
                     minD = d;
                     closest = o;

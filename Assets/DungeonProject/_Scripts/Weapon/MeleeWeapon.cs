@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -35,7 +34,7 @@ public class MeleeWeapon : Weapon
     public override void StartWeapon()
     {
         OnWeaponStartAttacking?.Invoke();
-        
+
     }
 
     public override void StopWeapon()

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Panda;
 
 namespace Panda.Examples
 {
@@ -24,7 +22,7 @@ namespace Panda.Examples
         // Update is called once per frame
         void Update()
         {
-            if( target != null)
+            if (target != null)
                 this.transform.position = target.transform.position + offset;
         }
     }
