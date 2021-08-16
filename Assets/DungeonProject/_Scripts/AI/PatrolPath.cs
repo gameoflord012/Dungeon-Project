@@ -12,7 +12,7 @@ public class PatrolPath : MonoBehaviour
         return GetComponentsInChildren<PathNode>();
     }
 
-    public PathNode CreateNode(PathNode neighbor)
+    public PathNode CreateNode(PathNode fromNode)
     {
         GameObject GO = new GameObject("New node");
         Undo.RegisterCreatedObjectUndo(GO, "Create new Node");
@@ -20,10 +20,9 @@ public class PatrolPath : MonoBehaviour
         PathNode newNode = GO.AddComponent<PathNode>();
         newNode.transform.SetParent(transform);
 
-        if(neighbor != null)
+        if(fromNode != null)
         {
-            newNode.AddNeighbor(neighbor);
-            neighbor.AddNeighbor(newNode);
+            fromNode.AddNeighbor(newNode);
         }
 
         return newNode;

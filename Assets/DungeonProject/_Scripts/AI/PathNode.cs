@@ -62,9 +62,9 @@ public class PathNode : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach(var neighbor in neighbors)
+        foreach(var from in FindObjectsOfType<PathNode>())
         {
-            neighbor.neighbors.Remove(this);
+            from.neighbors.Remove(this); 
         }
     }
 
@@ -76,7 +76,7 @@ public class PathNode : MonoBehaviour
         Gizmos.color = PatrolPath.customColor;
         foreach(PathNode neighbor in neighbors)
         {
-            Gizmos.DrawLine(transform.position, neighbor.transform.position);
+            DrawArrow.ForGizmo(transform.position, neighbor.transform.position);
         }
     }
 }
