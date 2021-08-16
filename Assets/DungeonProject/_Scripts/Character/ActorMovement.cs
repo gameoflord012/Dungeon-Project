@@ -59,8 +59,6 @@ public class ActorMovement : MonoBehaviour
     private void ThresoldCheck(Vector2 newVelocity)
     {
         float thresoldMagnitude = (rb.velocity - newVelocity).magnitude;
-        Debug.Log(thresoldMagnitude);
-
         if (thresoldMagnitude > velocityThreshold)
         {
             if (!inThresoldCheck)
