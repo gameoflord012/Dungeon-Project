@@ -36,9 +36,8 @@ public class PathNodeEditor : Editor
 
             if (CreateEdgeKeyPressed())
             {
-                var targetNode = GetPointingPathNode();
-                if (targetNode != null && targetNode != this)
-                    GetNode().AddNeighbor(targetNode);
+                PathNode targetNode = GetPointingAtPathNode();
+                if(targetNode != null) GetNode().AddNeighbor(targetNode);
 
                 isOnCreatingEdge = false;
             }
@@ -73,7 +72,7 @@ public class PathNodeEditor : Editor
         return HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin;
     }
     
-    public PathNode GetPointingPathNode()
+    public PathNode GetPointingAtPathNode()
     {
         foreach(PathNode node in GetNode().PatrolPath.GetNodes())
         {
