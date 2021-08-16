@@ -10,6 +10,11 @@ public class PathNode : MonoBehaviour
     PatrolPath patrolPath;
     bool isSelected = false;
 
+    public bool IsSelected { get => isSelected; }
+
+    public float radius = .5f;
+    public List<PathNode> neighbors = new List<PathNode>();
+
     public PatrolPath PatrolPath
     {
         get
@@ -39,10 +44,7 @@ public class PathNode : MonoBehaviour
         {
             SceneViewExtension.Focus();
         }
-    }
-
-    public float radius = .5f;
-    public List<PathNode> neighbors = new List<PathNode>();
+    }    
 
     public void AddNeighbor(PathNode neighbor)
     {

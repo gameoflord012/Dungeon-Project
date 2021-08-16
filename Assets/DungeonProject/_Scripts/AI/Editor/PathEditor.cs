@@ -8,6 +8,6 @@ public class PathEditor : Editor
 {
     private void OnSceneGUI()
     {
-        
+        Debug.Log("Parent update");
     }
 }
