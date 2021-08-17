@@ -237,7 +237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 92e9cc82ff6a6e645bef209162116508, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a639cdfca3c1a4ba247fa2e08fbecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nVertices: 30
+  nVertices: 100
   viewDistance: 5
   FOVAngle: 30
   sortingLayerName: FOV

@@ -1882,6 +1882,10 @@ PrefabInstance:
       propertyPath: currentPathNode
       value: 
       objectReference: {fileID: 632101957}
+    - target: {fileID: 1267143453, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7279633043216054677, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: m_RootOrder
       value: 1

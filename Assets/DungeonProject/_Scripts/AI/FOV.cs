@@ -29,7 +29,9 @@ public class FOV : MonoBehaviour
 
     private Vector2[] GetUV()
     {
-        return new Vector2[nVertices];
+        Vector2[] uv = new Vector2[nVertices];
+        for (int i = 0; i < nVertices; i++) uv[i] = new Vector2(.5f, .5f);
+        return uv;
     }
 
     private int[] GetTriangles()
