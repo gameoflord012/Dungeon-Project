@@ -40,9 +40,8 @@ public class PatrolTask : MonoBehaviour
 
     [Task]
     public bool AdvancedPath()
-    {
-        Debug.Log("Advancing");
-        if (currentPathNode.neighbors.Count == 0) return false;
+    {        
+        if (currentPathNode == null || currentPathNode.neighbors.Count == 0) return false;
         currentPathNode = currentPathNode.neighbors[Random.Range(0, currentPathNode.neighbors.Count - 1)];
         return true;
     }

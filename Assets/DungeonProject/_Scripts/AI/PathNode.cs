@@ -52,6 +52,11 @@ public class PathNode : MonoBehaviour
         neighbors.Add(neighbor);
     }
 
+    public void RemoveNeighbor(PathNode neighbor)
+    {
+        neighbors.Remove(neighbor);
+    }
+
     public PathNode CreateNeighbor()
     {
         return PatrolPath.CreateNode(this);
@@ -63,10 +68,10 @@ public class PathNode : MonoBehaviour
     }
 
     private void OnDestroy()
-    {
+    {        
         foreach (var from in FindObjectsOfType<PathNode>())
         {
-            from.neighbors.Remove(this);
+            from.RemoveNeighbor(this);
         }
     }
 
