@@ -22,8 +22,8 @@ public class FOV : MonoBehaviour
 
     private void Update()
     {
-        mesh.uv = GetUV();
         mesh.vertices = GetVertices();
+        mesh.uv = GetUV();
         mesh.triangles = GetTriangles();
     }
 
