@@ -18,6 +18,8 @@ public class PatrolTask : MonoBehaviour
     public void MoveToPatrolPosition()
     {
         actorControl.OnMovementKeyPressed?.Invoke(currentPathNode.transform.position - transform.position);
+        actorControl.OnPointerPositionChanged?.Invoke(currentPathNode.transform.position);
+
         if(IsArrivedAtPatrolPosition()) Task.current.Succeed();
 
         if(Task.isInspected)

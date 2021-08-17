@@ -8,11 +8,11 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField]
     private Weapon currentWeapon_;
 
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer weaponSpriteRenderer;
 
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        weaponSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         EquipWeapon(GetComponentInChildren<Weapon>());
     }
 
@@ -56,13 +56,15 @@ public class WeaponHandler : MonoBehaviour
 
     private void AdjustSortingOrder(float angle)
     {
+        if (weaponSpriteRenderer == null) return;
+
         if (angle > 0 && angle < 180)
         {
-            spriteRenderer.sortingOrder = weaponOwnerSortingOrder - 1;
+            weaponSpriteRenderer.sortingOrder = weaponOwnerSortingOrder - 1;
         }
         else
         {
-            spriteRenderer.sortingOrder = weaponOwnerSortingOrder + 1;
+            weaponSpriteRenderer.sortingOrder = weaponOwnerSortingOrder + 1;
         }
     }
 }
