@@ -2,9 +2,18 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[ExecuteAlways]
 public class PatrolPath : MonoBehaviour
 {
     public Color customColor = Color.red;
+
+    private void Awake()
+    {
+        if(transform.childCount == 0)
+        {
+            CreateNode(null);
+        } 
+    }
 
     public IEnumerable<PathNode> GetNodes()
     {
