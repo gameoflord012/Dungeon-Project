@@ -17,9 +17,22 @@ public class PatrolTask : MonoBehaviour
     [Task]
     public void MoveToPatrolPosition()
     {
-        actorControl.OnMovementKeyPressed?.Invoke(new Vector2(1, 1));
+        actorControl.OnMovementKeyPressed?.Invoke(currentPathNode.transform.position - transform.position);
+        if(IsArrivedAtPatrolPosition()) Task.current.Succeed();
+
+        if(Task.isInspected)
+        {
+            Task.current.debugInfo = "Distance: " + (currentPathNode.transform.position - transform.position).magnitude;
+        }
     }
 
+    private bool IsArrivedAtPatrolPosition()
+    {
+        return ((Vector2)currentPathNode.transform.position - (Vector2)transform.position).sqrMagnitude < 
+            patrolDestinationOffset * patrolDestinationOffset;
+    }
+
+    [Task]
     bool AdvancedPath()
     {
         if (currentPathNode.neighbors.Count == 0) return false;

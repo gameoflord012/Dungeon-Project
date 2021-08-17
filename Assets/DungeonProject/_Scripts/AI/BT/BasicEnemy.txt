@@ -1,2 +1,4 @@
 tree("Root")
-	MoveToPatrolPosition
+	Sequence
+		MoveToPatrolPosition
+		AdvancedPath
