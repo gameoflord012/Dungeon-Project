@@ -61,8 +61,8 @@ public class FOV : MonoBehaviour
 
     private Vector2 RaycastAtAngle(float calculatedAngle, float raycastDisntance)
     {
-        Vector2 raycastDirection = Quaternion.Euler(0f, 0f, calculatedAngle) * Vector3.right;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, raycastDisntance, obstacleLayerMask);
-        return raycastDirection * (hit.collider ? hit.distance : raycastDisntance);
+        Vector2 LocalRaycastDirection = Quaternion.Euler(0f, 0f, calculatedAngle) * Vector3.right;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(LocalRaycastDirection), raycastDisntance, obstacleLayerMask);
+        return LocalRaycastDirection * (hit.collider ? hit.distance : raycastDisntance);
     }
 }

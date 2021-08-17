@@ -490,7 +490,7 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -368.0,
-            "y": -151.0,
+            "y": -158.0,
             "width": 107.0,
             "height": 34.0
         }
@@ -1046,7 +1046,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":10307,\"guid\":\"0000000000000000f000000000000000\",\"type\":0}}",
         "m_Guid": ""
     },
     "m_Modifiable": true,
