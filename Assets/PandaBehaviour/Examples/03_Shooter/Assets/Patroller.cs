@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 namespace Panda.Examples.Shooter
 {
@@ -29,7 +30,7 @@ namespace Panda.Examples.Shooter
             if (waypointPath != null)
             {
                 waypointIndex++;
-                if (Task.isInspected)
+                if( Task.isInspected )
                     Task.current.debugInfo = string.Format("i={0}", waypointArrayIndex);
             }
             return true;
@@ -71,7 +72,7 @@ namespace Panda.Examples.Shooter
         [Task]
         public void LookAt(int i)
         {
-            self.SetTarget(waypointPath.waypoints[i].transform.position);
+            self.SetTarget( waypointPath.waypoints[i].transform.position);
             self.AimAt_Target();
         }
 
@@ -81,17 +82,17 @@ namespace Panda.Examples.Shooter
             get
             {
                 int i = 0;
-                if (waypointPath.loop)
+                if( waypointPath.loop)
                 {
                     i = waypointIndex % waypointPath.waypoints.Length;
                 }
                 else
                 {
                     int n = waypointPath.waypoints.Length;
-                    i = waypointIndex % (n * 2);
+                    i = waypointIndex % (n*2);
 
-                    if (i > n - 1)
-                        i = (n - 1) - (i % n);
+                    if( i > n-1 )
+                        i = (n-1) - (i % n); 
                 }
 
                 return i;

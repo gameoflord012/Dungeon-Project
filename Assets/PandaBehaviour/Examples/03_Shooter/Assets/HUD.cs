@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using Panda;
 
 namespace Panda.Examples.Shooter
 {
@@ -38,14 +40,13 @@ namespace Panda.Examples.Shooter
             {
                 targetHP = player.lastHit.health;
                 targetMax = player.lastHit.startHealth;
-            }
-            else
+            }else
             {
                 targetHP = 0.0f;
             }
 
-            if (Time.time - player.lastHitTime < 3.0f)
-                targetText.text = string.Format("HP:{0:0}/{1:0}", targetHP, targetMax);
+            if( Time.time - player.lastHitTime < 3.0f)
+                targetText.text = string.Format("HP:{0:0}/{1:0}", targetHP , targetMax );
             else
                 targetText.text = "";
 

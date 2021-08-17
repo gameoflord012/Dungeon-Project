@@ -1,4 +1,4 @@
-tree("Root")
-	Sequence
-		MoveToPatrolPosition
-		AdvancedPath
+tree "Root"
+    sequence            
+        AdvancedPath
+        MoveToPatrolPosition

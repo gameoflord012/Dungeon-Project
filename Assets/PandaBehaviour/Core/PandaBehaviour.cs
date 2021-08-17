@@ -15,6 +15,8 @@ THE SOFTWARE.
 #define PANDA_BT
 
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Panda
 {
@@ -57,7 +59,7 @@ namespace Panda
         {
 
             var task = Task.current;
-            var info = task.item != null ? (WaitFloatInfo)task.item : (WaitFloatInfo)(task.item = new WaitFloatInfo());
+            var info = task.item != null? (WaitFloatInfo)task.item: (WaitFloatInfo)(task.item = new WaitFloatInfo());
 
             if (task.isStarting)
             {
@@ -65,7 +67,7 @@ namespace Panda
             }
 
             info.elapsedTime += Time.deltaTime;
-
+            
             if (Task.isInspected)
             {
                 float tta = Mathf.Clamp(duration - info.elapsedTime, 0.0f, float.PositiveInfinity);
@@ -133,7 +135,7 @@ namespace Panda
         public void Wait(int ticks)
         {
             var task = Task.current;
-            var info = task.item != null ? (TaskInfoWaitInt)task.item : (TaskInfoWaitInt)(task.item = new TaskInfoWaitInt());
+            var info = task.item != null ? (TaskInfoWaitInt)task.item : (TaskInfoWaitInt)(task.item = new TaskInfoWaitInt()); 
             if (task.isStarting)
             {
                 info.elapsedTicks = 0;
@@ -199,8 +201,8 @@ namespace Panda
         [Task]
         public void IsKeyDown(string keycode)
         {
-            KeyCode k = GetKeyCode(keycode);
-            Task.current.Complete(Input.GetKeyDown(k));
+            KeyCode k = GetKeyCode( keycode );
+            Task.current.Complete( Input.GetKeyDown(k) );
         }
 
         /// <summary>
@@ -210,8 +212,8 @@ namespace Panda
         [Task]
         public void IsKeyUp(string keycode)
         {
-            KeyCode k = GetKeyCode(keycode);
-            Task.current.Complete(Input.GetKeyUp(k));
+            KeyCode k = GetKeyCode( keycode );
+            Task.current.Complete( Input.GetKeyUp(k));
         }
 
         /// <summary>
@@ -221,7 +223,7 @@ namespace Panda
         [Task]
         public void IsKeyPressed(string keycode)
         {
-            KeyCode k = GetKeyCode(keycode);
+            KeyCode k = GetKeyCode( keycode );
             Task.current.Complete(Input.GetKey(k));
         }
 
@@ -295,7 +297,7 @@ namespace Panda
         [Task]
         public void WaitKeyDown(string keycode)
         {
-            KeyCode k = GetKeyCode(keycode);
+            KeyCode k = GetKeyCode( keycode );
 
             if (Input.GetKeyDown(k))
                 Task.current.Succeed();
@@ -404,13 +406,13 @@ namespace Panda
                 info.elapsedTime = -Time.deltaTime;
             }
 
-            if (info.hasKeyBeenPressed)
+            if(info.hasKeyBeenPressed)
             {
 
                 info.elapsedTime += Time.deltaTime;
                 if (Input.GetKeyUp(k))
                 {
-                    task.Complete(info.elapsedTime >= duration);
+                    task.Complete( info.elapsedTime >= duration );
                     task.debugInfo = "Done";
 
                 }
@@ -443,9 +445,9 @@ namespace Panda
             if (!task.isStarting && Input.anyKeyDown)
             {
                 bool isMouseButton = false;
-                for (int i = 0; i < 3; i++)
+                for( int i=0; i < 3; i++)
                 {
-                    if (Input.GetMouseButton(i))
+                    if(Input.GetMouseButton(i)  )
                     {
                         isMouseButton = true;
                         break;

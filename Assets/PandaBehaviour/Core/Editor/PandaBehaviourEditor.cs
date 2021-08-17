@@ -13,13 +13,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+using UnityEngine;
 using UnityEditor;
+
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Panda
 {
 
-    [CustomEditor(typeof(PandaBehaviour))]
+	[CustomEditor(typeof(PandaBehaviour))]
     public class PandaBehaviourEditor : BehaviourTreeEditor
-    {
-    }
+	{
+	}
 }

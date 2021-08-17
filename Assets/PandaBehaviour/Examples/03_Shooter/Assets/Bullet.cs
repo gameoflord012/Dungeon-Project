@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 
 
@@ -29,7 +30,7 @@ namespace Panda.Examples.Shooter
                 Destroy(this.gameObject);
             else
                 BulletScan();
-
+                
         }
 
         void BulletScan()
@@ -57,7 +58,7 @@ namespace Panda.Examples.Shooter
 
         void OnHit(Unit target)
         {
-            if (target != null && target != shooter)
+            if(target != null && target != shooter )
             {
                 if (this.shooter != null)
                 {
@@ -91,7 +92,7 @@ namespace Panda.Examples.Shooter
             Destroy(this.gameObject);
 
             // compute reflection direction by normal
-            dir = dir - 2.0f * hit.normal * (Vector3.Dot(dir, hit.normal));
+            dir = dir -2.0f*hit.normal*( Vector3.Dot(dir, hit.normal));
             impact.transform.position = hit.point;
 
             var rot = Quaternion.FromToRotation(impact.transform.forward, dir);

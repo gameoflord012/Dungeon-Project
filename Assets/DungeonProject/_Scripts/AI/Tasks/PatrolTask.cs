@@ -7,7 +7,7 @@ public class PatrolTask : MonoBehaviour
     [SerializeField] float patrolDestinationOffset = .2f;   
     [SerializeField] PathNode currentPathNode;
 
-    private ActorInputEvents actorControl;
+    private ActorInputEvents actorControl = null;
 
     private void Awake()
     {
@@ -20,13 +20,17 @@ public class PatrolTask : MonoBehaviour
         actorControl.OnMovementKeyPressed?.Invoke(currentPathNode.transform.position - transform.position);
         actorControl.OnPointerPositionChanged?.Invoke(currentPathNode.transform.position);
 
-        if(IsArrivedAtPatrolPosition()) Task.current.Succeed();
+        if (IsArrivedAtPatrolPosition())
+        {
+            actorControl.OnMovementKeyPressed?.Invoke(Vector2.zero);
+            Task.current.Succeed();
+        }
 
         if(Task.isInspected)
         {
             Task.current.debugInfo = "Distance: " + (currentPathNode.transform.position - transform.position).magnitude;
         }
-    }
+    }    
 
     private bool IsArrivedAtPatrolPosition()
     {
@@ -35,8 +39,9 @@ public class PatrolTask : MonoBehaviour
     }
 
     [Task]
-    bool AdvancedPath()
+    public bool AdvancedPath()
     {
+        Debug.Log("Advancing");
         if (currentPathNode.neighbors.Count == 0) return false;
         currentPathNode = currentPathNode.neighbors[Random.Range(0, currentPathNode.neighbors.Count - 1)];
         return true;

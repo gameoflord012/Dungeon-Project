@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
+using Panda;
 
 namespace Panda.Examples.Shooter
 {
@@ -17,7 +20,7 @@ namespace Panda.Examples.Shooter
         {
             get
             {
-                if (_instance == null)
+                if(_instance == null)
                 {
                     _instance = FindObjectOfType<ShooterGameController>();
                 }
@@ -26,7 +29,7 @@ namespace Panda.Examples.Shooter
         }
 
 
-        public void OnUnitDestroy(Unit unit)
+        public void OnUnitDestroy( Unit unit )
         {
             if (enemies.Contains(unit))
                 enemies.Remove(unit);
@@ -50,7 +53,7 @@ namespace Panda.Examples.Shooter
 #if UNITY_5_2 
             Application.LoadLevel(Application.loadedLevel);
 #else
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+            UnityEngine.SceneManagement.SceneManager.LoadScene( UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 #endif
             return true;
         }
@@ -59,7 +62,7 @@ namespace Panda.Examples.Shooter
         [Task]
         bool Display(string text)
         {
-            if (displayText != null)
+            if( displayText != null)
             {
                 displayText.text = text;
                 displayText.enabled = text != "";
@@ -71,7 +74,7 @@ namespace Panda.Examples.Shooter
         void Start()
         {
             enemies.AddRange(FindObjectsOfType<Unit>());
-            enemies.RemoveAll((u) => u.team == player.team);
+            enemies.RemoveAll( (u) => u.team == player.team) ;
         }
 
         // Update is called once per frame
