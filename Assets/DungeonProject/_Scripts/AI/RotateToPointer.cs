@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RotateToPointer : MonoBehaviour
 {
-    [SerializeField] float rotateSpeed;
+    [SerializeField] float rotateSpeed = 1f;
 
     public void RotateToPointerPosition(Vector2 pointerPosition)
     {
-        transform.right = Vector2.Lerp(transform.right, pointerPosition, rotateSpeed * Time.deltaTime);
+        Vector2 pointerDirection = pointerPosition - (Vector2)transform.position;
+        transform.right = Vector2.Lerp(transform.right, pointerDirection, rotateSpeed * Time.deltaTime);
     }
 }
