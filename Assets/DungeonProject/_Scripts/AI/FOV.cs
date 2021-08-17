@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FOV : MonoBehaviour
 {
-    [SerializeField, Range(3, 30)] int nVertices = 3;
-    [SerializeField] float radius = 5;
+    [SerializeField, Range(3, 100)] int nVertices = 3;
+    [SerializeField] float viewDistance = 5;
     [SerializeField] float FOVAngle = 30;
     [SerializeField] string sortingLayerName = "FOV";
+    [SerializeField] LayerMask obstacleLayerMask;
 
     Mesh mesh;
     int nTriangles { get => nVertices - 2; }
@@ -50,12 +51,21 @@ public class FOV : MonoBehaviour
         Vector3[] vertices = new Vector3[nVertices];
 
         vertices[0] = Vector2.zero;
-        for (int i = 0; i < nVertices - 1; i++)
-        {
-            float calculatedAngle = FOVAngle - FOVAngle * 2 / (nTriangles) * i;
-            vertices[i + 1] = Quaternion.Euler(0f, 0f, calculatedAngle) * Vector3.right * radius;
-        }
+        for (int i = 0; i < nVertices - 1; i++) 
+            vertices[i + 1] = RaycastAtAngle(FOVAngle - FOVAngle * 2 / (nTriangles) * i, viewDistance);
 
         return vertices;
-    }    
+    }
+
+    private Vector2 RaycastAtAngle(float calculatedAngle, float raycastDisntance)
+    {
+        Vector2 raycastDirection = Quaternion.Euler(0f, 0f, calculatedAngle) * Vector3.right;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, raycastDisntance, obstacleLayerMask);
+        return hit.collider ? ToLocalSpace(hit.point) : raycastDirection * raycastDisntance;
+    }
+
+    private Vector2 ToLocalSpace(Vector2 globalSpace)
+    {
+        return globalSpace - (Vector2)transform.position;
+    }
 }
