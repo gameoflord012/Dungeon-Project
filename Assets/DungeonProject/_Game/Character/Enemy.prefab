@@ -95,13 +95,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a639cdfca3c1a4ba247fa2e08fbecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nVertices: 100
+  nVertices: 30
   viewDistance: 5
   FOVAngle: 30
   sortingLayerName: FOV
   obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 9280
+    m_Bits: 1088
+  hitColliders: []
 --- !u!114 &1050656826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577a0700e0082eb4985f6baf61c1f7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 1
+  rotateSpeed: 0.4
 --- !u!1 &1267143450
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +127,7 @@ GameObject:
   - component: {fileID: 1267143451}
   - component: {fileID: 1267143453}
   - component: {fileID: 1267143452}
+  - component: {fileID: 1360492954}
   m_Layer: 11
   m_Name: BT
   m_TagString: Untagged
@@ -154,7 +156,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267143450}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17e43e7170fb45b4b81dcd16d0ff55d9, type: 3}
   m_Name: 
@@ -183,6 +185,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolDestinationOffset: 0.5
   currentPathNode: {fileID: 0}
+--- !u!114 &1360492954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267143450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6fe447793f87d440a90f583276dbd97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fov: {fileID: 0}
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  chaseDestinationOffset: 0.2
+  chaseSpeed: 0
 --- !u!1001 &8931995956423299807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -198,6 +218,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 22100000, guid: c6612c8b73ce9d049bad2c36db445440, type: 2}
+    - target: {fileID: 2230022133185030980, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d173cc3d2c26c14cb6b114a0431d156, type: 2}
     - target: {fileID: 2230022133185030984, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Name
       value: Enemy

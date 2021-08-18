@@ -8,6 +8,7 @@ public class ChaseTask : MonoBehaviour
     [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float chaseDestinationOffset = .2f;
+    [SerializeField] float chaseSpeed;
 
     private ActorInputEvents actorControl = null;
 

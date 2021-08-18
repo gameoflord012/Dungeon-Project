@@ -102,6 +102,7 @@ MonoBehaviour:
   obstacleLayerMask:
     serializedVersion: 2
     m_Bits: 2112
+  hitColliders: []
 --- !u!114 &303623867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5078,6 +5079,10 @@ PrefabInstance:
       propertyPath: acceleration
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2230022133185030980, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: movementData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b1436a1eba45ac4ab6505315087614b, type: 2}
     - target: {fileID: 2230022133185030980, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: velocityThreshold
       value: 6
