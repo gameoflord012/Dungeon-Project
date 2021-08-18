@@ -8,9 +8,6 @@ public class ActorMovement : MonoBehaviour
     private MovementDataSO movementData;
 
     [SerializeField]
-    public float velocityThreshold = 6f;
-
-    [SerializeField]
     bool inThresoldCheck;
 
     public UnityEvent<Vector2> OnDirectionChange;
@@ -57,7 +54,7 @@ public class ActorMovement : MonoBehaviour
     private void ThresoldCheck(Vector2 newVelocity)
     {
         float thresoldMagnitude = (rb.velocity - newVelocity).magnitude;
-        if (thresoldMagnitude > velocityThreshold)
+        if (thresoldMagnitude > movementData.velocityThreshold)
         {
             if (!inThresoldCheck)
             {
