@@ -12,6 +12,10 @@ tree "Patrol"
     sequence
         AdvancedPath
         MoveToPatrolPosition
+        Wait .5
+        LookAround(90)
+        Wait 2.0
+        LookAround(-90)
         Wait 2.0
 
 tree "Attack"   
