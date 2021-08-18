@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseTask : MonoBehaviour
+public class ChaseTask : EnemyTaskBase
 {
     [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
@@ -12,7 +12,6 @@ public class ChaseTask : MonoBehaviour
 
     ActorMovement actorMovement;
     ActorInputEvents actorControl = null;
-    GameObject chaseTarget;
 
     private void Awake()
     {
@@ -22,24 +21,15 @@ public class ChaseTask : MonoBehaviour
         if(fov == null)
             fov = actorMovement.GetComponentInChildren<FOV>();
     }
-
-
-    [Task]
-    public bool IsTargetDetected()
-    {
-        return GetFOVChaseTarget() != null;
-    }    
-
     [Task]
     public void ChaseTarget()
     {        
         if(Task.current.isStarting)
         {
-            chaseTarget = GetFOVChaseTarget();
             actorMovement.SetMovementData(chaseMovementData);
         }
 
-        Vector3 targetPosition = chaseTarget.transform.position;
+        Vector3 targetPosition = target.transform.position;
 
         actorControl.OnMovementKeyPressed?.Invoke(targetPosition - transform.position);
         actorControl.OnPointerPositionChanged?.Invoke(targetPosition);
@@ -48,13 +38,19 @@ public class ChaseTask : MonoBehaviour
             Task.current.Succeed();
     }
 
-    private GameObject GetFOVChaseTarget()
+    [Task]
+    public bool GetFOVChaseTarget()
     {
         foreach (Collider2D collider in fov.hitColliders)
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask.value) != 0)
-                return collider.gameObject;
+            {
+                target = collider.gameObject;
+                return true;
+            }
         }
-        return null;
+
+        target = null;
+        return false;
     }
 }

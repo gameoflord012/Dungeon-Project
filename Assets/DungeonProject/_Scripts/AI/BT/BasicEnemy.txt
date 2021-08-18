@@ -1,9 +1,9 @@
 tree "Root"
     fallback
-        while IsTargetDetected
+        while GetFOVChaseTarget
             ChaseTarget
 
-        while not IsTargetDetected
+        while not GetFOVChaseTarget
             tree "Patrol"
         
 tree "Patrol"
