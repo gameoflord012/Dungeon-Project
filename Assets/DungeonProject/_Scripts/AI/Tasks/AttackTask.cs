@@ -36,7 +36,7 @@ public class AttackTask : MonoBehaviour
     {
         if (data.target.TryGetComponent(out Health targetHealth))
         {
-            inputEvents.OnPointerPositionChanged?.Invoke(data.target.transform.position);
+            inputEvents.OnPointerPositionChangedCallback(data.target.transform.position);
             movement.ResetMovement();
 
             targetHealth.TakeDamage(damager);

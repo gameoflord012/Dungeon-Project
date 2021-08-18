@@ -33,8 +33,8 @@ public class ChaseTask : MonoBehaviour
 
         Vector3 targetPosition = data.target.transform.position;
 
-        actorControl.OnMovementKeyPressed?.Invoke(targetPosition - transform.position);
-        actorControl.OnPointerPositionChanged?.Invoke(targetPosition);
+        actorControl.OnMovementKeyPressedCallback(targetPosition - transform.position);
+        actorControl.OnPointerPositionChangedCallback(targetPosition);
 
         if ((targetPosition - transform.position).sqrMagnitude < chaseDestinationOffset)
             Task.current.Succeed();

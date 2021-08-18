@@ -25,12 +25,12 @@ public class PatrolTask : MonoBehaviour
             actorMovement.SetMovementData(patrolMovementData);
         }
 
-        actorControl.OnMovementKeyPressed?.Invoke(currentPathNode.transform.position - transform.position);
-        actorControl.OnPointerPositionChanged?.Invoke(currentPathNode.transform.position);
+        actorControl.OnMovementKeyPressedCallback (currentPathNode.transform.position - transform.position);
+        actorControl.OnPointerPositionChangedCallback(currentPathNode.transform.position);
 
         if (IsArrivedAtPatrolPosition())
         {
-            actorControl.OnMovementKeyPressed?.Invoke(Vector2.zero);
+            actorControl.OnMovementKeyPressedCallback(Vector2.zero);
             Task.current.Succeed();
         }
 

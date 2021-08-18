@@ -21,12 +21,12 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void PointerInput()
     {
-        inputEvents.OnPointerPositionChanged?.Invoke(GetMousePosition());
+        inputEvents.OnPointerPositionChangedCallback(GetMousePosition());
     }
 
     private void MovementInput()
     {
-        inputEvents.OnMovementKeyPressed?.Invoke(new Vector2(
+        inputEvents.OnMovementKeyPressedCallback(new Vector2(
                     Input.GetAxisRaw("Horizontal"),
                     Input.GetAxisRaw("Vertical"))
                     );
@@ -39,7 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (!isFireButtonPressed)
             {
                 isFireButtonPressed = true;
-                inputEvents.OnFireButtonPressed?.Invoke();
+                inputEvents.OnFireButtonPressedCallback();
             }
         }
         else
@@ -47,7 +47,7 @@ public class PlayerInputHandler : MonoBehaviour
             if (isFireButtonPressed)
             {
                 isFireButtonPressed = false;
-                inputEvents.OnFireButtonReleased?.Invoke();
+                inputEvents.OnFireButtonReleasedCallback();
             }
         }
     }

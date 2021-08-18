@@ -15,16 +15,8 @@ public class Knockbackable : MonoBehaviour
     }
 
     public void Knockback(Damager damager)
-    {
-        actorMovement.ResetMovement();
-        actorMovement.AddForce(
-            (transform.position - GetSourcePosition(damager)).normalized * damager.KnockbackStrength);
-
-        inputEvents.enabled = false;
-
-        StartCoroutine(WaitForSeconds(damager.WaitTimeAfterKnockingback));
-
-        inputEvents.enabled = true;
+    {               
+        StartCoroutine(KnockbackRoutine(damager));        
     }
 
     private Vector3 GetSourcePosition(Damager damager)
@@ -33,8 +25,16 @@ public class Knockbackable : MonoBehaviour
         return damageSource ? damageSource.transform.position : damager.transform.position;
     }
 
-    private IEnumerator WaitForSeconds(float seconds)
+    private IEnumerator KnockbackRoutine(Damager damager)
     {
-        yield return new WaitForSeconds(seconds);
+        actorMovement.ResetMovement();
+        actorMovement.AddForce(
+            (transform.position - GetSourcePosition(damager)).normalized * damager.KnockbackStrength);
+
+        inputEvents.enabled = false;
+
+        yield return new WaitForSeconds(damager.WaitTimeAfterKnockingback);
+
+        inputEvents.enabled = true;
     }
 }
