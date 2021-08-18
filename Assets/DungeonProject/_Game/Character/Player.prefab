@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303623866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5711993988522109370}
@@ -5045,7 +5045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228244903103335175, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.91
+      value: 0.067
       objectReference: {fileID: 0}
     - target: {fileID: 4228244903103335175, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5104,6 +5104,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2230022132641471959, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2230022133185030980, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: acceleration
       value: 7
@@ -5222,11 +5226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133862565642, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.003
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133862565642, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.24
+      value: 0.357
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133862565643, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Icon
@@ -5239,6 +5243,14 @@ PrefabInstance:
     - target: {fileID: 7096140450645632210, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: currentHealth
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.63258636
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.80777603
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7873149917087598465, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}

@@ -135,6 +135,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 303623866, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711993987995066145, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player

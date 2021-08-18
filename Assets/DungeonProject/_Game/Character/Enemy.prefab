@@ -338,16 +338,20 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Size.x
+      value: 0.6397844
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.18194659
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Offset.x
-      value: 0.03
+      value: 0.08529284
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.36
+      value: 0.08991161
       objectReference: {fileID: 0}
     - target: {fileID: 3531557314986664394, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: <OnPointerPositionChanged>k__BackingField.m_PersistentCalls.m_Calls.Array.size
@@ -375,19 +379,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Size.x
-      value: 1.4744129
+      value: 1.071765
       objectReference: {fileID: 0}
     - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Size.y
-      value: 1.4744129
+      value: 1.071765
       objectReference: {fileID: 0}
     - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Offset.x
-      value: 0.08225179
+      value: 0.049353123
       objectReference: {fileID: 0}
     - target: {fileID: 7317567397287457607, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Offset.y
-      value: 0.056739748
+      value: 0.47342205
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2230022133185030983, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}

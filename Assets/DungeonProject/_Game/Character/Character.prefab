@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &2230022132641471958
 Animator:
   serializedVersion: 3
@@ -317,11 +317,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029217958, y: -0.14243749}
-  m_Size: {x: 0.6164187, y: 0.9196506}
+  m_Offset: {x: 0, y: 0.43196535}
+  m_Size: {x: 0.9730588, y: 1.1298676}
   m_Direction: 0
 --- !u!114 &7096140450645632210
 MonoBehaviour:
@@ -408,8 +408,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.062766865, y: -0.5414625}
-  m_Size: {x: 0.80166066, y: 0.25200772}
+  m_Offset: {x: -0.06276679, y: 0.070170306}
+  m_Size: {x: 0.80166113, y: 0.2214277}
   m_Direction: 1
 --- !u!1 &2230022133862565643
 GameObject:
