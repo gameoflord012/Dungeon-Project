@@ -59,6 +59,7 @@ public class ActorMovement : MonoBehaviour
     public void ResetMovement()
     {
         rb.velocity = Vector2.zero;
+        direction = Vector2.zero;
     }
 
     public void AddForce(Vector2 force)
