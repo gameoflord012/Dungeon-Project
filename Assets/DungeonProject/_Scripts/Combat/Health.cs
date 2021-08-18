@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
     [SerializeField]
     [Range(0, 500)]
     private float currentHealth = 50, maxHealth = 50;
+
+    public UnityEvent<Damager> OnActorTakeDamage;
 
     public float CurrentHealth
     {
@@ -20,6 +23,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
+        OnActorTakeDamage?.Invoke(damager);
         Debug.Log(damager + " Attack " + this);
     }
 

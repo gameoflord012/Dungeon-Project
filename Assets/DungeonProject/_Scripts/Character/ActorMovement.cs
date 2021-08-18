@@ -56,6 +56,16 @@ public class ActorMovement : MonoBehaviour
         this.movementData = movementData;
     }
 
+    public void ResetMovement()
+    {
+        rb.velocity = Vector2.zero;
+    }
+
+    public void AddForce(Vector2 force)
+    {
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
     private void ThresoldCheck(Vector2 newVelocity)
     {
         float thresoldMagnitude = (rb.velocity - newVelocity).magnitude;

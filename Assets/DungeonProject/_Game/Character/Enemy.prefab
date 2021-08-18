@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577a0700e0082eb4985f6baf61c1f7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 0.4
+  rotateSpeed: 5
 --- !u!1 &1267143450
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 1267143453}
   - component: {fileID: 1267143452}
   - component: {fileID: 1360492954}
+  - component: {fileID: 5223684512888483981}
   m_Layer: 11
   m_Name: BT
   m_TagString: Untagged
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patrolDestinationOffset: 0.5
   currentPathNode: {fileID: 0}
+  patrolMovementData: {fileID: 11400000, guid: 4d173cc3d2c26c14cb6b114a0431d156, type: 2}
 --- !u!114 &1360492954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +204,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   chaseDestinationOffset: 0.2
-  chaseSpeed: 0
+  chaseMovementData: {fileID: 11400000, guid: 0ad5718f59604fd428bdcdf792caab37, type: 2}
+--- !u!114 &5223684512888483981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267143450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b01d96c1e734ee449b81dc0849ca24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 10
+  <KnockbackStrength>k__BackingField: 0
+  <StunDuration>k__BackingField: 0
 --- !u!1001 &8931995956423299807
 PrefabInstance:
   m_ObjectHideFlags: 0

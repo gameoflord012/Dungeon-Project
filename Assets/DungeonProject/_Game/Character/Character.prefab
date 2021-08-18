@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 478474353
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 8999996067587195337, guid: eca865b8ffdc0924d8f7c307f2ffd395, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 3531557314986664394}
   - component: {fileID: 7317567397287457607}
   - component: {fileID: 7096140450645632210}
+  - component: {fileID: 4909683097161944344}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -178,9 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4207e38d1d3a96745aae576d6a794d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 6
-  acceleration: 8
-  deacceleration: 8
+  movementData: {fileID: 0}
+  inThresoldCheck: 0
+  OnDirectionChange:
+    m_PersistentCalls:
+      m_Calls: []
   OnActorMoving:
     m_PersistentCalls:
       m_Calls:
@@ -196,6 +199,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnVelocityChangeSuddenly:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &2230022133185030981
 Rigidbody2D:
   serializedVersion: 4
@@ -331,13 +337,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 50
   maxHealth: 50
-  OnHealthReachZero:
+  OnActorTakeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2230022133185030984}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: set_layer
-        m_Mode: 3
+      - m_Target: {fileID: 4909683097161944344}
+        m_TargetAssemblyTypeName: Knockbackable, Assembly-CSharp
+        m_MethodName: Knockback
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -346,6 +352,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4909683097161944344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230022133185030984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e2ded4c64ba3145b5c16f0a7f12542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2230022133457943192
 GameObject:
   m_ObjectHideFlags: 0
