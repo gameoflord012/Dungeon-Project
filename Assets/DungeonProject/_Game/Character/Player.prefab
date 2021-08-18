@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 1
+  angleOffset: 10
 --- !u!1 &549718051
 GameObject:
   m_ObjectHideFlags: 0
@@ -5088,7 +5089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4228244903103335177, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: <KnockbackStrength>k__BackingField
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335177, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: <WaitTimeAfterKnockingback>k__BackingField
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207afa948393e3746a852fe3817c31a7, type: 3}

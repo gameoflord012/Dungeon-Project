@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577a0700e0082eb4985f6baf61c1f7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: 5
+  rotateSpeed: 2
+  angleOffset: 10
 --- !u!1 &1267143450
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +132,7 @@ GameObject:
   - component: {fileID: 5223684512888483981}
   - component: {fileID: 1360492956}
   - component: {fileID: 1360492957}
+  - component: {fileID: 1360492958}
   m_Layer: 11
   m_Name: BT
   m_TagString: Untagged
@@ -201,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fe447793f87d440a90f583276dbd97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fov: {fileID: 0}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -249,6 +250,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+--- !u!114 &1360492958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267143450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1073e4e1c7a4194b849931c2c6efdb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8931995956423299807
 PrefabInstance:
   m_ObjectHideFlags: 0
