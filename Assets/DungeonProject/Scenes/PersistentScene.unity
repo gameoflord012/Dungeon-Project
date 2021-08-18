@@ -135,42 +135,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3732704747023836706, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3732704747023836706, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: maxHealth
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3732704747023836706, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: currentHealth
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948439, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Size.x
-      value: 1.9688735
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948439, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Size.y
-      value: 1.4840786
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948439, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.5092238
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948439, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.027505696
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948443, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: <Damage>k__BackingField
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4228244902719948443, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: <KnockbackStrength>k__BackingField
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player

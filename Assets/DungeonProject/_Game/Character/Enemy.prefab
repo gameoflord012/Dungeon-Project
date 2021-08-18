@@ -206,6 +206,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   chaseDestinationOffset: 0.2
+  closeRangeChaseDistance: 2
   chaseMovementData: {fileID: 11400000, guid: 0ad5718f59604fd428bdcdf792caab37, type: 2}
 --- !u!114 &5223684512888483981
 MonoBehaviour:
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 10
   <KnockbackStrength>k__BackingField: 10
-  <WaitTimeAfterKnockingback>k__BackingField: 0.5
+  <WaitTimeAfterKnockingback>k__BackingField: 0.2
 --- !u!114 &1360492956
 MonoBehaviour:
   m_ObjectHideFlags: 0

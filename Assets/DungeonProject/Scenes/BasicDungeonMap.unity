@@ -1882,14 +1882,6 @@ PrefabInstance:
       propertyPath: currentPathNode
       value: 
       objectReference: {fileID: 632101957}
-    - target: {fileID: 5223684512888483981, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: <KnockbackStrength>k__BackingField
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223684512888483981, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: <WaitTimeAfterKnockingback>k__BackingField
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 7279633043216054677, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1937,10 +1929,6 @@ PrefabInstance:
     - target: {fileID: 7279633043216054679, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279633043547154501, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
@@ -2108,37 +2096,6 @@ MonoBehaviour:
   radius: 0.5
   neighbors:
   - {fileID: 1778120870}
---- !u!1 &1360492950 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1267143450, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-  m_PrefabInstance: {fileID: 875369243}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1360492956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360492950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d212129c82093743928d2e1c5e08f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackRange: 2
---- !u!114 &1360492957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360492950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f35f03144dcbb4fa5ab42c09b9eb8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1 &1410295832
 GameObject:
   m_ObjectHideFlags: 0
