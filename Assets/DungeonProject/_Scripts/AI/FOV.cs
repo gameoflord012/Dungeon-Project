@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FOV : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class FOV : MonoBehaviour
     [SerializeField] string sortingLayerName = "FOV";
     [SerializeField] LayerMask obstacleLayerMask;
 
+    public List<Collider2D> hitColliders;
+
     Mesh mesh;
     int nTriangles { get => nVertices - 2; }
 
     private void Awake()
-    {
+    {        
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         GetComponent<MeshRenderer>().sortingLayerName = sortingLayerName;
@@ -22,6 +25,8 @@ public class FOV : MonoBehaviour
 
     private void Update()
     {
+        hitColliders.Clear();
+
         mesh.vertices = GetVertices();
         mesh.uv = GetUV();
         mesh.triangles = GetTriangles();
@@ -63,6 +68,10 @@ public class FOV : MonoBehaviour
     {
         Vector2 LocalRaycastDirection = Quaternion.Euler(0f, 0f, calculatedAngle) * Vector3.right;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(LocalRaycastDirection), raycastDisntance, obstacleLayerMask);
+
+        if (hit.collider) 
+            hitColliders.Add(hit.collider);
+
         return LocalRaycastDirection * (hit.collider ? hit.distance : raycastDisntance);        
     }
 }

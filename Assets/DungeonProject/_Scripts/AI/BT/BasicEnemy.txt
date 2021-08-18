@@ -1,4 +1,12 @@
 tree "Root"
-    sequence            
+    fallback
+        while IsTargetDetected
+            ChaseTarget
+
+        while not IsTargetDetected
+            tree "Patrol"
+
+tree "Patrol"
+    sequence
         AdvancedPath
         MoveToPatrolPosition
