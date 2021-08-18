@@ -7,6 +7,7 @@ public class ChaseTask : MonoBehaviour
 {
     [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
+    [SerializeField] float chaseDestinationOffset = .2f;
 
     private ActorInputEvents actorControl = null;
 
@@ -35,8 +36,13 @@ public class ChaseTask : MonoBehaviour
             chaseTarget = GetFOVChaseTarget();
         }
 
-        actorControl.OnMovementKeyPressed?.Invoke(chaseTarget.transform.position - transform.position);
-        actorControl.OnPointerPositionChanged?.Invoke(chaseTarget.transform.position);
+        Vector3 targetPosition = chaseTarget.transform.position;
+
+        actorControl.OnMovementKeyPressed?.Invoke(targetPosition - transform.position);
+        actorControl.OnPointerPositionChanged?.Invoke(targetPosition);
+
+        if ((targetPosition - transform.position).sqrMagnitude < chaseDestinationOffset)
+            Task.current.Succeed();
     }
 
     private GameObject GetFOVChaseTarget()

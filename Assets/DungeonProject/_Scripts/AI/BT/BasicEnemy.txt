@@ -1,10 +1,10 @@
 tree "Root"
     fallback
-        while IsTargetDetected
-            ChaseTarget
-
         while not IsTargetDetected
             tree "Patrol"
+
+        while IsTargetDetected
+            ChaseTarget
 
 tree "Patrol"
     sequence
