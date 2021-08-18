@@ -2,22 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class AttackTask : MonoBehaviour
+public class AttackTask : EnemyTaskBase
 {
-    [SerializeField] float attackRange = 1f;
-
-    ActorInputEvents inputEvents;
-    ActorMovement movement;
-    Damager damager;
-    EnemyTaskData data;
-
-    private void Awake()
-    {
-        damager = GetComponentInParent<Damager>();
-        movement = GetComponentInParent<ActorMovement>();
-        data = GetComponentInParent<EnemyTaskData>();
-        inputEvents = GetComponentInParent<ActorInputEvents>();
-    }
+    [SerializeField] float attackRange = 1f;    
 
     [Task]
     public bool IsInAttackRange()

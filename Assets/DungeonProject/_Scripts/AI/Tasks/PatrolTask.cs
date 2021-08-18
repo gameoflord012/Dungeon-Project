@@ -2,35 +2,26 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PatrolTask : MonoBehaviour
+public class PatrolTask : EnemyTaskBase
 {
     [SerializeField] float patrolDestinationOffset = .2f;   
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
-
-    ActorMovement actorMovement;
-    ActorInputEvents actorControl;
-
-    private void Awake()
-    {
-        actorControl = GetComponentInParent<ActorInputEvents>();
-        actorMovement = GetComponentInParent<ActorMovement>();
-    }
 
     [Task]
     public void MoveToPatrolPosition()
     {
         if(Task.current.isStarting)
         {
-            actorMovement.SetMovementData(patrolMovementData);
+            movement.SetMovementData(patrolMovementData);
         }
 
-        actorControl.OnMovementKeyPressedCallback (currentPathNode.transform.position - transform.position);
-        actorControl.OnPointerPositionChangedCallback(currentPathNode.transform.position);
+        inputEvents.OnMovementKeyPressedCallback (currentPathNode.transform.position - transform.position);
+        inputEvents.OnPointerPositionChangedCallback(currentPathNode.transform.position);
 
         if (IsArrivedAtPatrolPosition())
         {
-            actorControl.OnMovementKeyPressedCallback(Vector2.zero);
+            inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
             Task.current.Succeed();
         }
 

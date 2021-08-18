@@ -3,39 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseTask : MonoBehaviour
+public class ChaseTask : EnemyTaskBase
 {
-    [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float chaseDestinationOffset = .2f;
     [SerializeField] float closeRangeChaseDistance = 2f;
     [SerializeField] MovementDataSO chaseMovementData;
-
-    ActorMovement actorMovement;
-    ActorInputEvents actorControl = null;
-    EnemyTaskData data;
-
-    private void Awake()
-    {
-        actorControl = GetComponentInParent<ActorInputEvents>();
-        actorMovement = GetComponentInParent<ActorMovement>();
-        data = GetComponentInParent<EnemyTaskData>();
-
-        if(fov == null)
-            fov = actorMovement.GetComponentInChildren<FOV>();
-    }
     [Task]
     public void ChaseTarget()
     {        
         if(Task.current.isStarting)
         {
-            actorMovement.SetMovementData(chaseMovementData);
+            movement.SetMovementData(chaseMovementData);
         }
 
         Vector3 targetPosition = data.target.transform.position;
 
-        actorControl.OnMovementKeyPressedCallback(targetPosition - transform.position);
-        actorControl.OnPointerPositionChangedCallback(targetPosition);
+        inputEvents.OnMovementKeyPressedCallback(targetPosition - transform.position);
+        inputEvents.OnPointerPositionChangedCallback(targetPosition);
 
         if ((targetPosition - transform.position).sqrMagnitude < chaseDestinationOffset)
             Task.current.Succeed();
