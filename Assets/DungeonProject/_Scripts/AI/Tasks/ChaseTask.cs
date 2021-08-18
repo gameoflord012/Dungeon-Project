@@ -8,18 +8,19 @@ public class ChaseTask : MonoBehaviour
     [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float chaseDestinationOffset = .2f;
-    [SerializeField] float chaseSpeed;
+    [SerializeField] MovementDataSO chaseMovementData;
 
-    private ActorInputEvents actorControl = null;
-
-    private GameObject chaseTarget;
+    ActorMovement actorMovement;
+    ActorInputEvents actorControl = null;
+    GameObject chaseTarget;
 
     private void Awake()
     {
-        if(fov == null)
-            fov = GetComponentInParent<ActorMovement>().GetComponentInChildren<FOV>();
-
         actorControl = GetComponentInParent<ActorInputEvents>();
+        actorMovement = GetComponentInParent<ActorMovement>();
+
+        if(fov == null)
+            fov = actorMovement.GetComponentInChildren<FOV>();
     }
 
 
@@ -35,6 +36,7 @@ public class ChaseTask : MonoBehaviour
         if(Task.current.isStarting)
         {
             chaseTarget = GetFOVChaseTarget();
+            actorMovement.SetMovementData(chaseMovementData);
         }
 
         Vector3 targetPosition = chaseTarget.transform.position;

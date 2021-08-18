@@ -6,17 +6,25 @@ public class PatrolTask : MonoBehaviour
 {
     [SerializeField] float patrolDestinationOffset = .2f;   
     [SerializeField] PathNode currentPathNode;
+    [SerializeField] MovementDataSO patrolMovementData;
 
-    private ActorInputEvents actorControl = null;
+    ActorMovement actorMovement;
+    ActorInputEvents actorControl;
 
     private void Awake()
     {
-        actorControl = GetComponentInParent<ActorInputEvents>();        
+        actorControl = GetComponentInParent<ActorInputEvents>();
+        actorMovement = GetComponentInParent<ActorMovement>();
     }
 
     [Task]
     public void MoveToPatrolPosition()
     {
+        if(Task.current.isStarting)
+        {
+            actorMovement.SetMovementData(patrolMovementData);
+        }
+
         actorControl.OnMovementKeyPressed?.Invoke(currentPathNode.transform.position - transform.position);
         actorControl.OnPointerPositionChanged?.Invoke(currentPathNode.transform.position);
 

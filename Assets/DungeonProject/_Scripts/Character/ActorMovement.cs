@@ -51,6 +51,11 @@ public class ActorMovement : MonoBehaviour
         ThresoldCheck(newVelocity);
     }
 
+    public void SetMovementData(MovementDataSO movementData)
+    {
+        this.movementData = movementData;
+    }
+
     private void ThresoldCheck(Vector2 newVelocity)
     {
         float thresoldMagnitude = (rb.velocity - newVelocity).magnitude;
