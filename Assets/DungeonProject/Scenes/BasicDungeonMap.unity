@@ -1878,6 +1878,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1050656826, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: rotateSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1267143452, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: currentPathNode
       value: 
@@ -2096,6 +2100,23 @@ MonoBehaviour:
   radius: 0.5
   neighbors:
   - {fileID: 1778120870}
+--- !u!1 &1360492950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1267143450, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+  m_PrefabInstance: {fileID: 875369243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1360492958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360492950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1073e4e1c7a4194b849931c2c6efdb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1410295832
 GameObject:
   m_ObjectHideFlags: 0

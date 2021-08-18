@@ -16,9 +16,11 @@ public class RotateToPointer : MonoBehaviour
     public IEnumerator RotateRoutine(Vector2 pointerPosition)
     {
         Vector2 pointerDirection = pointerPosition - (Vector2)transform.position;
-        while(Vector2.Angle(transform.right, pointerDirection) > angleOffset)
+        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, pointerDirection) * Quaternion.Euler(0, 0, 90);
+
+        while(Quaternion.Angle(transform.rotation, targetRotation) > angleOffset)
         {
-            transform.right = Vector2.Lerp(transform.right, pointerDirection, rotateSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
             yield return null;
         }
     }
