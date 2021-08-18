@@ -5022,6 +5022,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: mWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9688735
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4840786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.5092238
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335173, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.027505696
+      objectReference: {fileID: 0}
     - target: {fileID: 4228244903103335175, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5065,6 +5081,14 @@ PrefabInstance:
     - target: {fileID: 4228244903103335175, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335177, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: <Damage>k__BackingField
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4228244903103335177, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
+      propertyPath: <KnockbackStrength>k__BackingField
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 207afa948393e3746a852fe3817c31a7, type: 3}
@@ -5203,6 +5227,14 @@ PrefabInstance:
       propertyPath: m_Icon
       value: 
       objectReference: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 7096140450645632210, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096140450645632210, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: currentHealth
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7873149917087598465, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}

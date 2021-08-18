@@ -1,11 +1,11 @@
 tree "Root"
     fallback
-        while GetFOVChaseTarget
+        while GetChaseTarget
             fallback
                 tree "Attack"
                 ChaseTarget
 
-        while not GetFOVChaseTarget
+        while not GetChaseTarget
             tree "Patrol"
         
 tree "Patrol"

@@ -129,6 +129,8 @@ GameObject:
   - component: {fileID: 1267143452}
   - component: {fileID: 1360492954}
   - component: {fileID: 5223684512888483981}
+  - component: {fileID: 1360492956}
+  - component: {fileID: 1360492957}
   m_Layer: 11
   m_Name: BT
   m_TagString: Untagged
@@ -218,8 +220,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Damage>k__BackingField: 10
-  <KnockbackStrength>k__BackingField: 0
-  <WaitTimeAfterKnockingback>k__BackingField: 0
+  <KnockbackStrength>k__BackingField: 10
+  <WaitTimeAfterKnockingback>k__BackingField: 0.5
+--- !u!114 &1360492956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267143450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d212129c82093743928d2e1c5e08f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 0.5
+--- !u!114 &1360492957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267143450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f35f03144dcbb4fa5ab42c09b9eb8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1001 &8931995956423299807
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 2230022133457943192, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2230022133457943194, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_Offset.x
