@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChaseTask : EnemyTaskBase
+public class ChaseTask : MonoBehaviour
 {
     [SerializeField] FOV fov;
     [SerializeField] LayerMask targetLayerMask;
@@ -12,11 +12,13 @@ public class ChaseTask : EnemyTaskBase
 
     ActorMovement actorMovement;
     ActorInputEvents actorControl = null;
+    EnemyTaskData data;
 
     private void Awake()
     {
         actorControl = GetComponentInParent<ActorInputEvents>();
         actorMovement = GetComponentInParent<ActorMovement>();
+        data = GetComponentInParent<EnemyTaskData>();
 
         if(fov == null)
             fov = actorMovement.GetComponentInChildren<FOV>();
@@ -29,7 +31,7 @@ public class ChaseTask : EnemyTaskBase
             actorMovement.SetMovementData(chaseMovementData);
         }
 
-        Vector3 targetPosition = target.transform.position;
+        Vector3 targetPosition = data.target.transform.position;
 
         actorControl.OnMovementKeyPressed?.Invoke(targetPosition - transform.position);
         actorControl.OnPointerPositionChanged?.Invoke(targetPosition);
@@ -45,12 +47,12 @@ public class ChaseTask : EnemyTaskBase
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask.value) != 0)
             {
-                target = collider.gameObject;
+                data.target = collider.gameObject;
                 return true;
             }
         }
 
-        target = null;
+        data.target = null;
         return false;
     }
 }

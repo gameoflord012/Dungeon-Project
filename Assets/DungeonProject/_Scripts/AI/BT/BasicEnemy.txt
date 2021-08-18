@@ -1,7 +1,9 @@
 tree "Root"
     fallback
         while GetFOVChaseTarget
-            ChaseTarget
+            fallback
+                tree "Attack"
+                ChaseTarget
 
         while not GetFOVChaseTarget
             tree "Patrol"
@@ -10,3 +12,9 @@ tree "Patrol"
     sequence
         AdvancedPath
         MoveToPatrolPosition
+
+tree "Attack"   
+    Sequence
+        IsInAttackRange
+        AttackTarget
+        Wait 2.0

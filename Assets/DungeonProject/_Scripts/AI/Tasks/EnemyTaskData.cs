@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class EnemyTaskBase : MonoBehaviour
+public class EnemyTaskData : MonoBehaviour
 {
     public GameObject target;
 }

@@ -2100,6 +2100,37 @@ MonoBehaviour:
   radius: 0.5
   neighbors:
   - {fileID: 1778120870}
+--- !u!1 &1360492950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1267143450, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+  m_PrefabInstance: {fileID: 875369243}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1360492951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360492950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f35f03144dcbb4fa5ab42c09b9eb8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &1360492956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360492950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d212129c82093743928d2e1c5e08f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 1
 --- !u!1 &1410295832
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PatrolTask : EnemyTaskBase
+public class PatrolTask : MonoBehaviour
 {
     [SerializeField] float patrolDestinationOffset = .2f;   
     [SerializeField] PathNode currentPathNode;
