@@ -56,15 +56,14 @@ public class AIPathControl : MonoBehaviour
         OnPathFindingUpdate?.Invoke(GetCurrentWaypoint() - (Vector2)transform.position);
 
         if (((Vector2)transform.position - GetCurrentWaypoint()).sqrMagnitude < destinationOffset * destinationOffset)
-        {
-            OnDestinationUpdate?.Invoke(GetCurrentWaypoint());
+        {            
             currentVectorPathIndex++;
+            OnDestinationUpdate?.Invoke(GetCurrentWaypoint());
         }
     }
 
     private Vector2 GetCurrentWaypoint()
-    {
-        Assert.IsTrue(currentVectorPathIndex < path.vectorPath.Count);
-        return path.vectorPath[currentVectorPathIndex];
+    {        
+        return path.vectorPath[Mathf.Clamp(currentVectorPathIndex, 0, path.vectorPath.Count - 1)];
     }
 }

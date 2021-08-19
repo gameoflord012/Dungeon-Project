@@ -12,6 +12,8 @@ public class ActorInputEvents : MonoBehaviour
     [field: SerializeField]
     private UnityEvent OnFireButtonReleased { get; set; }
 
+    private Vector2 lastPointerPosition;
+
     public void OnMovementKeyPressedCallback(Vector2 inputAxis)
     {
         if (this.enabled == false) return;
@@ -21,6 +23,7 @@ public class ActorInputEvents : MonoBehaviour
     public void OnPointerPositionChangedCallback(Vector2 pointerPosition)
     {
         if (this.enabled == false) return;
+        lastPointerPosition = pointerPosition;
         OnPointerPositionChanged?.Invoke(pointerPosition);
     }
 
@@ -34,5 +37,11 @@ public class ActorInputEvents : MonoBehaviour
     {
         if (this.enabled == false) return;
         OnFireButtonReleased?.Invoke();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(lastPointerPosition, .2f);
     }
 }
