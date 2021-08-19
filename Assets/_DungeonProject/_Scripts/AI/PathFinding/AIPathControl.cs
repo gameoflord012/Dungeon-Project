@@ -26,6 +26,7 @@ public class AIPathControl : MonoBehaviour
     {
         enabled = true;
         seeker.CancelCurrentPathRequest();
+        currentVectorPathIndex = 0;
         seeker.StartPath(transform.position, destination, OnPathComplete);
         this.destinationOffset = destinationOffset;
     }
@@ -39,8 +40,7 @@ public class AIPathControl : MonoBehaviour
 
     private void OnPathComplete(Path p)
     {
-        if (p.error) return;
-        currentVectorPathIndex = 0;
+        if (p.error) return;        
         path = p;
     }
 
