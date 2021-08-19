@@ -46,13 +46,14 @@ public class AIPathControl : MonoBehaviour
 
     public bool IsDestinationReached()
     {
-        if (path == null) return true;
+        if (path == null) return seeker.IsDone(); // return false if seeker is calculating path
         return currentVectorPathIndex >= path.vectorPath.Count;
     }
 
     private void FixedUpdate()
     {
-        if (IsDestinationReached()) return;
+        if (path == null || IsDestinationReached()) return;
+
         OnPathFindingUpdate?.Invoke(GetCurrentWaypoint() - (Vector2)transform.position);
 
         if (((Vector2)transform.position - GetCurrentWaypoint()).sqrMagnitude < destinationOffset * destinationOffset)
@@ -63,7 +64,8 @@ public class AIPathControl : MonoBehaviour
     }
 
     private Vector2 GetCurrentWaypoint()
-    {        
+    {
+        Assert.IsNotNull(path);
         return path.vectorPath[Mathf.Clamp(currentVectorPathIndex, 0, path.vectorPath.Count - 1)];
     }
 }
