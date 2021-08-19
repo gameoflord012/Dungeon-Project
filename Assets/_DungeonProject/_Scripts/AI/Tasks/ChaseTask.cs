@@ -15,14 +15,19 @@ public class ChaseTask : EnemyTaskBase
         if(Task.current.isStarting)
         {
             movement.SetMovementData(chaseMovementData);
+            pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
+        }        
+
+        if(pathControl.IsDestinationReached())
+        {
+            pathControl.CancelPathFinding();
+            Task.current.Succeed();
         }
 
-        Vector3 targetPosition = data.target.transform.position;
-
-        inputEvents.OnMovementKeyPressedCallback(targetPosition - transform.position);
-        inputEvents.OnPointerPositionChangedCallback(targetPosition);
-
-        Task.current.Succeed();
+        //if (Task.current.status == Status.Failed)
+        //{
+        //    pathControl.CancelPathFinding();
+        //}
     }
 
     [Task]

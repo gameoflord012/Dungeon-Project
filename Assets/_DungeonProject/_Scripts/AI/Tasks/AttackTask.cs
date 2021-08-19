@@ -11,11 +11,11 @@ public class AttackTask : EnemyTaskBase
     {
         if (Task.isInspected)
         {
-            Task.current.debugInfo = "Target: " + data.target.transform.position;
+            Task.current.debugInfo = "Target: " + data.GetTargetPosition();
         }
 
         if (data.target == null) return false;        
-        return (transform.position - data.target.transform.position).sqrMagnitude < attackRange * attackRange;        
+        return ((Vector2)transform.position - data.GetTargetPosition()).sqrMagnitude < attackRange * attackRange;        
     }
 
     [Task]
@@ -23,7 +23,7 @@ public class AttackTask : EnemyTaskBase
     {
         if (data.target.TryGetComponent(out Health targetHealth))
         {
-            inputEvents.OnPointerPositionChangedCallback(data.target.transform.position);
+            inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
             movement.ResetMovement();
 
             targetHealth.TakeDamage(damager);

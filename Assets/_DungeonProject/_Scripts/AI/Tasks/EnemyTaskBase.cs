@@ -8,6 +8,7 @@ public class EnemyTaskBase : MonoBehaviour
     protected Damager damager;
     protected EnemyTaskData data;
     protected FOV fov;
+    protected AIPathControl pathControl;
 
     private void Awake()
     {
@@ -16,5 +17,6 @@ public class EnemyTaskBase : MonoBehaviour
         data = GetComponentInParent<EnemyTaskData>();
         inputEvents = GetComponentInParent<ActorInputEvents>();
         fov = movement.GetComponentInChildren<FOV>();
+        pathControl = GetComponentInParent<AIPathControl>();
     }
 }

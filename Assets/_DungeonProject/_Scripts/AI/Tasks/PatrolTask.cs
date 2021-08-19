@@ -14,14 +14,12 @@ public class PatrolTask : EnemyTaskBase
         if(Task.current.isStarting)
         {
             movement.SetMovementData(patrolMovementData);
+            pathControl.SetDestination(currentPathNode.transform.position, patrolDestinationOffset);
         }
 
-        inputEvents.OnMovementKeyPressedCallback (currentPathNode.transform.position - transform.position);
-        inputEvents.OnPointerPositionChangedCallback(currentPathNode.transform.position);
-
-        if (IsArrivedAtPatrolPosition())
+        if (pathControl.IsDestinationReached())
         {
-            inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+            pathControl.CancelPathFinding();
             Task.current.Succeed();
         }
 
@@ -31,11 +29,11 @@ public class PatrolTask : EnemyTaskBase
         }
     }    
 
-    private bool IsArrivedAtPatrolPosition()
-    {
-        return ((Vector2)currentPathNode.transform.position - (Vector2)transform.position).sqrMagnitude < 
-            patrolDestinationOffset * patrolDestinationOffset;
-    }
+    //private bool IsArrivedAtPatrolPosition()
+    //{
+    //    return ((Vector2)currentPathNode.transform.position - (Vector2)transform.position).sqrMagnitude < 
+    //        patrolDestinationOffset * patrolDestinationOffset;
+    //}
 
     [Task]
     public bool AdvancedPath()
