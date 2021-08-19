@@ -22,8 +22,7 @@ public class ChaseTask : EnemyTaskBase
         inputEvents.OnMovementKeyPressedCallback(targetPosition - transform.position);
         inputEvents.OnPointerPositionChangedCallback(targetPosition);
 
-        if ((targetPosition - transform.position).sqrMagnitude < chaseDestinationOffset)
-            Task.current.Succeed();
+        Task.current.Succeed();
     }
 
     [Task]

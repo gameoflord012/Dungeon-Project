@@ -11,7 +11,7 @@ public class AttackTask : EnemyTaskBase
     {
         if (Task.isInspected)
         {
-            Task.current.debugInfo = "Target: " + data.target;
+            Task.current.debugInfo = "Target: " + data.target.transform.position;
         }
 
         if (data.target == null) return false;        
