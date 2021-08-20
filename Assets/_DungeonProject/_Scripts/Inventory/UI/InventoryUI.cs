@@ -21,6 +21,7 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inventory.GetSize(); ++i)
         {
             ItemSlotUI itemSlot = Instantiate(itemSlotPrefab, transform);
+            itemSlot.SetItemTooltip(itemTooltip);
             itemSlot.Setup(inventory, i);
         }
     }

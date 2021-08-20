@@ -8,6 +8,7 @@ public class InventoryItem : ScriptableObject
     [SerializeField] Sprite icon = null;
     [SerializeField] bool stackable = false;
     [SerializeField] float basePrice;
+    [SerializeField] string description;
 
     public Sprite GetIcon()
     {
@@ -22,5 +23,10 @@ public class InventoryItem : ScriptableObject
     public float GetPrice()
     {
         return basePrice;
+    }
+
+    public string GetDescription()
+    {
+        return description;
     }
 }

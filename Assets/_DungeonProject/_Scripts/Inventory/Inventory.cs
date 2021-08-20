@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] int size = 16;
     [SerializeField] ItemSlot[] startingItems;
+    [SerializeField] ItemTooltip itemTooltip;
 
     ItemSlot[] itemSlots;
 
