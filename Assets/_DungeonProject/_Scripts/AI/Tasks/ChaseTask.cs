@@ -21,14 +21,10 @@ public class ChaseTask : EnemyTaskBase
         {
             movement.SetMovementData(chaseMovementData);
             timeSinceLastPathBaking = Mathf.Infinity;
-        }
+        }        
 
-        timeSinceLastPathBaking += Time.deltaTime;
-
-        if (timeSinceLastPathBaking > pathBakingTime)
-        {
-            StartPathFinding();
-        }
+        StartPathFinding();
+        inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
 
         if (pathControl.IsDestinationReached())
         {
@@ -44,8 +40,11 @@ public class ChaseTask : EnemyTaskBase
 
     private void StartPathFinding()
     {
-        timeSinceLastPathBaking = 0f;
-        pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
+        if(timeSinceLastPathBaking > pathBakingTime)
+        {
+            timeSinceLastPathBaking = 0f;
+            pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
+        }
     }
 
     [Task]
@@ -77,5 +76,10 @@ public class ChaseTask : EnemyTaskBase
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, closeRangeChaseDistance);
+    }
+
+    private void Update()
+    {
+        timeSinceLastPathBaking += Time.deltaTime;
     }
 }

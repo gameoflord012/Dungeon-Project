@@ -17,6 +17,12 @@ public class PatrolTask : EnemyTaskBase
             pathControl.SetDestination(currentPathNode.transform.position, patrolDestinationOffset);
         }
 
+        if(!pathControl.IsSearchingForPath)
+        {
+            inputEvents.OnPointerPositionChangedCallback(pathControl.GetCurrentWaypoint());
+            Debug.Log("Updating...");
+        }
+
         if (pathControl.IsDestinationReached())
         {
             pathControl.CancelPathFinding();
@@ -27,11 +33,11 @@ public class PatrolTask : EnemyTaskBase
         {
             Task.current.debugInfo = "Distance: " + (currentPathNode.transform.position - transform.position).magnitude;
         }
-    }    
+    }
 
     //private bool IsArrivedAtPatrolPosition()
     //{
-    //    return ((Vector2)currentPathNode.transform.position - (Vector2)transform.position).sqrMagnitude < 
+    //    return ((Vector2)currentPathNode.transform.position - (Vector2)transform.position).sqrMagnitude <
     //        patrolDestinationOffset * patrolDestinationOffset;
     //}
 
