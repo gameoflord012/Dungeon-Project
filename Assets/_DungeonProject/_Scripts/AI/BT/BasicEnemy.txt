@@ -2,8 +2,11 @@ tree "Root"
     fallback
         while GetChaseTarget
             fallback
-                tree "Attack"
-                ChaseTarget
+                while IsInAttackRange
+                    tree "Attack"
+
+                while not IsInAttackRange
+                    ChaseTarget
                         
         while TargetEscaped
             Sequence
@@ -31,7 +34,7 @@ tree "LookAround"
         Wait 2.0
 
 tree "Attack"   
-    Sequence
-        IsInAttackRange
+    Sequence        
+        StopMoving
         AttackTarget
-        Wait .5
+        Wait 1.0
