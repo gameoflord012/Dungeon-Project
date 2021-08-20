@@ -208,6 +208,7 @@ MonoBehaviour:
     m_Bits: 1024
   chaseDestinationOffset: 0.2
   closeRangeChaseDistance: 2
+  pathBakingTimeInterval: 0.5
   chaseMovementData: {fileID: 11400000, guid: 0ad5718f59604fd428bdcdf792caab37, type: 2}
 --- !u!114 &5223684512888483981
 MonoBehaviour:

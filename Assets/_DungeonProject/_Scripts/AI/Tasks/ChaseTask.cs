@@ -8,17 +8,29 @@ public class ChaseTask : EnemyTaskBase
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float chaseDestinationOffset = .2f;
     [SerializeField] float closeRangeChaseDistance = 2f;
+    [SerializeField] float pathBakingTime = .5f;
     [SerializeField] MovementDataSO chaseMovementData;
+
+
+    private float timeSinceLastPathBaking;
+
     [Task]
     public void ChaseTarget()
     {        
         if(Task.current.isStarting)
         {
             movement.SetMovementData(chaseMovementData);
-            pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
-        }        
+            timeSinceLastPathBaking = Mathf.Infinity;
+        }
 
-        if(pathControl.IsDestinationReached())
+        timeSinceLastPathBaking += Time.deltaTime;
+
+        if (timeSinceLastPathBaking > pathBakingTime)
+        {
+            StartPathFinding();
+        }
+
+        if (pathControl.IsDestinationReached())
         {
             pathControl.CancelPathFinding();
             Task.current.Succeed();
@@ -28,6 +40,12 @@ public class ChaseTask : EnemyTaskBase
         //{
         //    pathControl.CancelPathFinding();
         //}
+    }
+
+    private void StartPathFinding()
+    {
+        timeSinceLastPathBaking = 0f;
+        pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
     }
 
     [Task]
