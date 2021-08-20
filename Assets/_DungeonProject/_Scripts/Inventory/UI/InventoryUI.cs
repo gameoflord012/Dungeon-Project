@@ -6,6 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Inventory inventory;
     [SerializeField] ItemSlotUI itemSlotPrefab;
+    [SerializeField] ItemTooltip itemTooltip;
 
     void Start()
     {

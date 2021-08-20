@@ -5,17 +5,24 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] ItemSlot[] itemSlots;
-
-#pragma warning disable 414
     [SerializeField] int size = 16;
-#pragma warning restore 414
+    [SerializeField] ItemSlot[] startingItems;
+
+    ItemSlot[] itemSlots;
 
     [Serializable]
     public class ItemSlot
     {
         public InventoryItem item;
         public int number;
+    }
+
+    void Awake()
+    {
+        itemSlots = new ItemSlot[size];
+
+        for (int i = 0; i < startingItems.Length; ++i)
+            itemSlots[i] = startingItems[i];
     }
 
     public ItemSlot[] GetItemSlots()

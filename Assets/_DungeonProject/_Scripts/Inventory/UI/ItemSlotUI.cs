@@ -13,13 +13,19 @@ public class ItemSlotUI : MonoBehaviour
         Inventory.ItemSlot itemSlot = inventory.GetItemSlots()[index];
         if (itemSlot == null)
         {
-            print("null");
             itemIcon.enabled = false;
             number.enabled = false;
             return;
         }
 
         itemIcon.sprite = itemSlot.item.GetIcon();
+
+        if (itemSlot.number <= 1)
+        {
+            number.enabled = false;
+            return;
+        }
+
         number.text = itemSlot.number.ToString();
     }
 }
