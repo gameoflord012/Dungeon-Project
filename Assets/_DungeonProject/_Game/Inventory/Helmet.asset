@@ -15,4 +15,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1b1738c4580af466bb02e1fc392a109d, type: 3}
   stackable: 0
   basePrice: 0
+  equipLocation: 0
   description: give you horns

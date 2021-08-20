@@ -15,4 +15,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: a0882e3890adb4149a08961436db5d7f, type: 3}
   stackable: 0
   basePrice: 200
+  equipLocation: 0
   description: make your dick bigger

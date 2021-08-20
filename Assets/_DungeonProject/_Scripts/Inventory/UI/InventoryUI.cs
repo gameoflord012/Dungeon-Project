@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] Inventory inventory;
     [SerializeField] ItemSlotUI itemSlotPrefab;
     [SerializeField] ItemTooltip itemTooltip;
+    [SerializeField] Button removeButton;
+    [SerializeField] Button equipButton;
 
     void Start()
     {
+        inventory.inventoryUpdated += RefreshUI;
+
         RefreshUI();
     }
 
