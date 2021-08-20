@@ -8,11 +8,12 @@ tree "Root"
         while TargetEscaped
             Sequence
                 StopMoving
+                Wait 1.0
                 tree "LookAround"
                 ResetTarget
                 
         while not GetChaseTarget
-                tree "Patrol"
+            tree "Patrol"
         
 tree "Patrol"
     sequence
@@ -26,7 +27,7 @@ tree "LookAround"
     Sequence        
         LookAround(90)
         Wait 2.0
-        LookAround(-179)
+        LookAround(-180)
         Wait 2.0
 
 tree "Attack"   
