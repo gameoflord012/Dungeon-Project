@@ -11,6 +11,8 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] Button removeButton;
     [SerializeField] Button equipButton;
 
+    InventoryItem currentItem = null;
+
     void Start()
     {
         inventory.inventoryUpdated += RefreshUI;
@@ -26,8 +28,19 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inventory.GetSize(); ++i)
         {
             ItemSlotUI itemSlot = Instantiate(itemSlotPrefab, transform);
-            itemSlot.SetItemTooltip(itemTooltip);
+            itemSlot.SetInventoryUI(this);
             itemSlot.Setup(inventory, i);
         }
+    }
+
+    public void SetInventoryItem(InventoryItem inventoryItem)
+    {
+        currentItem = inventoryItem;
+    }
+
+    private void RefreshMenuUI()
+    {
+        itemTooltip.Setup(currentItem);
+
     }
 }

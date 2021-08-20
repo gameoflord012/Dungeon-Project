@@ -7,13 +7,14 @@ public class ItemSlotUI : MonoBehaviour
 {
     [SerializeField] Image itemIcon;
     [SerializeField] Text number;
+    [SerializeField] Button chooseButton;
 
     InventoryItem inventoryItem;
-    ItemTooltip itemTooltip;
+    InventoryUI inventoryUI;
 
-    public void SetItemTooltip(ItemTooltip itemTooltip)
+    public void SetInventoryUI(InventoryUI inventoryUI)
     {
-        this.itemTooltip = itemTooltip;
+        this.inventoryUI = inventoryUI;
     }
 
     public void Setup(Inventory inventory, int index)
@@ -39,8 +40,8 @@ public class ItemSlotUI : MonoBehaviour
         number.text = itemSlot.number.ToString();
     }
 
-    public void ShowTooltip()
+    public void SetInventoryItemToUI()
     {
-        itemTooltip.Setup(inventoryItem);
+        inventoryUI.SetInventoryItem(inventoryItem);
     }
 }
