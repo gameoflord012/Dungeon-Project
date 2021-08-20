@@ -1,14 +1,12 @@
-using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(FeedbackPlayer))]
-public class GetHitFeedback : Feedback
+public class EnemyHitFeedback : Feedback
 {
-    [SerializeField] Shader flashShader;
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] float flashDuration = .2f;
+    [SerializeField] private Shader flashShader;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private float flashDuration = .2f;
 
     private Shader originalShader;
 
@@ -20,7 +18,7 @@ public class GetHitFeedback : Feedback
     }
 
     public override void ResetFeedback()
-    {        
+    {
         spriteRenderer.material.shader = originalShader;
         StopAllCoroutines();
         spriteRenderer.material.SetFloat("_TurnFlash", 0);
