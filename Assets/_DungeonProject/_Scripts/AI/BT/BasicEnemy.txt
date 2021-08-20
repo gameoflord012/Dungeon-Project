@@ -10,6 +10,7 @@ tree "Root"
                         
         while TargetEscaped
             Sequence
+                TryToTraceLastTargetPosition
                 StopMoving
                 Wait 1.0
                 tree "LookAround"

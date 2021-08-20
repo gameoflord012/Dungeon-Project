@@ -21,9 +21,12 @@ public class ChaseTask : EnemyTaskBase
         {
             movement.SetMovementData(chaseMovementData);
             timeSinceLastPathBaking = Mathf.Infinity;
-        }        
+        }
+        if (timeSinceLastPathBaking > pathBakingTime)
+        {
+            StartPathFinding();
+        }
 
-        StartPathFinding();
         inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
 
         if (pathControl.IsDestinationReached())
@@ -44,11 +47,8 @@ public class ChaseTask : EnemyTaskBase
 
     private void StartPathFinding()
     {
-        if(timeSinceLastPathBaking > pathBakingTime)
-        {
-            timeSinceLastPathBaking = 0f;
-            pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
-        }
+        pathControl.SetDestination(data.GetTargetPosition(), chaseDestinationOffset);
+        timeSinceLastPathBaking = 0f;
     }
 
     [Task]
@@ -73,6 +73,23 @@ public class ChaseTask : EnemyTaskBase
                 return false;
         }
         return true;
+    }
+
+    [Task]
+    public void TryToTraceLastTargetPosition()
+    {
+        if (Task.current.isStarting)
+        {
+            movement.SetMovementData(chaseMovementData);
+            StartPathFinding();
+        }
+
+        inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
+
+        if (pathControl.IsDestinationReached())
+        {
+            Task.current.Succeed();
+        }
     }
     
     private IEnumerable<GameObject> FindChaseTargets()
