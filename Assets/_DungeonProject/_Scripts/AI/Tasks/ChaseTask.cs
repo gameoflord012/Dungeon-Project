@@ -27,9 +27,13 @@ public class ChaseTask : EnemyTaskBase
         inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
 
         if (pathControl.IsDestinationReached())
-        {
-            pathControl.CancelPathFinding();
+        {            
             Task.current.Succeed();
+        }
+
+        if(TargetEscaped())
+        {
+            Task.current.Fail();
         }
 
         //if (Task.current.status == Status.Failed)
@@ -50,12 +54,36 @@ public class ChaseTask : EnemyTaskBase
     [Task]
     public bool GetChaseTarget()
     {
+        foreach(GameObject chaseTarget in FindChaseTargets())
+        {
+            data.target = chaseTarget;
+            return true;
+        }
+
+        return false;
+    }
+
+    [Task]
+    public bool TargetEscaped()
+    {
+        if (data.target == null) return false;
+        foreach(GameObject chaseTarget in FindChaseTargets())
+        {
+            if (chaseTarget == data.target)
+                return false;
+        }
+        return true;
+    }
+    
+    private IEnumerable<GameObject> FindChaseTargets()
+    {
         // Close range check
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, closeRangeChaseDistance, Vector2.zero, 0, targetLayerMask);
-        if(hit.collider)
+        if (hit.collider)
         {
-            data.target = hit.collider.gameObject;
-            return true;
+            yield return hit.collider.gameObject;
+            //data.target = hit.collider.gameObject;
+            //return true;
         }
 
         // FOV check
@@ -63,13 +91,10 @@ public class ChaseTask : EnemyTaskBase
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask.value) != 0)
             {
-                data.target = collider.gameObject;
-                return true;
+                yield return collider.gameObject;
+                /*data.target = collider.gameObject;*/
             }
         }
-
-        data.target = null;
-        return false;
     }
 
     private void OnDrawGizmosSelected()
