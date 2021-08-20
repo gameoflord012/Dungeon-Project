@@ -49,7 +49,9 @@ public class ActorMovement : MonoBehaviour
             rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, movementData.deacceleration * Time.fixedDeltaTime);
         }
 
-        OnActorMoving?.Invoke(rb.velocity.sqrMagnitude > stopVelocityThreshold * stopVelocityThreshold);
+        OnActorMoving?.Invoke(
+            rb.velocity.sqrMagnitude > stopVelocityThreshold * stopVelocityThreshold &&
+            direction.sqrMagnitude > 0);
 
         ThresoldCheck(newVelocity);
     }
