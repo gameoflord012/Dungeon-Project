@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class AttackTask : EnemyTaskBase
 {
-    [SerializeField] float attackRange = 1f;    
+    [SerializeField] float attackRange = 1f;
+    [SerializeField] float timeBetweenAttacks = .3f;
+
+    private float timeSinceLastAttack = Mathf.Infinity;
 
     [Task]
     public bool IsInAttackRange()
@@ -19,16 +22,34 @@ public class AttackTask : EnemyTaskBase
     }
 
     [Task]
-    public bool AttackTarget()
+    public void AttackTarget()
     {
-        if (data.target.TryGetComponent(out Health targetHealth))
+        if(timeSinceLastAttack > timeBetweenAttacks)
         {
-            inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
-            movement.ResetMovement();
+            if (data.target.TryGetComponent(out Health targetHealth))
+            {
+                AttackBehaviour(targetHealth);
+                Task.current.Succeed();
+            }
+            else
+            {
+                Task.current.Fail();
+            }
+        }        
+    }
 
-            targetHealth.TakeDamage(damager);
-            return true;
-        }
-        return false;
+    private void AttackBehaviour(Health targetHealth)
+    {
+        timeSinceLastAttack = 0;
+
+        inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
+        movement.ResetMovement();
+
+        targetHealth.TakeDamage(damager);
+    }
+
+    private void Update()
+    {
+        timeSinceLastAttack += Time.deltaTime;
     }
 }

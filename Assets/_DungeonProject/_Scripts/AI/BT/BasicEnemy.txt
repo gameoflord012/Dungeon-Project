@@ -37,4 +37,3 @@ tree "Attack"
     Sequence        
         StopMoving
         AttackTarget
-        Wait 1.0
