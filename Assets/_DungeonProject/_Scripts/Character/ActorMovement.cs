@@ -14,6 +14,8 @@ public class ActorMovement : MonoBehaviour
     public UnityEvent<bool> OnActorMoving;
     public UnityEvent OnVelocityChangeSuddenly;
 
+    public float stopVelocityThreshold = .1f;
+
     private Vector2 direction;
     private Rigidbody2D rb;
 
@@ -39,15 +41,16 @@ public class ActorMovement : MonoBehaviour
         if (direction.sqrMagnitude > 0)
         {
             newVelocity = direction * movementData.maxSpeed;
-            rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, movementData.acceleration * Time.fixedDeltaTime);
-            OnActorMoving?.Invoke(true);
+            rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, movementData.acceleration * Time.fixedDeltaTime);            
         }
         else
         {
             newVelocity = Vector2.zero;
             rb.velocity = Vector2.Lerp(rb.velocity, newVelocity, movementData.deacceleration * Time.fixedDeltaTime);
-            OnActorMoving?.Invoke(false);
         }
+
+        OnActorMoving?.Invoke(rb.velocity.sqrMagnitude > stopVelocityThreshold * stopVelocityThreshold);
+
         ThresoldCheck(newVelocity);
     }
 
@@ -58,7 +61,6 @@ public class ActorMovement : MonoBehaviour
 
     public void ResetMovement()
     {
-        rb.velocity = Vector2.zero;
         direction = Vector2.zero;
     }
 
