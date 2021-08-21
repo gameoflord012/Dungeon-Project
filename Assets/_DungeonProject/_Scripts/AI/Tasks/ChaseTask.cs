@@ -1,4 +1,5 @@
 using Panda;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -96,8 +97,10 @@ public class ChaseTask : EnemyTaskBase
     {
         // Close range check
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, closeRangeChaseDistance, Vector2.zero, 0, targetLayerMask);
-        if (hit.collider)
+
+        if (hit.collider && !ObscuredByObstacle(hit.transform.position))
         {
+
             yield return hit.collider.gameObject;
             //data.target = hit.collider.gameObject;
             //return true;
@@ -106,12 +109,23 @@ public class ChaseTask : EnemyTaskBase
         // FOV check
         foreach (Collider2D collider in fov.hitColliders)
         {
-            if (((1 << collider.gameObject.layer) & targetLayerMask.value) != 0)
+            if (((1 << collider.gameObject.layer) & targetLayerMask) != 0)
             {
                 yield return collider.gameObject;
                 /*data.target = collider.gameObject;*/
             }
         }
+    }
+
+    private bool ObscuredByObstacle(Vector2 targetPosition)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(
+            transform.position,
+            (targetPosition - (Vector2)transform.position),
+            closeRangeChaseDistance,
+            1 << LayerMask.NameToLayer("Obstacle"));
+
+        return hit.collider != null;
     }
 
     private void OnDrawGizmosSelected()
