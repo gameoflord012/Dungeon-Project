@@ -31,10 +31,10 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(Damager damager)
     {
-        CurrentHealth -= damager.Damage;
+        if (IsDead) return;
 
-        if(!IsDead)
-            OnActorTakeDamage?.Invoke(damager);
+        CurrentHealth -= damager.Damage;
+        OnActorTakeDamage?.Invoke(damager);
         
         Debug.Log(damager + " Attack " + this);
     }
