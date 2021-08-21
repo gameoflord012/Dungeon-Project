@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     private float currentHealth = 50, maxHealth = 50;
 
     public UnityEvent<Damager> OnActorTakeDamage;
+    public UnityEvent OnActorHealthReachZero;
 
     public float CurrentHealth
     {
@@ -23,13 +24,14 @@ public class Health : MonoBehaviour
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
+
+        if (Mathf.Approximately(CurrentHealth, 0f))
+        {
+            OnActorHealthReachZero?.Invoke();
+            return;
+        }
+
         OnActorTakeDamage?.Invoke(damager);
         Debug.Log(damager + " Attack " + this);
-    }
-
-    private void Update()
-    {
-        if (Mathf.Approximately(CurrentHealth, 0f))
-            Destroy(gameObject);
     }
 }
