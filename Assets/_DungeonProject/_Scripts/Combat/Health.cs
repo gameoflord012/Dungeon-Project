@@ -32,8 +32,10 @@ public class Health : MonoBehaviour
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
-        OnActorTakeDamage?.Invoke(damager);        
-       
+
+        if(!IsDead)
+            OnActorTakeDamage?.Invoke(damager);
+        
         Debug.Log(damager + " Attack " + this);
     }
 }

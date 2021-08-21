@@ -9,11 +9,22 @@ public class DestroyFeedback : Feedback
 
     public override void CreateFeedback()
     {
-        Destroy(destroyTarget, destroyDelay);
+        StartCoroutine(DestroyFeedbackRoutine());
     }
 
     public override void ResetFeedback()
     {
         
+    }
+
+    IEnumerator DestroyFeedbackRoutine()
+    {
+        yield return new WaitForSeconds(destroyDelay);
+
+        var feedbackPlayers = destroyTarget.GetComponentsInChildren<FeedbackPlayer>();
+        foreach (FeedbackPlayer feedbackPlayer in feedbackPlayers)
+            feedbackPlayer.CompleteRunningFeedback();
+
+        Destroy(destroyTarget);
     }
 }

@@ -19,7 +19,7 @@ class FeedbackPlayer : MonoBehaviour
         }
     }
 
-    private void CompleteRunningFeedback()
+    public void CompleteRunningFeedback()
     {
         foreach (Feedback feedback in feedbacks)
         {

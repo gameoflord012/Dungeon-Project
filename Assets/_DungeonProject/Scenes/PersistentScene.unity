@@ -135,18 +135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 574020425132259743, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: flashDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 574020425132259743, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
-      propertyPath: flashFrequency
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5711993987995066145, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+    - target: {fileID: 303623869, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e2d0ccbd010dee645aa20ebb823adff7, type: 2}
+      objectReference: {fileID: 2100000, guid: 92e9cc82ff6a6e645bef209162116508, type: 2}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player

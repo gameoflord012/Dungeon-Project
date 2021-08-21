@@ -6,7 +6,6 @@ public class EnemyDeathFeedback : Feedback
 {
     [SerializeField] Shader dissolveShader;
     [SerializeField] SpriteRenderer dissolveTarget;
-
     [SerializeField] float dissolveDuration = .5f;
 
     Shader originalShader;
@@ -30,7 +29,9 @@ public class EnemyDeathFeedback : Feedback
             dissolveTarget.material.SetFloat("_Step", 1);
 
         if (originalShader != null)
+        {
             dissolveTarget.material.shader = originalShader;
-        originalShader = null;                
+            originalShader = null;
+        }            
     }
 }
