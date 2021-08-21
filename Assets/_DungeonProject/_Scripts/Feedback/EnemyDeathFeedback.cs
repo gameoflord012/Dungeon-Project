@@ -23,6 +23,6 @@ public class EnemyDeathFeedback : Feedback
     {
         dissolveTarget.material.shader = originalShader;
         dissolveTarget.material.DOComplete();
-        dissolveTarget.material.SetFloat("_Step", 0);
+        dissolveTarget.material.SetFloat("_Step", 1);
     }
 }
