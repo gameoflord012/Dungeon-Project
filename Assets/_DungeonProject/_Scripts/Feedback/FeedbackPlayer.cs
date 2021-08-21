@@ -11,7 +11,7 @@ class FeedbackPlayer : MonoBehaviour
 
     public void PlayFeedbacks()
     {
-        CompletePreviousFeedback();
+        CompleteRunningFeedback();
 
         foreach (Feedback feedback in feedbacks)
         {
@@ -19,7 +19,7 @@ class FeedbackPlayer : MonoBehaviour
         }
     }
 
-    private void CompletePreviousFeedback()
+    private void CompleteRunningFeedback()
     {
         foreach (Feedback feedback in feedbacks)
         {

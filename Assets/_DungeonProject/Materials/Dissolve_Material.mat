@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FOVUnlitMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 4f7288fb8de0cfd4b91373a08d75dc29, type: 3}
+  m_Name: Dissolve_Material
+  m_Shader: {fileID: -6465566751694194690, guid: 7d6c74abb5147634ca09d4dd99754cf2, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,8 +19,8 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_d4676dfffc194cef85b962c39a34a5d7:
-        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: bf17fb87a0dc75b4f8cb9c0567dbff63, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -36,7 +36,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_885c34214b5b433296f041cc22194906: 0.4
+    - Vector1_56e7e4afae79471da5b2ef2b1c159c6f: 0.2
+    - Vector1_7b618a684f694d868aea1c64aee72603: 25
+    - _Step: 1
     m_Colors:
-    - Color_45897e2e89444fc0aee7516880bf6235: {r: 0.6886792, g: 0, b: 0.0724926, a: 1}
+    - Color_618d60122f6943f88ff79dd9c78334db: {r: 95.87451, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

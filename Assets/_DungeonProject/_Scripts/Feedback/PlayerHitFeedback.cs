@@ -19,9 +19,14 @@ public class PlayerHitFeedback : Feedback
 
     public override void ResetFeedback()
     {
-        spriteRenderer.material.shader = originalShader;
+        if (spriteRenderer.material.HasProperty("_TurnFlash"))
+            spriteRenderer.material.SetFloat("_TurnFlash", 0);
+
+        if (originalShader)
+            spriteRenderer.material.shader = originalShader;
+
+        originalShader = null;
         StopAllCoroutines();
-        spriteRenderer.material.SetFloat("_TurnFlash", 0);
     }
 
     public IEnumerator FlashRoutine()
@@ -33,5 +38,7 @@ public class PlayerHitFeedback : Feedback
             spriteRenderer.material.SetFloat("_TurnFlash", 0);
             yield return new WaitForSeconds(flashDuration / 2f / flashFrequency);
         }
+
+        ResetFeedback();
     }
 }

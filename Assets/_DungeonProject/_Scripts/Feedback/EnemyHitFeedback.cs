@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(FeedbackPlayer))]
 public class EnemyHitFeedback : Feedback
@@ -19,15 +20,20 @@ public class EnemyHitFeedback : Feedback
 
     public override void ResetFeedback()
     {
-        spriteRenderer.material.shader = originalShader;
+        if(originalShader)
+            spriteRenderer.material.shader = originalShader;
+
+        originalShader = null;
         StopAllCoroutines();
-        spriteRenderer.material.SetFloat("_TurnFlash", 0);
     }
 
     public IEnumerator FlashRoutine()
     {
+        Assert.IsTrue(spriteRenderer.material.HasProperty("_TurnFlash"));
         spriteRenderer.material.SetFloat("_TurnFlash", 1);
+
         yield return new WaitForSeconds(flashDuration);
-        spriteRenderer.material.SetFloat("_TurnFlash", 0);
+
+        ResetFeedback();
     }
 }
