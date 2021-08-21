@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve_Material
-  m_Shader: {fileID: -6465566751694194690, guid: 7d6c74abb5147634ca09d4dd99754cf2, type: 3}
+  m_Name: Material_Flash
+  m_Shader: {fileID: -6465566751694194690, guid: b05c7e4496d76c84f8e2b2a7049d5697, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -36,9 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_56e7e4afae79471da5b2ef2b1c159c6f: 0.2
-    - Vector1_7b618a684f694d868aea1c64aee72603: 25
-    - _Step: 1
+    - Boolean_16317650f7644df1a08691668385d4a7: 0
     m_Colors:
-    - Color_618d60122f6943f88ff79dd9c78334db: {r: 95.87451, g: 0, b: 0, a: 1}
+    - Color_bfae8ac34e9d4c298fadc9db7cb0f06e: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
