@@ -4142,6 +4142,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8135175764345191343, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: flashShader
+      value: 
+      objectReference: {fileID: -6465566751694194690, guid: 7d6c74abb5147634ca09d4dd99754cf2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
 --- !u!1 &1162730224
