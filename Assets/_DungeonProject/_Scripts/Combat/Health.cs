@@ -24,14 +24,14 @@ public class Health : MonoBehaviour
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
+        OnActorTakeDamage?.Invoke(damager);
 
         if (Mathf.Approximately(CurrentHealth, 0f))
         {
             OnActorHealthReachZero?.Invoke();
             return;
         }
-
-        OnActorTakeDamage?.Invoke(damager);
+       
         Debug.Log(damager + " Attack " + this);
     }
 }
