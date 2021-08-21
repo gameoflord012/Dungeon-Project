@@ -43,7 +43,7 @@ public class AttackTask : EnemyTaskBase
         timeSinceLastAttack = 0;
 
         inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
-        movement.ResetMovement();
+        movement.StopMoving();
 
         targetHealth.TakeDamage(damager);
     }

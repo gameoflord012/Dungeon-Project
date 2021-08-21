@@ -28,8 +28,9 @@ public class Knockbackable : MonoBehaviour
     private IEnumerator KnockbackRoutine(Damager damager)
     {
         actorMovement.ResetMovement();
+
         actorMovement.AddForce(
-            (transform.position - GetSourcePosition(damager)).normalized * damager.KnockbackStrength);
+            (transform.position - GetSourcePosition(damager)).normalized * damager.KnockbackStrength);        
 
         inputEvents.enabled = false;
 

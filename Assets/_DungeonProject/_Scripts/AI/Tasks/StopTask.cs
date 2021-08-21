@@ -8,7 +8,7 @@ public class StopTask : EnemyTaskBase
     public void StopMoving()
     {
         pathControl.CancelPathFinding();
-        movement.ResetMovement();
+        movement.StopMoving();
         Task.current.Succeed();
     }
 
