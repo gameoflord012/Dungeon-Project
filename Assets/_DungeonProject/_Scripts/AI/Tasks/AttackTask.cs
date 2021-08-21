@@ -7,7 +7,14 @@ public class AttackTask : EnemyTaskBase
     [SerializeField] float attackRange = 1f;
     [SerializeField] float timeBetweenAttacks = .3f;
 
-    private float timeSinceLastAttack = Mathf.Infinity;
+    float timeSinceLastAttack = Mathf.Infinity;
+    Health health;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        health = GetComponentInParent<Health>();
+    }
 
     [Task]
     public bool IsInAttackRange()
@@ -40,6 +47,8 @@ public class AttackTask : EnemyTaskBase
 
     private void AttackBehaviour(Health targetHealth)
     {
+        if (health != null && health.IsDead) return;
+
         timeSinceLastAttack = 0;
 
         inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());

@@ -16,13 +16,21 @@ public class EnemyDeathFeedback : Feedback
         originalShader = dissolveTarget.material.shader;
         dissolveTarget.material.shader = dissolveShader;
 
-        dissolveTarget.material.DOFloat(0, "_Step", dissolveDuration);
+        Sequence sequence = DOTween.Sequence();
+        sequence.
+            Append(dissolveTarget.material.DOFloat(0, "_Step", dissolveDuration)).
+            AppendCallback(ResetFeedback);            
     }
 
     public override void ResetFeedback()
     {
-        dissolveTarget.material.shader = originalShader;
         dissolveTarget.material.DOComplete();
-        dissolveTarget.material.SetFloat("_Step", 1);
+
+        if (dissolveTarget.material.HasProperty("_Step"))
+            dissolveTarget.material.SetFloat("_Step", 1);
+
+        if (originalShader != null)
+            dissolveTarget.material.shader = originalShader;
+        originalShader = null;                
     }
 }

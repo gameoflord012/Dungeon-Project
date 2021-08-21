@@ -10,6 +10,8 @@ public class Health : MonoBehaviour
     public UnityEvent<Damager> OnActorTakeDamage;
     public UnityEvent OnActorHealthReachZero;
 
+    public bool IsDead { get => Mathf.Approximately(CurrentHealth, 0f); }
+
     public float CurrentHealth
     {
         get => currentHealth;
@@ -18,19 +20,19 @@ public class Health : MonoBehaviour
             float newValue = Mathf.Clamp(value, 0, maxHealth);
             if (Mathf.Approximately(currentHealth, newValue)) return;
             currentHealth = newValue;
+
+            if (IsDead)
+            {
+                OnActorHealthReachZero?.Invoke();
+                return;
+            }            
         }
     }
 
     public void TakeDamage(Damager damager)
     {
         CurrentHealth -= damager.Damage;
-        OnActorTakeDamage?.Invoke(damager);
-
-        if (Mathf.Approximately(CurrentHealth, 0f))
-        {
-            OnActorHealthReachZero?.Invoke();
-            return;
-        }
+        OnActorTakeDamage?.Invoke(damager);        
        
         Debug.Log(damager + " Attack " + this);
     }

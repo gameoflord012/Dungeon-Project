@@ -10,7 +10,7 @@ public class EnemyTaskBase : MonoBehaviour
     protected FOV fov;
     protected AIPathControl pathControl;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         damager = GetComponentInParent<Damager>();
         movement = GetComponentInParent<ActorMovement>();

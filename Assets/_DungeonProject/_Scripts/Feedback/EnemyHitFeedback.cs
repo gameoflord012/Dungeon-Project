@@ -20,10 +20,13 @@ public class EnemyHitFeedback : Feedback
 
     public override void ResetFeedback()
     {
+        if(spriteRenderer.material.HasProperty("_TurnFlash"))
+            spriteRenderer.material.SetFloat("_TurnFlash", 0);
+
         if(originalShader)
             spriteRenderer.material.shader = originalShader;
-
         originalShader = null;
+
         StopAllCoroutines();
     }
 
