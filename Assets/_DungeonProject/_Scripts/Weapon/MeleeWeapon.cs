@@ -26,16 +26,15 @@ public class MeleeWeapon : WeaponBase
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         damager = GetComponent<Damager>();
     }
 
     public override void StartWeapon()
     {
         base.StartWeapon();
-        OnWeaponStartAttacking?.Invoke();
-
     }
 
     public void TriggerAttackArea()

@@ -1,15 +1,13 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(WeaponCallback))]
 public class WeaponBase : MonoBehaviour
 {
-    [SerializeField]
-    UnityEvent OnWeaponStart;
-    [SerializeField]
-    UnityEvent OnWeaponStop;
+    protected WeaponCallback weaponCallback;
 
-    public virtual void StartWeapon() { OnWeaponStart?.Invoke(); }
-    public virtual void StopWeapon() { OnWeaponStop?.Invoke(); }
+    public virtual void StartWeapon() { weaponCallback.OnWeaponStart?.Invoke(); }
+    public virtual void StopWeapon() { weaponCallback.OnWeaponStop?.Invoke(); }
 
     public LayerMask AttackLayer { get; private set; }
 
@@ -23,5 +21,10 @@ public class WeaponBase : MonoBehaviour
             weaponOwner = value;
             AttackLayer = LayerMaskManager.GetAttackLayer(weaponOwner.layer);
         }
+    }
+
+    protected virtual void Awake()
+    {
+        weaponCallback = GetComponent<WeaponCallback>();
     }
 }

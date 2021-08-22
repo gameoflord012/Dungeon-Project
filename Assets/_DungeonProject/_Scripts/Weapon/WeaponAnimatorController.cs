@@ -9,7 +9,7 @@ public class WeaponAnimatorController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
     }
 
-    public void TriggerMeleeAttackParameter()
+    public void TriggerAttackParameter()
     {
         animator.SetTrigger("Attack");
     }

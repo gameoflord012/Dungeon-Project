@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2035247503705270150}
   - component: {fileID: 2247594346994935819}
   - component: {fileID: 2779592350390449844}
+  - component: {fileID: 7419677523992634233}
   m_Layer: 0
   m_Name: WeaponBase
   m_TagString: Untagged
@@ -132,6 +133,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d83be409ab34154fa9e8911f968718e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7419677523992634233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035247503705270155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf6fdd6a5d4dc04e852e74c4c864468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnWeaponStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2779592350390449844}
+        m_TargetAssemblyTypeName: WeaponAnimatorController, Assembly-CSharp
+        m_MethodName: TriggerAttackParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnWeaponStop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5226119663234959133
 GameObject:
   m_ObjectHideFlags: 0

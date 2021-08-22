@@ -13,7 +13,11 @@ public class WeaponHandler : MonoBehaviour
     private void Awake()
     {
         weaponSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        EquipWeapon(GetComponentInChildren<WeaponBase>());
+
+        if (currentWeapon_ == null)
+            EquipWeapon(GetComponentInChildren<WeaponBase>());
+        else
+            EquipWeapon(currentWeapon_);
     }
 
     private void EquipWeapon(WeaponBase weaponToEquip)
