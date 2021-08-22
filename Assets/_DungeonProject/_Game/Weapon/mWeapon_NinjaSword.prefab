@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!61 &-4838573326498044524
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546986534822259612}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.2548027, y: 0.027505696}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0.5}
+    oldSize: {x: 2, y: 1}
+    newSize: {x: 2, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.7968774, y: 1.2709029}
+  m_EdgeRadius: 0
+--- !u!114 &892566446834244655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546986534822259612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147c56fe89919054e9a6e20784a0a2d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnWeaponStartAttacking:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4412110418964691619}
+        m_TargetAssemblyTypeName: WeaponAnimatorController, Assembly-CSharp
+        m_MethodName: TriggerMeleeAttackParameter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SpreadToMultipleTargets: 0
+--- !u!1001 &1993387680458263575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270152, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035247503705270155, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+      propertyPath: m_Name
+      value: mWeapon_NinjaSword
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+--- !u!1 &546986534822259612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2035247503705270155, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+  m_PrefabInstance: {fileID: 1993387680458263575}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4412110418964691619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2779592350390449844, guid: fe1ff96f22d612c47a08b811bd7e9c70, type: 3}
+  m_PrefabInstance: {fileID: 1993387680458263575}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546986534822259612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d83be409ab34154fa9e8911f968718e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

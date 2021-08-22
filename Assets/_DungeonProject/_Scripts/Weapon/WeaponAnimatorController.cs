@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class MeleeWeaponAnimatorController : MonoBehaviour
+public class WeaponAnimatorController : MonoBehaviour
 {
     private Animator animator;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public void TriggerMeleeAttackParameter()
