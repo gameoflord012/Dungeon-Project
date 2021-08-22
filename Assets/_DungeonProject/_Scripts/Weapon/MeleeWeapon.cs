@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 [RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Collider2D))]
-public class MeleeWeapon : Weapon
+public class MeleeWeapon : WeaponBase
 {    
     public UnityEvent OnWeaponStartAttacking;
     public UnityEvent OnWeaponHitTarget;
@@ -33,12 +33,8 @@ public class MeleeWeapon : Weapon
 
     public override void StartWeapon()
     {
+        base.StartWeapon();
         OnWeaponStartAttacking?.Invoke();
-
-    }
-
-    public override void StopWeapon()
-    {
 
     }
 

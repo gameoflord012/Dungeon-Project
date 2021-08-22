@@ -1,9 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class Weapon : MonoBehaviour
+public class WeaponBase : MonoBehaviour
 {
-    public abstract void StartWeapon();
-    public abstract void StopWeapon();
+    [SerializeField]
+    UnityEvent OnWeaponStart;
+    [SerializeField]
+    UnityEvent OnWeaponStop;
+
+    public virtual void StartWeapon() { OnWeaponStart?.Invoke(); }
+    public virtual void StopWeapon() { OnWeaponStop?.Invoke(); }
 
     public LayerMask AttackLayer { get; private set; }
 

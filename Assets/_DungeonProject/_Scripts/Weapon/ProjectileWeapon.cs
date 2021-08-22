@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ProjectileWeapon : Weapon
+public class ProjectileWeapon : WeaponBase
 {
     [SerializeField]
     Bullet bulletPrefab;
@@ -34,6 +34,8 @@ public class ProjectileWeapon : Weapon
 
     public override void StartWeapon()
     {
+        base.StartWeapon();
+
         if (isWeaponAutoFire)
             isAutoFireOn_ = true;
         else
@@ -42,6 +44,8 @@ public class ProjectileWeapon : Weapon
 
     public override void StopWeapon()
     {
+        base.StopWeapon();
+
         if (isWeaponAutoFire)
             isAutoFireOn_ = false;
     }

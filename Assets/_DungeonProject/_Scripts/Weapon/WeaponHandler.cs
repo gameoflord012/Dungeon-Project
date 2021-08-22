@@ -6,17 +6,17 @@ public class WeaponHandler : MonoBehaviour
     int weaponOwnerSortingOrder = 0;
 
     [SerializeField]
-    private Weapon currentWeapon_;
+    private WeaponBase currentWeapon_;
 
     private SpriteRenderer weaponSpriteRenderer;
 
     private void Awake()
     {
         weaponSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        EquipWeapon(GetComponentInChildren<Weapon>());
+        EquipWeapon(GetComponentInChildren<WeaponBase>());
     }
 
-    private void EquipWeapon(Weapon weaponToEquip)
+    private void EquipWeapon(WeaponBase weaponToEquip)
     {
         currentWeapon_ = weaponToEquip;
         if (currentWeapon_ != null)
