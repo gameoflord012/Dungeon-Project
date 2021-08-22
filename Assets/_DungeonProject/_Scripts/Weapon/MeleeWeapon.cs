@@ -5,9 +5,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Collider2D))]
 public class MeleeWeapon : Weapon
-{
-    [SerializeField]
-    UnityEvent OnWeaponStartAttacking;
+{    
+    public UnityEvent OnWeaponStartAttacking;
+    public UnityEvent OnWeaponHitTarget;
 
     [SerializeField]
     bool SpreadToMultipleTargets = true;
@@ -47,10 +47,16 @@ public class MeleeWeapon : Weapon
         if (SpreadToMultipleTargets)
         {
             foreach (Health attackTarget in attackTargets)
-                attackTarget.TakeDamage(damager);
+                AttackTarget(attackTarget);
         }
         else if (attackTargets.Count > 0)
-            attackTargets[0].TakeDamage(damager);
+            AttackTarget(attackTargets[0]);
+    }
+
+    private void AttackTarget(Health target)
+    {
+        OnWeaponHitTarget?.Invoke();
+        target.TakeDamage(damager);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
