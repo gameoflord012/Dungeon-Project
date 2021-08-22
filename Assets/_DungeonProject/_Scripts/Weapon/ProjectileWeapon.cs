@@ -1,8 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ProjectileWeapon : WeaponBase
 {
+    public UnityEvent OnWeaponFireProjectile;
+
     [SerializeField]
     Bullet bulletPrefab;
 
@@ -52,6 +55,7 @@ public class ProjectileWeapon : WeaponBase
 
     private void FireWeapon()
     {
+        OnWeaponFireProjectile?.Invoke();
         SpawnBullet(gunMuzzle.rotation * GetAccuracyAngle());
     }
 

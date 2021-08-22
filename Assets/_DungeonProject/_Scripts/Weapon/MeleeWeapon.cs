@@ -5,8 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Collider2D))]
 public class MeleeWeapon : WeaponBase
-{    
-    public UnityEvent OnWeaponStartAttacking;
+{
     public UnityEvent OnWeaponHitTarget;
 
     [SerializeField]
