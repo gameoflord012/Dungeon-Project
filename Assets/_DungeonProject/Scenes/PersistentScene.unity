@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: currentHealth
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5711993988522109364, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+      propertyPath: stopVelocityThreshold
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player
