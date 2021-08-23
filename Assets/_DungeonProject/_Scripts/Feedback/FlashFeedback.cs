@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(FeedbackPlayer))]
-public class EnemyHitFeedback : Feedback
+public class FlashFeedback : Feedback
 {
     [SerializeField] private Shader flashShader;
     [SerializeField] private SpriteRenderer spriteRenderer;

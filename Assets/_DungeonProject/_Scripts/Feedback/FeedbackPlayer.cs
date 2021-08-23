@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 class FeedbackPlayer : MonoBehaviour
 {
+    public UnityEvent OnFeedbackPlayed;
+
     Feedback[] feedbacks;
 
     private void Awake()
@@ -11,6 +14,8 @@ class FeedbackPlayer : MonoBehaviour
 
     public void PlayFeedbacks()
     {
+        OnFeedbackPlayed?.Invoke();
+
         CompleteRunningFeedback();
 
         foreach (Feedback feedback in feedbacks)
