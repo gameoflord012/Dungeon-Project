@@ -11,31 +11,30 @@ public class PlaySoundFeedback : Feedback
     [SerializeField] float volume = 1f;
     [SerializeField, Range(0, 1)] float spatialBlend = 0;
 
-    private void Awake()
+    public override void CreateFeedback()
     {
         if (audioSource == null)
             audioSource = GetComponent<AudioSource>();
 
-        if(!TryGetComponent(out audioSource))
+        if (!TryGetComponent(out audioSource))
             audioSource = CreateAudioSource(audioClip);
-    }
 
-    public override void CreateFeedback()
-    {
         audioSource.Play();
     }
 
     public override void ResetFeedback()
     {
-        audioSource.Stop();
+        if(audioSource != null)
+            audioSource.Stop();        
     }
 
     private AudioSource CreateAudioSource(AudioClip clip)
     {
-        var result = new GameObject().AddComponent<AudioSource>();
+        var result = new GameObject().AddComponent<DestroyAfterPlaying>().gameObject.AddComponent<AudioSource>();        
 
         result.transform.position = transform.position;
         result.clip = clip;
+        result.volume = volume;
         result.spatialBlend = 0;
 
         return result;

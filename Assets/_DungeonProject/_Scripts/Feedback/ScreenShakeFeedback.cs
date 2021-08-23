@@ -6,7 +6,7 @@ public class ScreenShakeFeedback : Feedback
 {
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
-    [SerializeField] float shakeDuration;
+    [SerializeField] float shakeDuration;    
 
     [SerializeField] ScreenShakeManager manager;
 
