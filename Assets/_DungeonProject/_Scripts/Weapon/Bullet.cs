@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Damager))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bullet : MonoBehaviour
 {
+    public UnityEvent OnBulletHitTarget;
+    public UnityEvent OnBulletHitObstacle;
+    public UnityEvent OnBulletHit;
+
     [SerializeField]
     private float speed = 20;
 
@@ -36,6 +41,8 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
+            OnBulletHitObstacle?.Invoke();
+            OnBulletHit?.Invoke();
             Destroy(gameObject);
         }
         else if (LayerMaskManager.IsAttackable(collision.gameObject.layer))
@@ -43,6 +50,10 @@ public class Bullet : MonoBehaviour
             if (collision.TryGetComponent(out Health damageTarget))
             {
                 damageTarget.TakeDamage(damager);
+
+                OnBulletHit?.Invoke();                
+                OnBulletHitTarget?.Invoke();
+
                 Destroy(gameObject);
             }
         }
