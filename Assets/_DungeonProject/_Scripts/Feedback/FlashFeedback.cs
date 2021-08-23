@@ -1,13 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Assertions;
 
-[RequireComponent(typeof(FeedbackPlayer))]
 public class FlashFeedback : Feedback
 {
     [SerializeField] private Shader flashShader;
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private float flashDuration = .2f;
+    [SerializeField] private float flashDuration = 1f;
+    [SerializeField] private int flashFrequency = 10;
 
     private Shader originalShader;
 
@@ -20,22 +19,25 @@ public class FlashFeedback : Feedback
 
     public override void ResetFeedback()
     {
-        if(spriteRenderer.material.HasProperty("_TurnFlash"))
+        if (spriteRenderer.material.HasProperty("_TurnFlash"))
             spriteRenderer.material.SetFloat("_TurnFlash", 0);
 
-        if(originalShader)
+        if (originalShader)
             spriteRenderer.material.shader = originalShader;
-        originalShader = null;
 
+        originalShader = null;
         StopAllCoroutines();
     }
 
     public IEnumerator FlashRoutine()
     {
-        Assert.IsTrue(spriteRenderer.material.HasProperty("_TurnFlash"));
-        spriteRenderer.material.SetFloat("_TurnFlash", 1);
-
-        yield return new WaitForSeconds(flashDuration);
+        for(int i = 0; i < flashFrequency; i++)
+        {
+            spriteRenderer.material.SetFloat("_TurnFlash", 1);
+            yield return new WaitForSeconds(flashDuration / 2f / flashFrequency);
+            spriteRenderer.material.SetFloat("_TurnFlash", 0);
+            yield return new WaitForSeconds(flashDuration / 2f / flashFrequency);
+        }
 
         ResetFeedback();
     }

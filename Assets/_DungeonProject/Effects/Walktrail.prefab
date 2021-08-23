@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3729015431615333971}
   - component: {fileID: 3729015431615333969}
   - component: {fileID: 3729015431615333982}
+  - component: {fileID: 569370480578714517}
   m_Layer: 10
   m_Name: Walktrail
   m_TagString: Untagged
@@ -4827,6 +4828,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd945b55200679c4fbac2bfa0354b825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnFeedbackPlayed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3729015431615333982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4837,5 +4841,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c4746a182a99364b88d54f2c07cab04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 0}
+--- !u!114 &569370480578714517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729015431615333973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fa62ee6fa7e35418860551ddb5bbf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

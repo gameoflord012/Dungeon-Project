@@ -2,20 +2,17 @@ using UnityEngine;
 
 public class ParticleSystemFeedback : Feedback
 {
-    private ParticleSystem particle;
-
-    private void Awake()
-    {
-        particle = GetComponent<ParticleSystem>();
-    }
+    [SerializeField] ParticleSystem particlePrefab;
 
     public override void CreateFeedback()
     {
-        particle.Play();
+        ParticleSystem particleSystem = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        if (!particleSystem.main.playOnAwake)
+            particleSystem.Play();
     }
 
     public override void ResetFeedback()
     {
-        particle.Stop();
+        
     }
 }
