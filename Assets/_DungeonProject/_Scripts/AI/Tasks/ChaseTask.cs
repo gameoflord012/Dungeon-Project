@@ -99,9 +99,8 @@ public class ChaseTask : EnemyTaskBase
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, closeRangeChaseDistance, Vector2.zero, 0, targetLayerMask);
 
         if (hit.collider && !ObscuredByObstacle(hit.transform.position))
-        {
-
-            yield return hit.collider.gameObject;
+        {            
+            yield return GetTarget(hit.collider.gameObject);
             //data.target = hit.collider.gameObject;
             //return true;
         }
@@ -111,10 +110,15 @@ public class ChaseTask : EnemyTaskBase
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask) != 0)
             {
-                yield return collider.gameObject;
+                yield return GetTarget(collider.gameObject);
                 /*data.target = collider.gameObject;*/
             }
         }
+    }
+
+    private GameObject GetTarget(GameObject go)
+    {
+        return go.GetComponentInParent<ActorMovement>().gameObject;
     }
 
     private bool ObscuredByObstacle(Vector2 targetPosition)

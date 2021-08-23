@@ -201,6 +201,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 92e9cc82ff6a6e645bef209162116508, type: 2}
+    - target: {fileID: 3732704747023836706, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+      propertyPath: maxHealth
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732704747023836706, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
+      propertyPath: currentHealth
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5711993988522109368, guid: 5d3eed7b7e22ecc4992eb36995eef12d, type: 3}
       propertyPath: m_Name
       value: Player
