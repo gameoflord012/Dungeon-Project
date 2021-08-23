@@ -44,4 +44,9 @@ public class ActorInputEvents : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(lastPointerPosition, .2f);
     }
+
+    private void Update()
+    {
+        
+    }
 }

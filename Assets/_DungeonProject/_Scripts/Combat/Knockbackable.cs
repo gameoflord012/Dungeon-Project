@@ -32,10 +32,11 @@ public class Knockbackable : MonoBehaviour
         actorMovement.AddForce(
             (transform.position - GetSourcePosition(damager)).normalized * damager.KnockbackStrength);        
 
+        bool previousEnabledState = inputEvents.enabled;
         inputEvents.enabled = false;
 
         yield return new WaitForSeconds(damager.WaitTimeAfterKnockingback);
 
-        inputEvents.enabled = true;
+        inputEvents.enabled = previousEnabledState;
     }
 }

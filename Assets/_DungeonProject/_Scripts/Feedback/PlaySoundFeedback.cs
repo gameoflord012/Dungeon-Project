@@ -4,11 +4,11 @@ using UnityEngine;
 public class PlaySoundFeedback : Feedback
 {
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip audioClip;
-    [SerializeField] float volume = 1f;
+    [SerializeField] AudioClip audioClip;    
     
     [Header("If AudioSource is not specified")]
-    [Space(10)]    
+    [Space(10)]
+    [SerializeField] float volume = 1f;
     [SerializeField, Range(0, 1)] float spatialBlend = 0;
 
     private void Awake()

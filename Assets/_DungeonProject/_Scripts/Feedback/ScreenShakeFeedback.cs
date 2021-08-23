@@ -1,18 +1,41 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
-public class ScreenShakeFeedback : MonoBehaviour
+public class ScreenShakeFeedback : Feedback
 {
+    [SerializeField] float amplitude;
+    [SerializeField] float frequency;
+    [SerializeField] float shakeDuration;
+    [SerializeField] CinemachineVirtualCamera cinemachineCameara;
 
-    // Use this for initialization
-    void Start()
+    CinemachineBasicMultiChannelPerlin noise;
+
+    private void Awake()
     {
+        if (cinemachineCameara == null)
+            cinemachineCameara = FindObjectOfType<CinemachineVirtualCamera>();
 
+        noise = cinemachineCameara.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void CreateFeedback()
     {
+        noise.m_AmplitudeGain = amplitude;
+        noise.m_FrequencyGain = frequency;
 
+        StartCoroutine(ScreenShakeRountine());
+    }
+
+    public override void ResetFeedback()
+    {
+        noise.m_AmplitudeGain = 0;
+        StopAllCoroutines();
+    }
+
+    IEnumerator ScreenShakeRountine()
+    {
+        yield return new WaitForSeconds(shakeDuration);
+        ResetFeedback();
     }
 }
