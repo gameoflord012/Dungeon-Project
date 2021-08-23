@@ -12,11 +12,8 @@ public class PlaySoundFeedback : Feedback
     [SerializeField, Range(0, 1)] float spatialBlend = 0;
 
     public override void CreateFeedback()
-    {
-        if (audioSource == null)
-            audioSource = GetComponent<AudioSource>();
-
-        if (!TryGetComponent(out audioSource))
+    {        
+        if (audioSource == null && !TryGetComponent(out audioSource))
             audioSource = CreateAudioSource(audioClip);
 
         audioSource.Play();
@@ -25,7 +22,7 @@ public class PlaySoundFeedback : Feedback
     public override void ResetFeedback()
     {
         if(audioSource != null)
-            audioSource.Stop();        
+            audioSource.Stop();
     }
 
     private AudioSource CreateAudioSource(AudioClip clip)

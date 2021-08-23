@@ -11,7 +11,7 @@ public class DestroyAfterPlaying : MonoBehaviour
     private void Start()
     {
         particle = GetComponent<ParticleSystem>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();        
     }
 
     private void Update()
