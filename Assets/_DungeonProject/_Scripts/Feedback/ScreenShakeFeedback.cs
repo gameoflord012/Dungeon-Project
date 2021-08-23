@@ -7,35 +7,22 @@ public class ScreenShakeFeedback : Feedback
     [SerializeField] float amplitude;
     [SerializeField] float frequency;
     [SerializeField] float shakeDuration;
-    [SerializeField] CinemachineVirtualCamera cinemachineCameara;
 
-    CinemachineBasicMultiChannelPerlin noise;
+    [SerializeField] ScreenShakeManager manager;
 
     private void Awake()
     {
-        if (cinemachineCameara == null)
-            cinemachineCameara = FindObjectOfType<CinemachineVirtualCamera>();
-
-        noise = cinemachineCameara.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (manager == null)
+            manager = FindObjectOfType<ScreenShakeManager>();
     }
 
     public override void CreateFeedback()
     {
-        noise.m_AmplitudeGain = amplitude;
-        noise.m_FrequencyGain = frequency;
-
-        StartCoroutine(ScreenShakeRountine());
+        manager.ShakeScreen(shakeDuration, amplitude, frequency);
     }
 
     public override void ResetFeedback()
     {
-        noise.m_AmplitudeGain = 0;
-        StopAllCoroutines();
-    }
-
-    IEnumerator ScreenShakeRountine()
-    {
-        yield return new WaitForSeconds(shakeDuration);
-        ResetFeedback();
+        manager.StopCurrentScreenShake();
     }
 }

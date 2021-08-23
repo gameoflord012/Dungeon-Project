@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4746a182a99364b88d54f2c07cab04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   particlePrefab: {fileID: 3729015431615333968, guid: f0a686f50f4146e48bef55a90d9b2d86, type: 3}
 --- !u!1 &3467104085159373899
 GameObject:
@@ -156,6 +157,7 @@ GameObject:
   - component: {fileID: 5961252377742749395}
   - component: {fileID: 9038609827215682874}
   - component: {fileID: 4619102887111392071}
+  - component: {fileID: 2780840257909129909}
   m_Layer: 0
   m_Name: Blood
   m_TagString: Untagged
@@ -204,7 +206,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c4746a182a99364b88d54f2c07cab04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   particlePrefab: {fileID: 2750178324825384596, guid: 27908c1275a06b44496726b1d8929bde, type: 3}
+--- !u!114 &2780840257909129909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467104085159373899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b29db6a4887eb345ac4d60965783948, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetWhenDestroyed: 0
+  amplitude: 10
+  frequency: 5
+  shakeDuration: 0.2
+  manager: {fileID: 0}
 --- !u!114 &2942541182569258923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bb12530d4968242ab6cc224a90b505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   destroyTarget: {fileID: 5711993988522109368}
-  destroyDelay: 1
+  destroyDelay: 1.1
 --- !u!114 &6735847247044018315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1b8f2b852ae4b4e83b631e8ee0b2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   audioSource: {fileID: 0}
   audioClip: {fileID: 8300000, guid: 486f88104282d2642954e4e51b214ba9, type: 3}
   volume: 1
@@ -308,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb83068d85e0c4947a49ff568bfef8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   OnFadeCompleted:
     m_PersistentCalls:
       m_Calls:
