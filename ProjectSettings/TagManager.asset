@@ -53,6 +53,9 @@ TagManager:
   - name: Item2
     uniqueID: 226677581
     locked: 0
+  - name: BackEffect
+    uniqueID: 1528676477
+    locked: 0
   - name: Instance
     uniqueID: 478474353
     locked: 0
@@ -68,7 +71,7 @@ TagManager:
   - name: Collision
     uniqueID: 665236325
     locked: 0
-  - name: Effect
+  - name: FrontEffect
     uniqueID: 3424047437
     locked: 0
   - name: FOV
