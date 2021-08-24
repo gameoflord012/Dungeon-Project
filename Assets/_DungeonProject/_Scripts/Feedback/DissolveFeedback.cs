@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyDeathFeedback : Feedback
+public class DissolveFeedback : Feedback
 {
     [SerializeField] Shader dissolveShader;
     [SerializeField] SpriteRenderer dissolveTarget;
