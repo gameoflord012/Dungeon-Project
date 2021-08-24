@@ -10,12 +10,5 @@ public class StopTask : EnemyTaskBase
         pathControl.CancelPathFinding();
         movement.StopMoving();
         Task.current.Succeed();
-    }
-
-    [Task]
-    public void ResetTarget()
-    {
-        data.target = null;
-        Task.current.Succeed();
-    }
+    }    
 }

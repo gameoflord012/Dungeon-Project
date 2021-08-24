@@ -63,8 +63,7 @@ public class ChaseTask : EnemyTaskBase
     {
         if (unknownAttacker != null)
         {
-            data.target = GetTarget(unknownAttacker);
-            unknownAttacker = null;
+            data.target = GetTarget(unknownAttacker);            
             return true;
         }
 
@@ -81,11 +80,13 @@ public class ChaseTask : EnemyTaskBase
     public bool TargetEscaped()
     {
         if (data.target == null) return false;
+
         foreach(GameObject chaseTarget in FindChaseTargets())
         {
             if (chaseTarget == data.target)
                 return false;
         }
+
         return true;
     }
 
@@ -105,7 +106,15 @@ public class ChaseTask : EnemyTaskBase
             Task.current.Succeed();
         }
     }
-    
+
+    [Task]
+    public void ResetTarget()
+    {
+        data.target = null;
+        unknownAttacker = null;
+        Task.current.Succeed();
+    }
+
     private IEnumerable<GameObject> FindChaseTargets()
     {
         // Close range check
