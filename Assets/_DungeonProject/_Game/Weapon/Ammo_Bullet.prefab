@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1207420875
-  m_SortingLayer: 7
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -6470460504253458178, guid: 83fb7e7cb502bfb4fa8d305dc8731d24, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 0
   audioSource: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: e9924f62eb68347479511308cbff34fa, type: 3}
+  audioClip: {fileID: 8300000, guid: 9c6bb10230c3c7741811496298564424, type: 3}
   volume: 10
   spatialBlend: 0
 --- !u!114 &55981373195364443
@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 0
   particlePrefab: {fileID: 3909419048188231272, guid: d24fc5526f1237845a9ee088fcc1ad11, type: 3}
+  destroyAfterPlaying: 1
 --- !u!1 &6454258973555404480
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,3 +408,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 0
   particlePrefab: {fileID: 3909419048188231272, guid: d24fc5526f1237845a9ee088fcc1ad11, type: 3}
+  destroyAfterPlaying: 1

@@ -53,9 +53,6 @@ TagManager:
   - name: Item2
     uniqueID: 226677581
     locked: 0
-  - name: Effect
-    uniqueID: 3424047437
-    locked: 0
   - name: Instance
     uniqueID: 478474353
     locked: 0
@@ -70,6 +67,9 @@ TagManager:
     locked: 0
   - name: Collision
     uniqueID: 665236325
+    locked: 0
+  - name: Effect
+    uniqueID: 3424047437
     locked: 0
   - name: FOV
     uniqueID: 3640971937
