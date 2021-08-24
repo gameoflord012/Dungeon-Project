@@ -1,23 +1,28 @@
 tree "Root"
-    fallback
-        while GetChaseTarget
-            fallback
-                while IsInAttackRange
-                    tree "Attack"
+    parallel    
+        repeat
+            GetChaseTarget
 
-                while not IsInAttackRange
-                    ChaseTarget
-                        
-        while TargetEscaped
-            Sequence
-                TryToTraceLastTargetPosition
-                StopMoving
-                Wait 1.0
-                tree "LookAround"
-                ResetTarget
-                
-        while not GetChaseTarget
-            tree "Patrol"
+        repeat
+            fallback        
+                while TargetAvaiable
+                    fallback
+                        while IsInAttackRange
+                            tree "Attack"
+
+                        while not IsInAttackRange
+                            ChaseTarget
+
+                while TargetEscaped
+                    Sequence
+                        TryToTraceLastTargetPosition
+                        StopMoving
+                        Wait 1.0
+                        tree "LookAround"
+                        ResetTarget
+                    
+                while not TargetAvaiable
+                    tree "Patrol"
         
 tree "Patrol"
     sequence

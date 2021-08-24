@@ -19,6 +19,13 @@ public class ChaseTask : EnemyTaskBase
     public void SetUnknownAttacker(Damager unknownAttacker)
     {
         this.unknownAttacker = unknownAttacker.damageDealer;
+        data.target = this.unknownAttacker;
+    }
+
+    [Task]
+    public bool TargetAvaiable()
+    {
+        return data.target != null;
     }
 
     [Task]
@@ -59,21 +66,14 @@ public class ChaseTask : EnemyTaskBase
     }
 
     [Task]
-    public bool GetChaseTarget()
+    public void GetChaseTarget()
     {
-        if (unknownAttacker != null)
-        {
-            data.target = GetTarget(unknownAttacker);            
-            return true;
-        }
-
-        foreach(GameObject chaseTarget in FindChaseTargets())
+        foreach (GameObject chaseTarget in FindChaseTargets())
         {
             data.target = chaseTarget;
-            return true;
         }
 
-        return false;
+        Task.current.Succeed();
     }
 
     [Task]
@@ -111,7 +111,6 @@ public class ChaseTask : EnemyTaskBase
     public void ResetTarget()
     {
         data.target = null;
-        unknownAttacker = null;
         Task.current.Succeed();
     }
 
