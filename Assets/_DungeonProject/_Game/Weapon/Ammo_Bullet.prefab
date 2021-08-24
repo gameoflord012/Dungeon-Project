@@ -229,6 +229,7 @@ GameObject:
   - component: {fileID: 5685984548105536435}
   - component: {fileID: 55981373195364443}
   - component: {fileID: 3196603962339097917}
+  - component: {fileID: 454432278587769151}
   m_Layer: 0
   m_Name: BulletHit_Obstacle
   m_TagString: Untagged
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 0
   audioSource: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 9c6bb10230c3c7741811496298564424, type: 3}
+  audioClip: {fileID: 8300000, guid: e9924f62eb68347479511308cbff34fa, type: 3}
   volume: 10
   spatialBlend: 0
 --- !u!114 &55981373195364443
@@ -297,6 +298,20 @@ MonoBehaviour:
   resetWhenDestroyed: 1
   destroyTarget: {fileID: 529852297663523797}
   destroyDelay: 1
+--- !u!114 &454432278587769151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4292419251992888568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4746a182a99364b88d54f2c07cab04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetWhenDestroyed: 0
+  particlePrefab: {fileID: 3909419048188231272, guid: d24fc5526f1237845a9ee088fcc1ad11, type: 3}
 --- !u!1 &6454258973555404480
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,6 +324,7 @@ GameObject:
   - component: {fileID: 4314863268301669210}
   - component: {fileID: 3921307838732166516}
   - component: {fileID: 4342910156920723449}
+  - component: {fileID: 3644984807778859746}
   m_Layer: 0
   m_Name: BulletHit_Target
   m_TagString: Untagged
@@ -344,7 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 0
   audioSource: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: e9924f62eb68347479511308cbff34fa, type: 3}
+  audioClip: {fileID: 8300000, guid: 9c6bb10230c3c7741811496298564424, type: 3}
   volume: 10
   spatialBlend: 0
 --- !u!114 &3921307838732166516
@@ -377,3 +393,17 @@ MonoBehaviour:
   resetWhenDestroyed: 1
   destroyTarget: {fileID: 529852297663523797}
   destroyDelay: 1
+--- !u!114 &3644984807778859746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6454258973555404480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c4746a182a99364b88d54f2c07cab04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetWhenDestroyed: 0
+  particlePrefab: {fileID: 3909419048188231272, guid: d24fc5526f1237845a9ee088fcc1ad11, type: 3}

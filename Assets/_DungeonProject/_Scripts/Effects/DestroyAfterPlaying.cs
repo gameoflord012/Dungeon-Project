@@ -8,6 +8,8 @@ public class DestroyAfterPlaying : MonoBehaviour
     ParticleSystem particle;
     AudioSource audioSource;
 
+    bool isAudioClipPlayed = false;
+
     private void Start()
     {
         particle = GetComponent<ParticleSystem>();
@@ -19,7 +21,16 @@ public class DestroyAfterPlaying : MonoBehaviour
         if (particle != null && !particle.IsAlive())
             Destroy(gameObject);
 
-        if (audioSource != null && !audioSource.isPlaying)
-            Destroy(gameObject);
+        if (audioSource != null)
+        {
+            if(audioSource.isPlaying)
+            {
+                isAudioClipPlayed = true;
+            }
+            else if(isAudioClipPlayed)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

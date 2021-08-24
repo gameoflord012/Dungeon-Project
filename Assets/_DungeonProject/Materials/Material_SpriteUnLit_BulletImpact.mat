@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material_SpriteUnLit_Blood
+  m_Name: Material_SpriteUnLit_BulletImpact
   m_Shader: {fileID: -6465566751694194690, guid: ad0ca4bb20b8fbe4fa418cd248648975, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,5 +37,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_0f065031762b4e27be09a8ccfbe056db: {r: 42.722507, g: 0, b: 0, a: 0}
+    - Color_0f065031762b4e27be09a8ccfbe056db: {r: 0, g: 55.309345, b: 57.0379, a: 0}
   m_BuildTextureStacks: []
