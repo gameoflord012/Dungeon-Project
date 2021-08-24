@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1b8f2b852ae4b4e83b631e8ee0b2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   audioSource: {fileID: 0}
   audioClip: {fileID: 0}
   volume: 1
@@ -173,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2fd4d57982d0224080d879e44fd530e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   flashShader: {fileID: -6465566751694194690, guid: 7d6c74abb5147634ca09d4dd99754cf2, type: 3}
   spriteRenderer: {fileID: 0}
   flashDuration: 0.2

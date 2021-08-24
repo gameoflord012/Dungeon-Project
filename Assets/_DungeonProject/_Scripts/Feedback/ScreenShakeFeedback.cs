@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScreenShakeFeedback : Feedback
 {
-    [SerializeField] float amplitude;
-    [SerializeField] float frequency;
-    [SerializeField] float shakeDuration;    
+    [SerializeField] float amplitude = 1;
+    [SerializeField] float frequency = 1;
+    [SerializeField] float shakeDuration = .2f;    
 
     [SerializeField] ScreenShakeManager manager;
 

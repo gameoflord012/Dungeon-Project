@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     private float currentHealth = 50, maxHealth = 50;
 
     public UnityEvent<Damager> OnActorTakeDamage;
+    public UnityEvent<Vector2> OnActorTakeDamageImpactDirection;
     public UnityEvent OnActorHealthReachZero;
 
     public bool IsDead { get => Mathf.Approximately(CurrentHealth, 0f); }
@@ -35,6 +36,7 @@ public class Health : MonoBehaviour
 
         CurrentHealth -= damager.Damage;
         OnActorTakeDamage?.Invoke(damager);
+        OnActorTakeDamageImpactDirection?.Invoke(transform.position - damager.transform.position);
         
         Debug.Log(damager + " Attack " + this);
     }

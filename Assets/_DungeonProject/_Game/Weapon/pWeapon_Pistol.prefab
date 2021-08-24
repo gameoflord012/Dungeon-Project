@@ -289,7 +289,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7031612816456528955, guid: 2436e0b86a5f35240b5c7e892b97ca58, type: 3}
   gunMuzzle: {fileID: 5389055019561132713}
   accuracyAngle: 10
-  timeBetweenFire: 0.1
+  timeBetweenFire: 0.5
   isWeaponAutoFire: 1
   isAutoFireOn_: 0
 --- !u!1001 &8036664364880480543
