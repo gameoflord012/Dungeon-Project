@@ -62,6 +62,7 @@ public class ProjectileWeapon : WeaponBase
     private void SpawnBullet(Quaternion accuracyAngle)
     {
         Bullet bullet = Instantiate(bulletPrefab, gunMuzzle.position, accuracyAngle);
+        bullet.GetComponent<Damager>().damageDealer = WeaponOwner;
         bullet.Init(accuracyAngle, AttackLayer);
     }
 

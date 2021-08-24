@@ -22,9 +22,13 @@ public class WeaponHandler : MonoBehaviour
 
     private void EquipWeapon(WeaponBase weaponToEquip)
     {
-        currentWeapon_ = weaponToEquip;
-        if (currentWeapon_ != null)
-            currentWeapon_.WeaponOwner = GetWeaponOwner();
+        if (weaponToEquip == null) return;
+
+        currentWeapon_ = weaponToEquip;        
+        currentWeapon_.WeaponOwner = GetWeaponOwner();
+
+        foreach (var damager in currentWeapon_.GetComponentsInChildren<Damager>())
+            damager.damageDealer = GetWeaponOwner();
     }
 
     private GameObject GetWeaponOwner()

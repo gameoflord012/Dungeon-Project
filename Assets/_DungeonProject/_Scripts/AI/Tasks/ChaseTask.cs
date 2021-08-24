@@ -12,13 +12,13 @@ public class ChaseTask : EnemyTaskBase
     [SerializeField] float pathBakingTime = .5f;
     [SerializeField] MovementDataSO chaseMovementData;
 
-    private Damager unknownAttacker;
+    private GameObject unknownAttacker;
 
     private float timeSinceLastPathBaking;
 
     public void SetUnknownAttacker(Damager unknownAttacker)
     {
-        this.unknownAttacker = unknownAttacker;
+        this.unknownAttacker = unknownAttacker.damageDealer;
     }
 
     [Task]
@@ -63,7 +63,7 @@ public class ChaseTask : EnemyTaskBase
     {
         if (unknownAttacker != null)
         {
-            data.target = GetTarget(unknownAttacker.gameObject);
+            data.target = GetTarget(unknownAttacker);
             unknownAttacker = null;
             return true;
         }
