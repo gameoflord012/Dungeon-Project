@@ -2,61 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolAction : MonoBehaviour, IGoapAction
+public class PatrolAction : GoapActionBase
 {
-    protected ActorInputEvents inputEvents;
-    protected ActorMovement movement;
-    protected Damager damager;
-    protected EnemyTaskData data;
-    protected FOV fov;
-    protected AIPathControl pathControl;
-
     [SerializeField] float patrolDestinationOffset = .2f;
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
-    [field: SerializeField]
-    public float Cost { get; set; }
 
-    protected virtual void Awake()
-    {
-        damager = GetComponentInParent<Damager>();
-        movement = GetComponentInParent<ActorMovement>();
-        data = GetComponentInParent<EnemyTaskData>();
-        inputEvents = GetComponentInParent<ActorInputEvents>();
-        fov = movement.GetComponentInChildren<FOV>();
-        pathControl = GetComponentInParent<AIPathControl>();
-    }
+    [field: SerializeField] public override float Cost { get; set; }
+    [field: SerializeField] public override GameObject Target { get; set; }
 
-    public bool checkProceduralPrecondition(GameObject agent)
-    {
-        return true;
-    }
-
-    public bool isDone()
-    {
-        if (pathControl.IsDestinationReached())
-        {
-            pathControl.CancelPathFinding();
-            AdvancedPath();
-            return true;
-        }
-        return false;
-    }
-
-    public bool perform(GameObject agent)
-    {
-        if (!pathControl.IsSearchingForPath)
-        {
-            inputEvents.OnPointerPositionChangedCallback(pathControl.GetCurrentWaypoint());
-        }        
-
-        return true;
-    }
-
-    public void reset()
-    {
-        movement.SetMovementData(patrolMovementData);
-        pathControl.SetDestination(currentPathNode.transform.position, patrolDestinationOffset);        
+    public override bool perform(GameObject agent)
+    {        
+        return AdvancedPath();
     }
 
     public bool AdvancedPath()
@@ -66,18 +23,29 @@ public class PatrolAction : MonoBehaviour, IGoapAction
         return true;
     }
 
-    public IEnumerable<KeyValuePair<string, object>> GetPreconditions()
+    public override bool isDone()
+    {
+        return true;
+    }
+
+    public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
         yield break;
     }
 
-    public IEnumerable<KeyValuePair<string, object>> GetEffects()
+    public override IEnumerable<KeyValuePair<string, object>> GetEffects()
     {
         yield return new KeyValuePair<string, object>("Patrol", true);
+    }    
+
+    public override bool isInRange()
+    {
+        if (Target == null) return true;
+        return (Target.transform.position - transform.position).sqrMagnitude < patrolDestinationOffset * patrolDestinationOffset;
     }
 
-    public bool isInRange()
+    public override void reset()
     {
-        return true;
+        Target = currentPathNode.gameObject;
     }
 }

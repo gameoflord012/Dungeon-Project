@@ -152,22 +152,17 @@ public sealed class GoapAgent : MonoBehaviour {
 	private void createPerformActionState() {
 
 		performActionState = new FSMState((fsm, gameObj) => {
-		// perform the action
-
-		if (!hasActionPlan()) {
-			// no actions to perform
-			Debug.Log("<color=red>Done actions</color>");
-			fsm.popState();
-			fsm.pushState(idleState);
-			dataProvider.actionsFinished();
-			return;
-		}
-
-		IGoapAction action = currentActions.Peek();
-		if (action.isDone()) {
-			// the action is done. Remove it so we can perform the next one
-			finishedActions.Add(currentActions.Dequeue());
+			// perform the action
+			if (!hasActionPlan()) {
+				// no actions to perform
+				Debug.Log("<color=red>Done actions</color>");
+				fsm.popState();
+				fsm.pushState(idleState);
+				dataProvider.actionsFinished();
+				return;
 			}
+
+			IGoapAction action = currentActions.Peek();			
 
 			if (hasActionPlan()) {
 				// perform the next action
@@ -182,6 +177,12 @@ public sealed class GoapAgent : MonoBehaviour {
 						fsm.popState();
 						fsm.pushState(idleState);
 						dataProvider.planAborted(action);
+					}
+
+					if (action.isDone())
+					{
+						// the action is done. Remove it so we can perform the next one
+						finishedActions.Add(currentActions.Dequeue());
 					}
 				} else {
 					// we need to move there first

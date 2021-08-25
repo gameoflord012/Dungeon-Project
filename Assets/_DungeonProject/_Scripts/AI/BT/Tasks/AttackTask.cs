@@ -24,7 +24,7 @@ public class AttackTask : EnemyTaskBase
             Task.current.debugInfo = "Target: " + data.GetTargetPosition();
         }
 
-        if (data.target == null) return false;        
+        if (data.Target == null) return false;        
         return ((Vector2)transform.position - data.GetTargetPosition()).sqrMagnitude < attackRange * attackRange;        
     }
 
@@ -33,7 +33,7 @@ public class AttackTask : EnemyTaskBase
     {
         if(timeSinceLastAttack > timeBetweenAttacks)
         {
-            if (data.target.TryGetComponent(out Health targetHealth))
+            if (data.Target.TryGetComponent(out Health targetHealth))
             {
                 AttackBehaviour(targetHealth);
                 Task.current.Succeed();

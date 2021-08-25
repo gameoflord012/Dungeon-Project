@@ -14,7 +14,7 @@ public class AIPathControl : MonoBehaviour
     private float destinationOffset = .2f;
     private int currentVectorPathIndex = 0;
 
-    public UnityEvent<Vector2> OnPathFindingUpdate;
+    public UnityEvent<Vector2> OnPathFindingDirectionUpdate;
     public UnityEvent<Vector2> OnWaypointUpdate;
 
     public bool IsSearchingForPath { get => path == null || !seeker.IsDone(); }
@@ -36,7 +36,7 @@ public class AIPathControl : MonoBehaviour
     public void CancelPathFinding()
     {
         enabled = false;
-        OnPathFindingUpdate?.Invoke(Vector2.zero);
+        OnPathFindingDirectionUpdate?.Invoke(Vector2.zero);
         OnWaypointUpdate?.Invoke(transform.position);
     }
 
@@ -56,7 +56,7 @@ public class AIPathControl : MonoBehaviour
     {
         if (path == null || IsDestinationReached()) return;
 
-        OnPathFindingUpdate?.Invoke(GetCurrentWaypoint() - (Vector2)transform.position);
+        OnPathFindingDirectionUpdate?.Invoke(GetCurrentWaypoint() - (Vector2)transform.position);
 
         if (((Vector2)transform.position - GetCurrentWaypoint()).sqrMagnitude < destinationOffset * destinationOffset)
         {            

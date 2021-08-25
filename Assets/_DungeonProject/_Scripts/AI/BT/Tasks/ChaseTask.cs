@@ -29,7 +29,7 @@ public class ChaseTask : EnemyTaskBase
     [Task]
     public bool TargetAvaiable()
     {
-        return data.target != null;
+        return data.Target != null;
     }
 
     [Task]
@@ -64,7 +64,7 @@ public class ChaseTask : EnemyTaskBase
     {
         foreach (GameObject chaseTarget in FindChaseTargets())
         {
-            data.target = chaseTarget;
+            data.Target = chaseTarget;
         }
 
         Task.current.Succeed();
@@ -73,11 +73,11 @@ public class ChaseTask : EnemyTaskBase
     [Task]
     public bool TargetEscaped()
     {
-        if (data.target == null) return false;
+        if (data.Target == null) return false;
 
         foreach(GameObject chaseTarget in FindChaseTargets())
         {
-            if (chaseTarget == data.target)
+            if (chaseTarget == data.Target)
                 return false;
         }
 
@@ -104,7 +104,7 @@ public class ChaseTask : EnemyTaskBase
     [Task]
     public void ResetTarget()
     {
-        data.target = null;
+        data.Target = null;
         Task.current.Succeed();
     }
 

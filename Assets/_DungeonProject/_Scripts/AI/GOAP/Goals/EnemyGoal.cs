@@ -2,8 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolGoal : MonoBehaviour, IGoap
+[RequireComponent(typeof(GoapAgent))]
+public class EnemyGoal : MonoBehaviour, IGoap
 {
+    protected ActorInputEvents inputEvents;
+    protected AIPathControl pathControl;
+
+    protected virtual void Awake()
+    {
+        pathControl = GetComponentInParent<AIPathControl>();
+        inputEvents = GetComponentInParent<ActorInputEvents>();
+    }
+
     public void actionsFinished()
     {
         
@@ -23,6 +33,7 @@ public class PatrolGoal : MonoBehaviour, IGoap
 
     public bool moveAgent(IGoapAction nextAction)
     {
+        inputEvents.OnMovementKeyPressedCallback(nextAction.Target.transform.position - transform.position);
         return true;
     }
 
