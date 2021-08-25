@@ -22,7 +22,7 @@ public class EnemyGoal : MonoBehaviour, IGoap
     public HashSet<KeyValuePair<string, object>> createGoalState()
     {
         HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
-        goal.Add(new KeyValuePair<string, object>("Patrol", true));
+        goal.Add(new KeyValuePair<string, object>("AttackTarget", true));
         return goal;
     }
 

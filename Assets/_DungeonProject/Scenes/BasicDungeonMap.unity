@@ -3553,6 +3553,39 @@ MonoBehaviour:
   OnTargetChanged:
     m_PersistentCalls:
       m_Calls: []
+  target: {fileID: 0}
+--- !u!114 &86675553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7d8c7373fb104a9449228c1c849ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Target>k__BackingField: {fileID: 0}
+  <Cost>k__BackingField: 1
+  attackRange: 1
+  timeBetweenAttacks: 1
+--- !u!114 &86675554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b01d96c1e734ee449b81dc0849ca24f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageDealer: {fileID: 221710308}
+  <Damage>k__BackingField: 10
+  <KnockbackStrength>k__BackingField: 0
+  <WaitTimeAfterKnockingback>k__BackingField: 0
 --- !u!1 &120792984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,12 +3658,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &221710308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7279633043216054679, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+  m_PrefabInstance: {fileID: 875369243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &221710315 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5401590930499203861, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
   m_PrefabInstance: {fileID: 875369243}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 221710308}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36181f13ab439cb4c9be2e24f45d3e0c, type: 3}
@@ -3908,6 +3946,10 @@ PrefabInstance:
       propertyPath: currentPathNode
       value: 
       objectReference: {fileID: 1410295834}
+    - target: {fileID: 1571647892808888736, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: <Cost>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.size
       value: 2

@@ -5,19 +5,21 @@ using UnityEngine;
 public class AttackAction : GoapActionBase
 {
     [field: SerializeField] public override GameObject Target { get; set; }
-    [field: SerializeField] public override float Cost { get; set; } = 0;
+    [field: SerializeField] public override float Cost { get; set; } = 1;
 
     [SerializeField] float attackRange = 1f;
     [SerializeField] float timeBetweenAttacks = .3f;
     float timeSinceLastAttack = Mathf.Infinity;
     Health health;
+    Damager damager;
 
     bool isAttacked;
 
     protected override void Awake()
     {
         base.Awake();
-        health = GetComponentInParent<Health>();        
+        health = GetComponentInParent<Health>();
+        damager = GetComponentInParent<Damager>();
     }
 
     private void Update()
@@ -32,7 +34,7 @@ public class AttackAction : GoapActionBase
 
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
-        yield return new KeyValuePair<string, object>("InAttackRange", true);
+        yield break;
     }
 
     public override void OnTargetChanged(GameObject target)
@@ -45,7 +47,7 @@ public class AttackAction : GoapActionBase
     {
         return
             timeSinceLastAttack > timeBetweenAttacks &&
-            Target != null;        
+            Target != null;
     }    
 
     public override bool isDone()

@@ -15,8 +15,7 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
     public abstract float Cost { get; set; }
 
     protected virtual void Awake()
-    {
-        damager = GetComponentInParent<Damager>();
+    {        
         movement = GetComponentInParent<ActorMovement>();
         data = GetComponentInParent<EnemyTaskData>();
         inputEvents = GetComponentInParent<ActorInputEvents>();

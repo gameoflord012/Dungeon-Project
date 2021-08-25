@@ -8,7 +8,7 @@ public class PatrolAction : GoapActionBase
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
 
-    [field: SerializeField] public override float Cost { get; set; }
+    [field: SerializeField] public override float Cost { get; set; } = 1;
     [field: SerializeField] public override GameObject Target { get; set; }
 
     public override bool perform(GameObject agent)
