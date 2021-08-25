@@ -40,7 +40,7 @@ public interface IGoap
 	 * A plan was found for the supplied goal.
 	 * These are the actions the Agent will perform, in order.
 	 */
-	void planFound (HashSet<KeyValuePair<string,object>> goal, Queue<GoapAction> actions);
+	void planFound (HashSet<KeyValuePair<string,object>> goal, Queue<IGoapAction> actions);
 
 	/**
 	 * All actions are complete and the goal was reached. Hooray!
@@ -51,7 +51,7 @@ public interface IGoap
 	 * One of the actions caused the plan to abort.
 	 * That action is returned.
 	 */
-	void planAborted (GoapAction aborter);
+	void planAborted (IGoapAction aborter);
 
 	/**
 	 * Called during Update. Move the agent towards the target in order
@@ -59,6 +59,6 @@ public interface IGoap
 	 * Return true if the Agent is at the target and the next action can perform.
 	 * False if it is not there yet.
 	 */
-	bool moveAgent(GoapAction nextAction);
+	bool moveAgent(IGoapAction nextAction);
 }
 

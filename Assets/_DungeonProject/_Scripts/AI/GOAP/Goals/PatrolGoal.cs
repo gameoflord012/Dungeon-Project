@@ -21,12 +21,12 @@ public class PatrolGoal : MonoBehaviour, IGoap
         return new HashSet<KeyValuePair<string, object>>();
     }
 
-    public bool moveAgent(GoapAction nextAction)
+    public bool moveAgent(IGoapAction nextAction)
     {
         return true;
     }
 
-    public void planAborted(GoapAction aborter)
+    public void planAborted(IGoapAction aborter)
     {
         
     }
@@ -36,7 +36,7 @@ public class PatrolGoal : MonoBehaviour, IGoap
         
     }
 
-    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> actions)
+    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<IGoapAction> actions)
     {
         
     }

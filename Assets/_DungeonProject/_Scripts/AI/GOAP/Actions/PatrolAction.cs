@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatrolAction : GoapAction
+public class PatrolAction : MonoBehaviour, IGoapAction
 {
     protected ActorInputEvents inputEvents;
     protected ActorMovement movement;
@@ -14,6 +14,8 @@ public class PatrolAction : GoapAction
     [SerializeField] float patrolDestinationOffset = .2f;
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
+    [field: SerializeField]
+    public float Cost { get; set; }
 
     protected virtual void Awake()
     {
@@ -23,16 +25,14 @@ public class PatrolAction : GoapAction
         inputEvents = GetComponentInParent<ActorInputEvents>();
         fov = movement.GetComponentInChildren<FOV>();
         pathControl = GetComponentInParent<AIPathControl>();
-
-        addEffect("Patrol", true);
     }
 
-    public override bool checkProceduralPrecondition(GameObject agent)
+    public bool checkProceduralPrecondition(GameObject agent)
     {
         return true;
     }
 
-    public override bool isDone()
+    public bool isDone()
     {
         if (pathControl.IsDestinationReached())
         {
@@ -43,7 +43,7 @@ public class PatrolAction : GoapAction
         return false;
     }
 
-    public override bool perform(GameObject agent)
+    public bool perform(GameObject agent)
     {
         if (!pathControl.IsSearchingForPath)
         {
@@ -53,12 +53,7 @@ public class PatrolAction : GoapAction
         return true;
     }
 
-    public override bool requiresInRange()
-    {
-        return false;
-    }
-
-    public override void reset()
+    public void reset()
     {
         movement.SetMovementData(patrolMovementData);
         pathControl.SetDestination(currentPathNode.transform.position, patrolDestinationOffset);        
@@ -68,6 +63,21 @@ public class PatrolAction : GoapAction
     {
         if (currentPathNode == null || currentPathNode.neighbors.Count == 0) return false;
         currentPathNode = currentPathNode.neighbors[Random.Range(0, currentPathNode.neighbors.Count - 1)];
+        return true;
+    }
+
+    public IEnumerable<KeyValuePair<string, object>> GetPreconditions()
+    {
+        yield break;
+    }
+
+    public IEnumerable<KeyValuePair<string, object>> GetEffects()
+    {
+        yield return new KeyValuePair<string, object>("Patrol", true);
+    }
+
+    public bool isInRange()
+    {
         return true;
     }
 }

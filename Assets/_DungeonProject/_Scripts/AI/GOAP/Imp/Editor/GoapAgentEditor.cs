@@ -31,10 +31,10 @@ public class GoapAgentEditor : Editor
             EditorGUILayout.LabelField("CurrentAction:");
             EditorGUI.indentLevel++;
             {
-                foreach (GoapAction action in goapAgent.GetFinisedAction())                
+                foreach (IGoapAction action in goapAgent.GetFinisedAction())                
                     EditorGUILayout.LabelField(action.GetType().Name, greenStyle);                
 
-                foreach (GoapAction action in goapAgent.GetCurrentActions())
+                foreach (IGoapAction action in goapAgent.GetCurrentActions())
                     EditorGUILayout.LabelField(action.GetType().Name, grayStyle);                
             }
             EditorGUI.indentLevel--;
