@@ -3817,6 +3817,14 @@ PrefabInstance:
       propertyPath: currentPathNode
       value: 
       objectReference: {fileID: 1410295834}
+    - target: {fileID: 1571647892808888736, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: currentPathNode
+      value: 
+      objectReference: {fileID: 1410295834}
+    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7279633043216054677, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: m_RootOrder
       value: 0

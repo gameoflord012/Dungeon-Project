@@ -2,29 +2,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
-
+using UnityEngine.Assertions;
 
 public sealed class GoapAgent : MonoBehaviour {
 
 	private FSM stateMachine;
 
-	private FSM.FSMState idleState; // finds something to do
-	private FSM.FSMState moveToState; // moves to a target
-	private FSM.FSMState performActionState; // performs an action
+	private FSMState idleState; // finds something to do
+	private FSMState moveToState; // moves to a target
+	private FSMState performActionState; // performs an action
 	
 	private HashSet<GoapAction> availableActions;
 	private Queue<GoapAction> currentActions;
+	private HashSet<GoapAction> finishedActions;
 
 	private IGoap dataProvider; // this is the implementing class that provides our world data and listens to feedback on planning
 
 	private GoapPlanner planner;
 
+#if UNITY_EDITOR
+	public string GetCurrentFSMName()
+    {
+		Assert.IsNotNull(stateMachine.Peek());
+		return stateMachine.Peek().StateName;
+    }
+
+	public IEnumerable<GoapAction> GetCurrentActions()
+    {
+		return currentActions;
+    }
+
+	public IEnumerable<GoapAction> GetFinisedAction()
+    {
+		return finishedActions;
+    }
+#endif
 
 	void Start () {
 		stateMachine = new FSM ();
 		availableActions = new HashSet<GoapAction> ();
 		currentActions = new Queue<GoapAction> ();
 		planner = new GoapPlanner ();
+		finishedActions = new HashSet<GoapAction>();
 		findDataProvider ();
 		createIdleState ();
 		createMoveToState ();
@@ -60,7 +79,9 @@ public sealed class GoapAgent : MonoBehaviour {
 	}
 
 	private void createIdleState() {
-		idleState = (fsm, gameObj) => {
+		idleState = new FSMState((fsm, gameObj) => {
+			finishedActions.Clear();
+
 			// GOAP planning
 
 			// get the world state and the goal we want to plan for
@@ -84,12 +105,13 @@ public sealed class GoapAgent : MonoBehaviour {
 				fsm.popState (); // move back to IdleAction state
 				fsm.pushState (idleState);
 			}
+		},
 
-		};
+		"IdleState");
 	}
 	
 	private void createMoveToState() {
-		moveToState = (fsm, gameObj) => {
+		moveToState = new FSMState((fsm, gameObj) => {
 			// move the game object
 
 			GoapAction action = currentActions.Peek();
@@ -123,27 +145,28 @@ public sealed class GoapAgent : MonoBehaviour {
 				action.setInRange(true);
 				fsm.popState();
 			}*/
-		};
+		},
+		"MoveToState");
 	}
 	
 	private void createPerformActionState() {
 
-		performActionState = (fsm, gameObj) => {
-			// perform the action
+		performActionState = new FSMState((fsm, gameObj) => {
+		// perform the action
 
-			if (!hasActionPlan()) {
-				// no actions to perform
-				Debug.Log("<color=red>Done actions</color>");
-				fsm.popState();
-				fsm.pushState(idleState);
-				dataProvider.actionsFinished();
-				return;
-			}
+		if (!hasActionPlan()) {
+			// no actions to perform
+			Debug.Log("<color=red>Done actions</color>");
+			fsm.popState();
+			fsm.pushState(idleState);
+			dataProvider.actionsFinished();
+			return;
+		}
 
-			GoapAction action = currentActions.Peek();
-			if ( action.isDone() ) {
-				// the action is done. Remove it so we can perform the next one
-				currentActions.Dequeue();
+		GoapAction action = currentActions.Peek();
+		if (action.isDone()) {
+			// the action is done. Remove it so we can perform the next one
+			finishedActions.Add(currentActions.Dequeue());
 			}
 
 			if (hasActionPlan()) {
@@ -174,7 +197,8 @@ public sealed class GoapAgent : MonoBehaviour {
 				dataProvider.actionsFinished();
 			}
 
-		};
+		},
+		"PerformState");
 	}
 
 	private void findDataProvider() {

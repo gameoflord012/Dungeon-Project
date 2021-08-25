@@ -13,15 +13,16 @@ using System;
 
 
 public class FSM {
-
 	private Stack<FSMState> stateStack = new Stack<FSMState> ();
 
-	public delegate void FSMState (FSM fsm, GameObject gameObject);
-	
+	public FSMState Peek()
+    {
+		return stateStack.Peek();
+    }
 
 	public void Update (GameObject gameObject) {
 		if (stateStack.Peek() != null)
-			stateStack.Peek().Invoke (this, gameObject);
+			stateStack.Peek().DoUpdate(this, gameObject);
 	}
 
 	public void pushState(FSMState state) {

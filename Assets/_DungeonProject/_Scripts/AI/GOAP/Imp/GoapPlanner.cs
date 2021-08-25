@@ -161,7 +161,7 @@ public class GoapPlanner
 			bool exists = false;
 
 			foreach (KeyValuePair<string,object> s in state) {
-				if (s.Equals(change)) {
+				if (s.Key.Equals(change.Key)) {
 					exists = true;
 					break;
 				}
