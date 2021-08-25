@@ -13,13 +13,17 @@ public class ChaseTask : EnemyTaskBase
     [SerializeField] MovementDataSO chaseMovementData;
 
     private GameObject unknownAttacker;
-
     private float timeSinceLastPathBaking;
 
     public void SetUnknownAttacker(Damager unknownAttacker)
     {
         this.unknownAttacker = unknownAttacker.damageDealer;
-        data.target = this.unknownAttacker;
+    }
+
+    [Task]
+    public bool AttackedByUnknown()
+    {
+        return unknownAttacker != null;
     }
 
     [Task]
@@ -47,16 +51,6 @@ public class ChaseTask : EnemyTaskBase
         {            
             Task.current.Succeed();
         }
-
-        if(TargetEscaped())
-        {
-            Task.current.Fail();
-        }
-
-        //if (Task.current.status == Status.Failed)
-        //{
-        //    pathControl.CancelPathFinding();
-        //}
     }
 
     private void StartPathFinding()
