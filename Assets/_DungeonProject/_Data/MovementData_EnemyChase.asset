@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a33fa95ba05e54ea2a82ef84724579, type: 3}
   m_Name: MovementData_EnemyChase
   m_EditorClassIdentifier: 
-  maxSpeed: 6
+  maxSpeed: 4
   acceleration: 5
   deacceleration: 8
   velocityThreshold: 6

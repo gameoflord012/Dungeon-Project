@@ -3569,7 +3569,7 @@ MonoBehaviour:
   <Target>k__BackingField: {fileID: 0}
   <Cost>k__BackingField: 1
   attackRange: 1
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 0.5
 --- !u!114 &86675554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3586,6 +3586,21 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <KnockbackStrength>k__BackingField: 0
   <WaitTimeAfterKnockingback>k__BackingField: 0
+--- !u!114 &86675555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b06035dbe65c4442bd58bb21331793f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Target>k__BackingField: {fileID: 0}
+  <Cost>k__BackingField: 0
+  runningMovementData: {fileID: 11400000, guid: 0ad5718f59604fd428bdcdf792caab37, type: 2}
 --- !u!1 &120792984
 GameObject:
   m_ObjectHideFlags: 0

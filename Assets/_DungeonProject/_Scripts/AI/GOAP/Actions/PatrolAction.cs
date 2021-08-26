@@ -25,12 +25,12 @@ public class PatrolAction : GoapActionBase
 
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
-        yield break;
+        yield return new KeyValuePair<string, object>("Walking", true);
     }
 
     public override IEnumerable<KeyValuePair<string, object>> GetEffects()
     {
-        yield return new KeyValuePair<string, object>("Patrol", true);
+        yield return new KeyValuePair<string, object>("Patrol", true);        
     }    
 
     public override bool isInRange()

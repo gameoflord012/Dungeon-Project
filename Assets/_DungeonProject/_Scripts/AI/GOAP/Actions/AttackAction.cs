@@ -33,6 +33,7 @@ public class AttackAction : GoapActionBase
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
         yield return new KeyValuePair<string, object>("HasTarget", true);
+        yield return new KeyValuePair<string, object>("Running", true);
     }
 
     public override void OnTargetChanged(GameObject target)

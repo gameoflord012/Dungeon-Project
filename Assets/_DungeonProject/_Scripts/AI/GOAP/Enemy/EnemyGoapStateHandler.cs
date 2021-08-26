@@ -38,22 +38,22 @@ public class EnemyGoapStateHandler : GoapMono
     public override HashSet<KeyValuePair<string, object>> getWorldState()
     {
         HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
-        goal.Add(new KeyValuePair<string, object>("HasTarget", true));
+        goal.Add(new KeyValuePair<string, object>("HasTarget", data.Target != null));
         return goal;
     }
 
     public override bool moveAgent(IGoapAction nextAction)
     {
-        if (nextAction.Target == null)
-        {
-            inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
-            inputEvents.OnPointerPositionChangedCallback(transform.position);
-            return false;
-        }
-
+        if (nextAction.Target == null) return false;
         inputEvents.OnMovementKeyPressedCallback(nextAction.Target.transform.position - transform.position);
         inputEvents.OnPointerPositionChangedCallback(nextAction.Target.transform.position);
         return true;
+    }
+
+    public override void planAborted(IGoapAction aborter)
+    {
+        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+        inputEvents.OnPointerPositionChangedCallback(transform.position);
     }
 
     private IEnumerable<GameObject> FindChaseTargets()
@@ -71,6 +71,8 @@ public class EnemyGoapStateHandler : GoapMono
         // FOV check
         foreach (Collider2D collider in fov.GetHitColliders())
         {
+            if (collider == null) continue;
+
             if (((1 << collider.gameObject.layer) & targetLayerMask) != 0)
             {
                 yield return GetTarget(collider.gameObject);
