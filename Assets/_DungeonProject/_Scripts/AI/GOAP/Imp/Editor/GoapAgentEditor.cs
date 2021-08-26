@@ -5,39 +5,28 @@ using UnityEngine;
 [CustomEditor(typeof(GoapAgent))]
 public class GoapAgentEditor : Editor
 {
-    GUIStyle greenStyle;
-    GUIStyle grayStyle;
-
-    private void OnEnable()
-    {
-        greenStyle = new GUIStyle();
-        greenStyle.normal.textColor = Color.green;
-
-        grayStyle = new GUIStyle();
-        grayStyle.normal.textColor = Color.gray;
-    }    
-
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
-        Debug.Log("Updating");
+        base.OnInspectorGUI();        
 
         GoapAgent goapAgent = (GoapAgent)target;
+        GUIStyle richText = new GUIStyle();
+        richText.richText = true;
 
-        if(Application.isPlaying)
+        if (Application.isPlaying)
         {            
-            EditorGUILayout.LabelField($"CurrentState:  { goapAgent.GetCurrentFSMName()}", EditorStyles.boldLabel);
-            EditorGUILayout.LabelField($"CurrentGoap:  { goapAgent.GetCurrentGoapName()}", EditorStyles.boldLabel);
+            //EditorGUILayout.LabelField($"CurrentState:  { goapAgent.GetCurrentFSMName()}", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField($"<b>CurrentGoap:</b>  {goapAgent.GetCurrentGoapName()}", richText);
 
             EditorGUILayout.Space(5);
             EditorGUILayout.LabelField("CurrentAction:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
                 foreach (IGoapAction action in goapAgent.GetFinisedAction())                
-                    EditorGUILayout.LabelField(action.GetType().Name, greenStyle);                
+                    EditorGUILayout.LabelField($"<color=green>{action.GetType().Name}</color>", richText);                
 
                 foreach (IGoapAction action in goapAgent.GetCurrentActions())
-                    EditorGUILayout.LabelField(action.GetType().Name, grayStyle);                
+                    EditorGUILayout.LabelField($"<color=grey>{action.GetType().Name}</color>", richText);
             }
 
             EditorGUI.indentLevel--;

@@ -5,11 +5,13 @@ using UnityEngine;
 
 [CustomPropertyDrawer(typeof(FSM))]
 public class FSMPropertyDrawer : PropertyDrawer
-{
+{    
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        base.OnGUI(position, property, label);
+        GUIStyle richText = new GUIStyle();
+        richText.richText = true;
 
-        EditorGUILayout.LabelField(property.serializedObject.targetObject.name);
+        if(Application.isPlaying)
+            EditorGUILayout.LabelField($"<b>CurrentState:</b> {property.FindPropertyRelative("CurrentStateName").stringValue}", richText);
     }
 }

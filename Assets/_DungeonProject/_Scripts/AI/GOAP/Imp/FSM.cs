@@ -11,9 +11,11 @@ using System.Collections;
  */
 using System;
 
-
+[System.Serializable]
 public class FSM {
 	private Stack<FSMState> stateStack = new Stack<FSMState> ();
+
+	[SerializeField] string CurrentStateName;
 
 	public FSMState Peek()
     {
@@ -21,31 +23,23 @@ public class FSM {
     }
 
 	public void Update (GameObject gameObject) {
-		if (stateStack.Peek() != null)
-			stateStack.Peek().DoUpdate(this, gameObject);
+		stateStack.Peek().DoUpdate(this, gameObject);
 	}
-
-#if UNITY_EDITOR
-	public string GetCurrentStateName()
-	{
-		if (Peek() == null) return "No State";
-		return Peek().StateName;
-	}
-#endif
 
 	public void pushState(FSMState state) {
-#if UNITY_EDITOR
-		GUI.changed = true;
-#endif
-		stateStack.Push (state);
+		stateStack.Push(state);
+		GUIUpdate();
 	}
 
 	public void popState() {
+		stateStack.Pop();
+		GUIUpdate();
+	}
 
+	void GUIUpdate()
+    {
 #if UNITY_EDITOR
-		GUI.changed = true;
+		CurrentStateName = stateStack.Count == 0 ? "No State" : Peek().StateName;
 #endif
-
-		stateStack.Pop ();
 	}
 }
