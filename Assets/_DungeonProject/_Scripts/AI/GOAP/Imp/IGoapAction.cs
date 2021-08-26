@@ -6,11 +6,11 @@ public interface IGoapAction {
 	IEnumerable<KeyValuePair<string, object>> GetPreconditions();
 	IEnumerable<KeyValuePair<string, object>> GetEffects();
 
-	GameObject Target { get; set; }
 	float Cost { get; set; }
 
 	void reset();
 	bool checkProceduralPrecondition(GameObject agent);
+	Vector3 GetTargetPosition();
 	IEnumerator<PerformState> perform(GameObject agent);
 	bool isInRange();
 }

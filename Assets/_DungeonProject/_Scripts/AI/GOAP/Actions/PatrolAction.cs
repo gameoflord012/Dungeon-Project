@@ -9,7 +9,6 @@ public class PatrolAction : GoapActionBase
     [SerializeField] MovementDataSO patrolMovementData;
 
     [field: SerializeField] public override float Cost { get; set; } = 1;
-    [field: SerializeField] public override GameObject Target { get; set; }
 
     public override IEnumerator<PerformState> perform(GameObject agent)
     {        
@@ -35,12 +34,7 @@ public class PatrolAction : GoapActionBase
 
     public override bool isInRange()
     {
-        if (Target == null) return true;
-        return (Target.transform.position - transform.position).sqrMagnitude < patrolDestinationOffset * patrolDestinationOffset;
-    }
-
-    public override void reset()
-    {
-        Target = currentPathNode.gameObject;
+        if (data.Target == null) return true;
+        return (data.Target.transform.position - transform.position).sqrMagnitude < patrolDestinationOffset * patrolDestinationOffset;
     }
 }

@@ -232,7 +232,7 @@ public sealed class GoapAgent : MonoBehaviour {
 		foreach (IGoapAction a in actions) {
 			availableActions.Add (a);
 		}
-		Debug.Log("Found actions: "+prettyPrint(actions));
+		//Debug.Log("Found actions: "+prettyPrint(actions));
 	}
 
 	public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {

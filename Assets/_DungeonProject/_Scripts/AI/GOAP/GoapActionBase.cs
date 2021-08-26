@@ -9,7 +9,6 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
     protected EnemyTaskData data;
     protected AIPathControl pathControl;    
 
-    public abstract GameObject Target { get; set; }
     public abstract float Cost { get; set; }
 
     protected virtual void Awake()
@@ -28,6 +27,6 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
     public virtual bool checkProceduralPrecondition(GameObject agent) { return true; }
     public virtual void OnTargetChanged(GameObject target) { }
     public virtual bool isInRange() { return true; }
-    public virtual void reset() { }  
-
+    public virtual void reset() { }
+    public virtual Vector3 GetTargetPosition() { return transform.position; }
 }

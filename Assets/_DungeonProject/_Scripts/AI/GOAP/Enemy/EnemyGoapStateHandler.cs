@@ -44,17 +44,16 @@ public class EnemyGoapStateHandler : GoapMono
 
     public override bool moveAgent(IGoapAction nextAction)
     {
-        if (nextAction.Target == null) return false;
-        inputEvents.OnMovementKeyPressedCallback(nextAction.Target.transform.position - transform.position);
-        inputEvents.OnPointerPositionChangedCallback(nextAction.Target.transform.position);
+        inputEvents.OnMovementKeyPressedCallback(nextAction.GetTargetPosition() - transform.position);
+        inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
         return true;
     }
 
-    public override void planAborted(IGoapAction aborter)
-    {
-        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
-        inputEvents.OnPointerPositionChangedCallback(transform.position);
-    }
+    //public override void planAborted(IGoapAction aborter)
+    //{
+    //    inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+    //    inputEvents.OnPointerPositionChangedCallback(transform.position);
+    //}
 
     private IEnumerable<GameObject> FindChaseTargets()
     {

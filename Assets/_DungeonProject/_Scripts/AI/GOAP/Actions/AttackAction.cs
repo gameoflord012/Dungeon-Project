@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AttackAction : GoapActionBase
 {
-    [field: SerializeField] public override GameObject Target { get; set; }
     [field: SerializeField] public override float Cost { get; set; } = 1;
 
     [SerializeField] float attackRange = 1f;
@@ -36,12 +35,6 @@ public class AttackAction : GoapActionBase
         yield return new KeyValuePair<string, object>("Running", true);
     }
 
-    public override void OnTargetChanged(GameObject target)
-    {
-        base.OnTargetChanged(target);
-        Target = target;
-    }
-
     public override bool checkProceduralPrecondition(GameObject agent)
     {
         return timeSinceLastAttack > timeBetweenAttacks;
@@ -49,15 +42,15 @@ public class AttackAction : GoapActionBase
 
     public override bool isInRange()
     {
-        if (Target == null) return true;
-        return (Target.transform.position - transform.position).sqrMagnitude < attackRange * attackRange;
+        if (data.Target == null) return true;
+        return (data.Target.transform.position - transform.position).sqrMagnitude < attackRange * attackRange;
     }
 
     public override IEnumerator<PerformState> perform(GameObject agent)
     {
-        if (Target == null) yield return PerformState.falied;
+        if (data.Target == null) yield return PerformState.falied;
 
-        if (Target.TryGetComponent(out Health targetHealth))
+        if (data.Target.TryGetComponent(out Health targetHealth))
         {
             AttackBehaviour(targetHealth);
             yield break;
@@ -76,5 +69,11 @@ public class AttackAction : GoapActionBase
         movement.StopMoving();
 
         targetHealth.TakeDamage(damager);
+    }
+
+    public override Vector3 GetTargetPosition()
+    {
+        if (data.Target == null) return transform.position;
+        return data.Target.transform.position;
     }
 }

@@ -38,6 +38,6 @@ public class Health : MonoBehaviour
         OnActorTakeDamage?.Invoke(damager);
         OnActorTakeDamageImpactDirection?.Invoke(transform.position - damager.transform.position);
         
-        Debug.Log(damager + " Attack " + this);
+        //Debug.Log(damager + " Attack " + this);
     }
 }

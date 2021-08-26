@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SetWalkSpeedAction : GoapActionBase
 {
-    [field: SerializeField] public override GameObject Target { get; set; } = null;
     [field: SerializeField] public override float Cost { get; set; } = 0;
 
     [SerializeField] MovementDataSO walkingMovementData;
