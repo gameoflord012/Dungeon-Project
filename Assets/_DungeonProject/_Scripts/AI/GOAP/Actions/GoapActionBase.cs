@@ -7,8 +7,7 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
     protected ActorInputEvents inputEvents;
     protected ActorMovement movement;
     protected EnemyTaskData data;
-    protected FOV fov;
-    protected AIPathControl pathControl;
+    protected AIPathControl pathControl;    
 
     public abstract GameObject Target { get; set; }
     public abstract float Cost { get; set; }
@@ -18,7 +17,6 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
         movement = GetComponentInParent<ActorMovement>();
         data = GetComponentInParent<EnemyTaskData>();
         inputEvents = GetComponentInParent<ActorInputEvents>();
-        fov = movement.GetComponentInChildren<FOV>();
         pathControl = GetComponentInParent<AIPathControl>();
         data.OnTargetChanged.AddListener(OnTargetChanged);
     }

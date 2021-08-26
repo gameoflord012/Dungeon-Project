@@ -48,6 +48,7 @@ public class AttackAction : GoapActionBase
 
     public override bool isInRange()
     {
+        if (Target == null) return true;
         return (Target.transform.position - transform.position).sqrMagnitude < attackRange * attackRange;
     }
 

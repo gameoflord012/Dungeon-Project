@@ -171,8 +171,6 @@ public sealed class GoapAgent : MonoBehaviour {
 				return;
 			}
 
-			
-
 			if (hasActionPlan()) {
 				IGoapAction action = currentActions.Peek();
 				IEnumerator<PerformState> enumerator = currentEnumerators.Peek();
