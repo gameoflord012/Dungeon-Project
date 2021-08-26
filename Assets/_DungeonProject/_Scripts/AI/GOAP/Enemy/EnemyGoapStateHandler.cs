@@ -49,11 +49,11 @@ public class EnemyGoapStateHandler : GoapMono
         return true;
     }
 
-    //public override void planAborted(IGoapAction aborter)
-    //{
-    //    inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
-    //    inputEvents.OnPointerPositionChangedCallback(transform.position);
-    //}
+    public override void planAborted(IGoapAction aborter)
+    {
+        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+        inputEvents.OnPointerPositionChangedCallback(transform.position);
+    }
 
     private IEnumerable<GameObject> FindChaseTargets()
     {
