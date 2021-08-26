@@ -15,7 +15,7 @@ public class GoapAgentEditor : Editor
 
         grayStyle = new GUIStyle();
         grayStyle.normal.textColor = Color.gray;
-    }
+    }    
 
     public override void OnInspectorGUI()
     {
@@ -24,7 +24,7 @@ public class GoapAgentEditor : Editor
         GoapAgent goapAgent = (GoapAgent)target;
 
         if(Application.isPlaying)
-        {
+        {            
             EditorGUILayout.LabelField("CurrentState: " + goapAgent.GetCurrentFSMName());
 
             EditorGUILayout.Space(5);
@@ -37,6 +37,8 @@ public class GoapAgentEditor : Editor
                 foreach (IGoapAction action in goapAgent.GetCurrentActions())
                     EditorGUILayout.LabelField(action.GetType().Name, grayStyle);                
             }
+
+            GUI.changed = true;
             EditorGUI.indentLevel--;
         }
     }
