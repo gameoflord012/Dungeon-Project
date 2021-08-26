@@ -13,8 +13,6 @@ public class AttackAction : GoapActionBase
     Health health;
     Damager damager;
 
-    bool isAttacked;
-
     protected override void Awake()
     {
         base.Awake();
@@ -60,7 +58,7 @@ public class AttackAction : GoapActionBase
         if (Target.TryGetComponent(out Health targetHealth))
         {
             AttackBehaviour(targetHealth);
-            yield return PerformState.succeed;
+            yield break;
         }
         else
             yield return PerformState.falied;
@@ -76,6 +74,5 @@ public class AttackAction : GoapActionBase
         movement.StopMoving();
 
         targetHealth.TakeDamage(damager);
-        isAttacked = true;
     }
 }
