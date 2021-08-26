@@ -121,7 +121,7 @@ public class ChaseTask : EnemyTaskBase
         }
 
         // FOV check
-        foreach (Collider2D collider in fov.hitColliders)
+        foreach (Collider2D collider in fov.GetHitColliders())
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask) != 0)
             {

@@ -14,6 +14,7 @@ public sealed class GoapAgent : MonoBehaviour {
 	
 	private HashSet<IGoapAction> availableActions;
 	private Queue<IGoapAction> currentActions;
+	private Queue<IEnumerator<PerformState>> currentEnumerators;
 	private HashSet<IGoapAction> finishedActions;
 
 	private IGoap dataProvider; // this is the implementing class that provides our world data and listens to feedback on planning
@@ -93,6 +94,7 @@ public sealed class GoapAgent : MonoBehaviour {
 			if (plan != null) {
 				// we have a plan, hooray!
 				currentActions = plan;
+				currentEnumerators = GetIEnumerator(plan, gameObj);
 				dataProvider.planFound(goal, plan);
 
 				fsm.popState(); // move to PerformAction state
@@ -109,8 +111,15 @@ public sealed class GoapAgent : MonoBehaviour {
 
 		"IdleState");
 	}
-	
-	private void createMoveToState() {
+
+    private Queue<IEnumerator<PerformState>> GetIEnumerator(Queue<IGoapAction> actions, GameObject gameObj)
+    {
+		Queue<IEnumerator<PerformState>> result = new Queue<IEnumerator<PerformState>>();
+		foreach (IGoapAction action in actions) result.Enqueue(action.perform(gameObj));
+		return result;
+    }
+
+    private void createMoveToState() {
 		moveToState = new FSMState((fsm, gameObj) => {
 			// move the game object
 
@@ -162,31 +171,31 @@ public sealed class GoapAgent : MonoBehaviour {
 				return;
 			}
 
-			IGoapAction action = currentActions.Peek();			
+			
 
 			if (hasActionPlan()) {
-				// perform the next action
-				action = currentActions.Peek();
+				IGoapAction action = currentActions.Peek();
+				IEnumerator<PerformState> enumerator = currentEnumerators.Peek();
 
 				if (action.isInRange()) {
-					// we are in range, so perform the action
-					bool success = action.perform(gameObj);
 
-					if (!success) {
-						// action failed, we need to plan again
-						fsm.popState();
-						fsm.pushState(idleState);
-						dataProvider.planAborted(action);
-					}
-
-					if (action.isDone())
+					if (enumerator.MoveNext())
 					{
-						// the action is done. Remove it so we can perform the next one
+						if (enumerator.Current == PerformState.falied)
+						{
+							fsm.popState();
+							fsm.pushState(idleState);
+							dataProvider.planAborted(action);
+						}						
+					}
+					else
+                    {
+						currentEnumerators.Dequeue();
 						finishedActions.Add(currentActions.Dequeue());
 					}
+
+									
 				} else {
-					// we need to move there first
-					// push moveTo state
 					fsm.pushState(moveToState);
 				}
 

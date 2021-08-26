@@ -25,7 +25,7 @@ public class FindTargetAction : GoapActionBase
         foreach (GameObject chaseTarget in FindChaseTargets())
         {
             data.Target = chaseTarget;
-            yield return PerformState.completed;
+            yield break;
         }
         yield return PerformState.falied;
     }
@@ -43,7 +43,7 @@ public class FindTargetAction : GoapActionBase
         }
 
         // FOV check
-        foreach (Collider2D collider in fov.hitColliders)
+        foreach (Collider2D collider in fov.GetHitColliders())
         {
             if (((1 << collider.gameObject.layer) & targetLayerMask) != 0)
             {

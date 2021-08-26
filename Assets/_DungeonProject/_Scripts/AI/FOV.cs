@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,7 +12,12 @@ public class FOV : MonoBehaviour
     [SerializeField] string sortingLayerName = "FOV";
     [SerializeField] LayerMask obstacleLayerMask;
 
-    public List<Collider2D> hitColliders;
+    private List<Collider2D> hitColliders = new List<Collider2D>();
+
+    public IEnumerable<Collider2D> GetHitColliders()
+    {
+        return new List<Collider2D>(hitColliders);
+    }
 
     Mesh mesh;
     int nTriangles { get => nVertices - 2; }

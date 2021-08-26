@@ -13,7 +13,7 @@ public class PatrolAction : GoapActionBase
 
     public override IEnumerator<PerformState> perform(GameObject agent)
     {        
-        yield return AdvancedPath() ? PerformState.completed : PerformState.falied;
+        yield return AdvancedPath() ? PerformState.succeed : PerformState.falied;
     }
 
     public bool AdvancedPath()

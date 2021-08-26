@@ -60,7 +60,7 @@ public class AttackAction : GoapActionBase
         if (Target.TryGetComponent(out Health targetHealth))
         {
             AttackBehaviour(targetHealth);
-            yield return PerformState.completed;
+            yield return PerformState.succeed;
         }
         else
             yield return PerformState.falied;

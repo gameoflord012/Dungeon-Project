@@ -3,7 +3,6 @@ using UnityEngine;
 
 public enum PerformState
 {
-    running,
-    completed,
+    succeed,    
     falied
 }
