@@ -11,20 +11,15 @@ public class PatrolAction : GoapActionBase
     [field: SerializeField] public override float Cost { get; set; } = 1;
     [field: SerializeField] public override GameObject Target { get; set; }
 
-    public override bool perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GameObject agent)
     {        
-        return AdvancedPath();
+        yield return AdvancedPath() ? PerformState.completed : PerformState.falied;
     }
 
     public bool AdvancedPath()
     {
         if (currentPathNode == null || currentPathNode.neighbors.Count == 0) return false;
         currentPathNode = currentPathNode.neighbors[Random.Range(0, currentPathNode.neighbors.Count - 1)];
-        return true;
-    }
-
-    public override bool isDone()
-    {
         return true;
     }
 

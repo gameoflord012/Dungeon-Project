@@ -10,8 +10,7 @@ public interface IGoapAction {
 	float Cost { get; set; }
 
 	void reset();
-	bool isDone();
 	bool checkProceduralPrecondition(GameObject agent);
-	bool perform(GameObject agent);
+	IEnumerator<PerformState> perform(GameObject agent);
 	bool isInRange();
 }

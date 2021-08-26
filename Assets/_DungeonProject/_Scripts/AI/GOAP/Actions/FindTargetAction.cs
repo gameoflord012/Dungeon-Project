@@ -20,19 +20,14 @@ public class FindTargetAction : GoapActionBase
         yield break;
     }
 
-    public override bool isDone()
-    {
-        return true;
-    }
-
-    public override bool perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GameObject agent)
     {
         foreach (GameObject chaseTarget in FindChaseTargets())
         {
             data.Target = chaseTarget;
-            return true;
+            yield return PerformState.completed;
         }
-        return false;
+        yield return PerformState.falied;
     }
 
     private IEnumerable<GameObject> FindChaseTargets()

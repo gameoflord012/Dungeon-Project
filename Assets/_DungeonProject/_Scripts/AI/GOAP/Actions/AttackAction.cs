@@ -48,27 +48,22 @@ public class AttackAction : GoapActionBase
         return timeSinceLastAttack > timeBetweenAttacks;
     }
 
-    public override bool isDone()
-    {
-        return isAttacked;
-    }
-
     public override bool isInRange()
     {
         return (Target.transform.position - transform.position).sqrMagnitude < attackRange * attackRange;
     }
 
-    public override bool perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GameObject agent)
     {
-        if (Target == null) return false;
+        if (Target == null) yield return PerformState.falied;
 
         if (Target.TryGetComponent(out Health targetHealth))
         {
             AttackBehaviour(targetHealth);
-            return true;
+            yield return PerformState.completed;
         }
-
-        return false;
+        else
+            yield return PerformState.falied;
     }
 
     private void AttackBehaviour(Health targetHealth)
