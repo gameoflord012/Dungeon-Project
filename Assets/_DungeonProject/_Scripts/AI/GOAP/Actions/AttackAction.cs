@@ -34,7 +34,7 @@ public class AttackAction : GoapActionBase
 
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
-        yield break;
+        yield return new KeyValuePair<string, object>("HasTarget", true);
     }
 
     public override void OnTargetChanged(GameObject target)
@@ -45,10 +45,8 @@ public class AttackAction : GoapActionBase
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
-        return
-            timeSinceLastAttack > timeBetweenAttacks &&
-            Target != null;
-    }    
+        return timeSinceLastAttack > timeBetweenAttacks;
+    }
 
     public override bool isDone()
     {
@@ -62,7 +60,9 @@ public class AttackAction : GoapActionBase
 
     public override bool perform(GameObject agent)
     {
-        if (data.Target.TryGetComponent(out Health targetHealth))
+        if (Target == null) return false;
+
+        if (Target.TryGetComponent(out Health targetHealth))
         {
             AttackBehaviour(targetHealth);
             return true;

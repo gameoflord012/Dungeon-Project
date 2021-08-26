@@ -34,6 +34,7 @@ public class EnemyGoal : MonoBehaviour, IGoap
     public bool moveAgent(IGoapAction nextAction)
     {
         inputEvents.OnMovementKeyPressedCallback(nextAction.Target.transform.position - transform.position);
+        inputEvents.OnPointerPositionChangedCallback(nextAction.Target.transform.position);
         return true;
     }
 

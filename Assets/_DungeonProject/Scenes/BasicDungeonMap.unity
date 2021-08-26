@@ -3586,6 +3586,24 @@ MonoBehaviour:
   <Damage>k__BackingField: 10
   <KnockbackStrength>k__BackingField: 0
   <WaitTimeAfterKnockingback>k__BackingField: 0
+--- !u!114 &86675555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b8642912f4caf489b5de92595b234b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  closeRangeDetectDistance: 2
+  <Target>k__BackingField: {fileID: 0}
+  <Cost>k__BackingField: 0
 --- !u!1 &120792984
 GameObject:
   m_ObjectHideFlags: 0

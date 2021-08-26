@@ -195,9 +195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b01d96c1e734ee449b81dc0849ca24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageDealer: {fileID: 0}
   <Damage>k__BackingField: 10
-  <KnockbackStrength>k__BackingField: 0
-  <WaitTimeAfterKnockingback>k__BackingField: 0
+  <KnockbackStrength>k__BackingField: 10
+  <WaitTimeAfterKnockingback>k__BackingField: 0.2
 --- !u!1 &915675731943970829
 GameObject:
   m_ObjectHideFlags: 0

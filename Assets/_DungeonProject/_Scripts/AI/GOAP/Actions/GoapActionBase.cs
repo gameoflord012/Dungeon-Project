@@ -6,7 +6,6 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
 {
     protected ActorInputEvents inputEvents;
     protected ActorMovement movement;
-    protected Damager damager;
     protected EnemyTaskData data;
     protected FOV fov;
     protected AIPathControl pathControl;
