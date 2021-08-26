@@ -25,11 +25,27 @@ public class FSM {
 			stateStack.Peek().DoUpdate(this, gameObject);
 	}
 
+#if UNITY_EDITOR
+	public string GetCurrentStateName()
+	{
+		if (Peek() == null) return "No State";
+		return Peek().StateName;
+	}
+#endif
+
 	public void pushState(FSMState state) {
+#if UNITY_EDITOR
+		GUI.changed = true;
+#endif
 		stateStack.Push (state);
 	}
 
 	public void popState() {
+
+#if UNITY_EDITOR
+		GUI.changed = true;
+#endif
+
 		stateStack.Pop ();
 	}
 }

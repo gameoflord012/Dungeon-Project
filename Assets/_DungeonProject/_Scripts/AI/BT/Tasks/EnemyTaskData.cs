@@ -5,6 +5,7 @@ using UnityEngine.Events;
 public class EnemyTaskData : MonoBehaviour
 {
     public UnityEvent<GameObject> OnTargetChanged;
+    public Vector3 LastTargetPosition { get; private set; }
 
     [SerializeField] private GameObject target;
     public GameObject Target
@@ -13,7 +14,10 @@ public class EnemyTaskData : MonoBehaviour
         set
         {
             target = value;
-            OnTargetChanged?.Invoke(value);
+
+            if(target != null)
+                LastTargetPosition = target.transform.position;
+            OnTargetChanged?.Invoke(target);
         }
     }
 

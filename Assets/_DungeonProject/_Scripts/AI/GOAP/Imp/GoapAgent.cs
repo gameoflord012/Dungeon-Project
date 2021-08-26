@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Assertions;
+using System.Linq;
 
 public sealed class GoapAgent : MonoBehaviour {
 
+	[SerializeField] GoapMono[] goaps;
+
+	[SerializeField, HideInInspector]
 	private FSM stateMachine;
 
 	private FSMState idleState; // finds something to do
@@ -13,14 +17,14 @@ public sealed class GoapAgent : MonoBehaviour {
 	private FSMState performActionState; // performs an action
 	
 	private HashSet<IGoapAction> availableActions;
-	private Queue<IGoapAction> currentActions;
-	private Queue<IEnumerator<PerformState>> currentEnumerators;
+	private Queue<IEnumerator<PerformState>> currentEnumerators;	
+	private Queue<IGoapAction> currentActions;	
 	private HashSet<IGoapAction> finishedActions;
-
-	private HashSet<KeyValuePair<string, object>> worldState;
+	
+	private HashSet<KeyValuePair<string, object>> worldState;	
 	private HashSet<KeyValuePair<string, object>> goalState;
 
-	private IGoap dataProvider; // this is the implementing class that provides our world data and listens to feedback on planning
+	private IGoap currentGoap; // this is the implementing class that provides our world data and listens to feedback on planning
 
 	private GoapPlanner planner;
 
@@ -28,7 +32,13 @@ public sealed class GoapAgent : MonoBehaviour {
 	public string GetCurrentFSMName()
     {
 		Assert.IsNotNull(stateMachine.Peek());
-		return stateMachine.Peek().StateName;
+		return stateMachine.Peek().StateName;		
+    }
+
+	public string GetCurrentGoapName()
+    {
+		if (currentGoap == null) return "Not available";
+		return currentGoap.GetType().Name;
     }
 
 	public IEnumerable<IGoapAction> GetCurrentActions()
@@ -43,13 +53,19 @@ public sealed class GoapAgent : MonoBehaviour {
 
 	public IEnumerable<KeyValuePair<string, object>> GetWorldStates()
     {
+		if (currentGoap == null)
+			return Enumerable.Empty<KeyValuePair<string, object>>();
+
 		return worldState;
     }
 
 	public IEnumerable<KeyValuePair<string, object>> GetGoalStates()
 	{
+		if (currentGoap == null)
+			return Enumerable.Empty<KeyValuePair<string, object>>();
+
 		return goalState;
-	}
+	}	
 #endif
 
 	void Start () {
@@ -94,23 +110,33 @@ public sealed class GoapAgent : MonoBehaviour {
 
 	private void createIdleState() {
 		idleState = new FSMState((fsm, gameObj) => {
-			worldState = dataProvider.getWorldState();
-			goalState = dataProvider.createGoalState();
+			currentGoap = null;
 
-			Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, worldState, goalState);
-			if (plan != null) {				
-				finishedActions.Clear();
-				currentActions = plan;
-				currentEnumerators = GetIEnumerator(plan, gameObj);
-				dataProvider.planFound(goalState, plan);
+			foreach(IGoap goap in goaps)
+            {
+				worldState = goap.getWorldState();
+				goalState = goap.createGoalState();
 
-				fsm.popState();
-				fsm.pushState(performActionState);
+				Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, worldState, goalState);
+				if (plan != null)
+				{
+					finishedActions.Clear();
+					currentActions = plan;
+					currentEnumerators = GetIEnumerator(plan, gameObj);
+					goap.planFound(goalState, plan);
 
-			} else {
-				Debug.Log("<color=orange>Failed Plan:</color>"+prettyPrint(goalState));
-				dataProvider.planFailed(goalState);
-				fsm.pushState (idleState);
+					fsm.popState();
+					fsm.pushState(performActionState);
+
+					currentGoap = goap;
+					break;
+
+				}
+				else
+				{
+					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(goalState));
+					goap.planFailed(goalState);
+				}
 			}
 		},
 
@@ -138,7 +164,7 @@ public sealed class GoapAgent : MonoBehaviour {
 			//}
 
 			// get the agent to move itself
-			if ( dataProvider.moveAgent(action) ) {
+			if ( currentGoap.moveAgent(action) ) {
 				fsm.popState();
 			}
 			else
@@ -146,7 +172,7 @@ public sealed class GoapAgent : MonoBehaviour {
 				fsm.popState(); // move
 				fsm.popState(); // perform
 				fsm.pushState(idleState);
-				dataProvider.planAborted(action);
+				currentGoap.planAborted(action);
 			}
 
 			/*MovableComponent movable = (MovableComponent) gameObj.GetComponent(typeof(MovableComponent));
@@ -179,7 +205,7 @@ public sealed class GoapAgent : MonoBehaviour {
 				Debug.Log("<color=red>Done actions</color>");
 				fsm.popState();
 				fsm.pushState(idleState);
-				dataProvider.actionsFinished();
+				currentGoap.actionsFinished();
 				return;
 			}
 
@@ -194,7 +220,7 @@ public sealed class GoapAgent : MonoBehaviour {
 						{
 							fsm.popState();
 							fsm.pushState(idleState);
-							dataProvider.planAborted(action);
+							currentGoap.planAborted(action);
 						}						
 					}
 					else
@@ -210,7 +236,7 @@ public sealed class GoapAgent : MonoBehaviour {
 				// no actions left, move to Plan state
 				fsm.popState();
 				fsm.pushState(idleState);
-				dataProvider.actionsFinished();
+				currentGoap.actionsFinished();
 			}
 
 		},
@@ -218,12 +244,12 @@ public sealed class GoapAgent : MonoBehaviour {
 	}
 
 	private void findDataProvider() {
-		foreach (Component comp in gameObject.GetComponents(typeof(Component)) ) {
-			if ( typeof(IGoap).IsAssignableFrom(comp.GetType()) ) {
-				dataProvider = (IGoap)comp;
-				return;
-			}
-		}
+		//foreach (Component comp in gameObject.GetComponents(typeof(Component)) ) {
+		//	if ( typeof(IGoap).IsAssignableFrom(comp.GetType()) ) {
+		//		currentGoap = (IGoap)comp;
+		//		return;
+		//	}
+		//}
 	}
 
 	private void loadActions ()

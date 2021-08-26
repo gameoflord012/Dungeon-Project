@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GoapAgent))]
-public class EnemyGoapStateHandler : GoapMono
+public class AttackTargetGoal : GoapMono
 {
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float closeRangeDetectDistance = 2f;
@@ -31,6 +31,7 @@ public class EnemyGoapStateHandler : GoapMono
     public override HashSet<KeyValuePair<string, object>> createGoalState()
     {
         HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
+        //goal.Add(new KeyValuePair<string, object>("Patrol", true));        
         goal.Add(new KeyValuePair<string, object>("AttackTarget", true));
         return goal;
     }

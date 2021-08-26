@@ -3538,6 +3538,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2296887430564829439, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
   m_PrefabInstance: {fileID: 875369243}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &86675549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4372752210644728787, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+  m_PrefabInstance: {fileID: 875369243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7407145db16786c4f875b8e5ac8852b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &86675552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3566,7 +3577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad7d8c7373fb104a9449228c1c849ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Target>k__BackingField: {fileID: 0}
   <Cost>k__BackingField: 1
   attackRange: 1
   timeBetweenAttacks: 0.5
@@ -3598,9 +3608,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b06035dbe65c4442bd58bb21331793f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Target>k__BackingField: {fileID: 0}
   <Cost>k__BackingField: 0
   runningMovementData: {fileID: 11400000, guid: 0ad5718f59604fd428bdcdf792caab37, type: 2}
+--- !u!114 &86675556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86675547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa2b5c6445984c4a97b2dd1107b4b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 0
+  walkingMovementData: {fileID: 11400000, guid: 4d173cc3d2c26c14cb6b114a0431d156, type: 2}
 --- !u!1 &120792984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3969,6 +3992,14 @@ PrefabInstance:
       propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4196845717454850318, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: goaps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196845717454850318, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: goaps.Array.data[0]
+      value: 
+      objectReference: {fileID: 86675549}
     - target: {fileID: 4372752210644728787, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: targetLayerMask.m_Bits
       value: 128

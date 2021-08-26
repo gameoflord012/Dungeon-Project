@@ -41,7 +41,7 @@ public class GoapPlanner
 
 		if (!success) {
 			// oh no, we didn't get a plan
-			Debug.Log("NO PLAN");
+			//Debug.Log("NO PLAN");
 			return null;
 		}
 

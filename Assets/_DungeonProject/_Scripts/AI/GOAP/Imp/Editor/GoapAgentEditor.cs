@@ -20,12 +20,14 @@ public class GoapAgentEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        Debug.Log("Updating");
 
         GoapAgent goapAgent = (GoapAgent)target;
 
         if(Application.isPlaying)
         {            
             EditorGUILayout.LabelField($"CurrentState:  { goapAgent.GetCurrentFSMName()}", EditorStyles.boldLabel);
+            EditorGUILayout.LabelField($"CurrentGoap:  { goapAgent.GetCurrentGoapName()}", EditorStyles.boldLabel);
 
             EditorGUILayout.Space(5);
             EditorGUILayout.LabelField("CurrentAction:", EditorStyles.boldLabel);
@@ -57,8 +59,6 @@ public class GoapAgentEditor : Editor
                     EditorGUILayout.LabelField(goalState.Key + ": " + goalState.Value);
             }
             EditorGUI.indentLevel--;
-
-            GUI.changed = true;
-        }
+        }        
     }
 }
