@@ -13,10 +13,9 @@ public class EnemyTaskData : MonoBehaviour
         get => target;
         set
         {
-            target = value;
-
-            if(target != null)
-                LastTargetPosition = target.transform.position;
+            if (target != null) LastTargetPosition = target.transform.position;
+            if (target == value) return;
+            target = value;            
             OnTargetChanged?.Invoke(target);
         }
     }

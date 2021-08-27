@@ -36,6 +36,12 @@ public class FSM {
 		GUIUpdate();
 	}
 
+	public void Clear()
+    {
+		stateStack.Clear();
+		GUIUpdate();
+    }
+
 	void GUIUpdate()
     {
 #if UNITY_EDITOR

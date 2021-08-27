@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(GoapAgent))]
+[CustomEditor(typeof(GoapAgent), true)]
 public class GoapAgentEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -15,9 +15,9 @@ public class GoapAgentEditor : Editor
 
         if (Application.isPlaying)
         {            
-            EditorGUILayout.LabelField($"<b>CurrentGoap:</b>  {goapAgent.GetCurrentGoapName()}", richText);
-
+            //EditorGUILayout.LabelField($"<b>CurrentGoap:</b>  {goapAgent.GetCurrentGoapName()}", richText);            
             EditorGUILayout.Space(5);
+            EditorGUILayout.LabelField("<color=blue><b>Goap Planner Status</b></color>", richText);
             EditorGUILayout.LabelField("CurrentAction:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
@@ -34,7 +34,7 @@ public class GoapAgentEditor : Editor
             EditorGUILayout.LabelField("WorldStates:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
-                foreach (var worldState in goapAgent.GetWorldState())
+                foreach (var worldState in goapAgent.GetCurrentWorldState())
                     EditorGUILayout.LabelField(worldState.Key + ": " + worldState.Value);
             }
             EditorGUI.indentLevel--;
@@ -43,7 +43,7 @@ public class GoapAgentEditor : Editor
             EditorGUILayout.LabelField("GoalStates:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
-                foreach (var goalState in goapAgent.GetGoalState())
+                foreach (var goalState in goapAgent.GetCurrentGoalState())
                     EditorGUILayout.LabelField(goalState.Key + ": " + goalState.Value);
             }
             EditorGUI.indentLevel--;

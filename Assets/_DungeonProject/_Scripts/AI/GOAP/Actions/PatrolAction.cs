@@ -11,12 +11,12 @@ public class PatrolAction : GoapActionBase
     [field: SerializeField] public override float Cost { get; set; } = 1;
 
     public override bool checkProceduralPrecondition(GameObject agent)
-    {
-        return currentPathNode != null;
+    {        
+        return currentPathNode != null && data.Target == null;
     }
 
     public override IEnumerator<PerformState> perform(GameObject agent)
-    {        
+    {
         yield return AdvancedPath() ? PerformState.succeed : PerformState.falied;
     }
 
@@ -29,16 +29,16 @@ public class PatrolAction : GoapActionBase
 
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
-        yield return new KeyValuePair<string, object>("Walking", true);
+        yield return new KeyValuePair<string, object>("Walking", true);        
     }
 
     public override IEnumerable<KeyValuePair<string, object>> GetEffects()
     {
         yield return new KeyValuePair<string, object>("Patrol", true);
-    }    
+    }
 
     public override bool isInRange()
-    {
+    {        
         return (currentPathNode.transform.position - transform.position).sqrMagnitude < patrolDestinationOffset * patrolDestinationOffset;
     }
 

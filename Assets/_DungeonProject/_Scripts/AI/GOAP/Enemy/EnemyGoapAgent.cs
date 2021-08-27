@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class EnemyGoapAgent : MonoBehaviour, IGoapAgent, IReceivePlannerCallbacks, IWorldStateProvider
+public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStateProvider
 {
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float closeRangeDetectDistance = 2f;
@@ -18,13 +19,17 @@ public class EnemyGoapAgent : MonoBehaviour, IGoapAgent, IReceivePlannerCallback
         inputEvents = GetComponentInParent<ActorInputEvents>();
         fov = inputEvents.GetComponentInChildren<FOV>();
         data = GetComponentInParent<EnemyTaskData>();
+
+        data.OnTargetChanged.AddListener(x => Replan());
     }
 
-    private void Update()
+    protected override void Update()
     {
-        data.Target = null;
-        foreach (GameObject chaseTarget in FindChaseTargets())
-            data.Target = chaseTarget;
+        base.Update();
+
+        List<GameObject> chaseTargets = FindChaseTargets().ToList();
+        if (chaseTargets.Count == 0) data.Target = null;
+        else if (!chaseTargets.Contains(data.Target)) data.Target = chaseTargets[0];
     }
 
     public IEnumerable<KeyValuePair<string, object>> GetWorldState()
@@ -32,7 +37,7 @@ public class EnemyGoapAgent : MonoBehaviour, IGoapAgent, IReceivePlannerCallback
         yield return new KeyValuePair<string, object>("HasTarget", data.Target != null);
     }
 
-    public bool moveAgent(IGoapAction nextAction)
+    protected override bool moveAgent(IGoapAction nextAction)
     {
         inputEvents.OnMovementKeyPressedCallback(nextAction.GetTargetPosition() - transform.position);
         inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
@@ -55,11 +60,11 @@ public class EnemyGoapAgent : MonoBehaviour, IGoapAgent, IReceivePlannerCallback
     {
         
     }
-
     public void planFound(IGoalStateProvider goalStateProvider, Queue<IGoapAction> actions)
     {
     }
     #endregion
+
 
     #region FindChaseTarget Logic
     private IEnumerable<GameObject> FindChaseTargets()

@@ -5,7 +5,7 @@ using System;
 using UnityEngine.Assertions;
 using System.Linq;
 
-public sealed class GoapAgent : MonoBehaviour {
+public abstract class GoapAgent : MonoBehaviour {
 
 	[SerializeField] private FSM stateMachine;
 
@@ -47,15 +47,6 @@ public sealed class GoapAgent : MonoBehaviour {
 #endif
 		}
 	}
-    public IGoapAgent CurrentGoapAgent { 
-		get => currentGoapAgent; 
-		set { 
-			currentGoapAgent = value;
-#if UNITY_EDITOR
-			GUI.changed = true;
-#endif
-		} 
-	}
     public Queue<IGoapAction> CurrentActions { 
 		get => currentActions;
 		set
@@ -77,11 +68,11 @@ public sealed class GoapAgent : MonoBehaviour {
 	}
 
 #if UNITY_EDITOR
-    public string GetCurrentGoapName()
-    {
-		if (CurrentGoapAgent == null) return "Not available";
-		return CurrentGoapAgent.GetType().Name;
-    }
+  //  public string GetCurrentGoapName()
+  //  {
+		//if (CurrentGoapAgent == null) return "Not available";
+		//return CurrentGoapAgent.GetType().Name;
+  //  }
 	public IEnumerable<IGoapAction> GetCurrentActions()
     {
 		return CurrentActions;
@@ -90,18 +81,18 @@ public sealed class GoapAgent : MonoBehaviour {
     {
 		return FinishedActions;
     }
-	public IEnumerable<KeyValuePair<string, object>> GetWorldState()
+	public IEnumerable<KeyValuePair<string, object>> GetCurrentWorldState()
     {		
 		return Enumerable.Empty<KeyValuePair<string, object>>();
     }
-	public IEnumerable<KeyValuePair<string, object>> GetGoalState()
+	public IEnumerable<KeyValuePair<string, object>> GetCurrentGoalState()
 	{
 		if (hasActionPlan()) return CurrentGoalState;
 		return Enumerable.Empty<KeyValuePair<string, object>>();		
 	}	
 #endif
 
-	void Start () {		
+	protected virtual void Start () {		
 		stateMachine = new FSM ();
 		availableActions = new HashSet<IGoapAction> ();
 		CurrentActions = new Queue<IGoapAction> ();
@@ -114,13 +105,19 @@ public sealed class GoapAgent : MonoBehaviour {
 		stateMachine.pushState (idleState);
 		loadActions ();
 	}
-	
-	void Update () {
+
+	protected virtual void Update () {
 		stateMachine.Update (this.gameObject);
 	}
 
-    #region States
-    private void createIdleState() {
+	public void Replan()
+	{
+		stateMachine.Clear();
+		stateMachine.pushState(idleState);
+	}
+
+	#region States
+	private void createIdleState() {
 		idleState = new FSMState((fsm, gameObj) => {
 
 			WorldState = GetProvidersWorldState();
@@ -156,7 +153,7 @@ public sealed class GoapAgent : MonoBehaviour {
 		moveToState = new FSMState((fsm, gameObj) => {
 
 			IGoapAction action = CurrentActions.Peek();
-			if ( CurrentGoapAgent.moveAgent(action) ) {
+			if ( moveAgent(action) ) {
 				fsm.popState();
 			}
 			else
@@ -225,9 +222,7 @@ public sealed class GoapAgent : MonoBehaviour {
 	private void findDataProvider() {
 		worldStateProviders = GetComponentsInChildren<IWorldStateProvider>();
 		goalStateProviders = GetComponentsInChildren<IGoalStateProvider>();
-		plannerCallbackReceiver = GetComponentsInParent<IReceivePlannerCallbacks>();
-		CurrentGoapAgent = GetComponentInParent<IGoapAgent>();
-		if (CurrentGoapAgent == null) Debug.LogError("Goap required at least one class implemted IGoapAgent");
+		plannerCallbackReceiver = GetComponentsInParent<IReceivePlannerCallbacks>();				
 	}
 	private HashSet<KeyValuePair<string, object>> GetProvidersWorldState()
 	{
@@ -251,8 +246,10 @@ public sealed class GoapAgent : MonoBehaviour {
 		
 	}
 
-    #region Prints
-    public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {
+	protected abstract bool moveAgent(IGoapAction nextAction);
+
+	#region Prints
+	public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {
 		String s = "";
 		foreach (KeyValuePair<string,object> kvp in state) {
 			s += kvp.Key + ":" + kvp.Value.ToString();
