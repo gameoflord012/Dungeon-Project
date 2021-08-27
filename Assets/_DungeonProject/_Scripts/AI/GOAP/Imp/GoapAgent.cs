@@ -177,8 +177,9 @@ public abstract class GoapAgent : MonoBehaviour {
 				IEnumerator<PerformState> enumerator = currentEnumerators.Peek();
 
 				if (action.isInRange()) {
-					if(enumerator.Current == default)
+					if(enumerator.Current == PerformState._default)
                     {
+						Debug.Log(enumerator.Current);
 						Debug.Log($"<color=yellow>Action Start:</color> {prettyPrint(action)}");
 						plannerCallbackReceiver.ForEach(x => x.actionBegin(action));
 					}

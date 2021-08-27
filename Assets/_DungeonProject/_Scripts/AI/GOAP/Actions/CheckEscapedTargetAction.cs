@@ -20,20 +20,28 @@ public class CheckEscapedTargetAction : GoapActionBase
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
         yield return new KeyValuePair<string, object>("EscapedTargetChecked", false);
+        yield return new KeyValuePair<string, object>("Walking", true);
     }    
 
     public override IEnumerator<PerformState> perform(GameObject agent)
     {
+        float time = 0;
+        while (time < 1)
+        {
+            time += Time.deltaTime;
+            yield return PerformState.succeed;
+        }
+
         LookAround(90);
 
-        float time = 0;
+        time = 0;
         while (time < 2)
         {
             time += Time.deltaTime;
             yield return PerformState.succeed;
         }
 
-        LookAround(-180);
+        LookAround(-90);
 
         time = 0;
         while (time < 2)
