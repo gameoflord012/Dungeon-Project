@@ -59,18 +59,21 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
         return true;
     }
 
-    #region Callbacks
-    public void actionsFinished()
-    {
-        throw new System.NotImplementedException();
-    }    
-
-    public void planAborted(IGoapAction aborter)
+    private void StopAgent()
     {
         inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
         inputEvents.OnPointerPositionChangedCallback(transform.position);
     }
 
+    #region Callbacks
+    public void actionFinished(IGoapAction finishedAction)
+    {
+        StopAgent();
+    }    
+    public void planAborted(IGoapAction aborter)
+    {
+        StopAgent();
+    }
     public void planFailed(IGoalStateProvider goalStateProvider)
     {
         

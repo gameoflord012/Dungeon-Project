@@ -6,6 +6,6 @@ public interface IReceivePlannerCallbacks
 {
 	void planFailed(IGoalStateProvider goalStateProvider);
 	void planFound(IGoalStateProvider goalStateProvider, Queue<IGoapAction> actions);
-	void actionsFinished();
-	void planAborted(IGoapAction aborter);	
+	void actionFinished(IGoapAction finishedAction);
+	void planAborted(IGoapAction aborter);
 }

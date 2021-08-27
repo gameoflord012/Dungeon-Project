@@ -12,7 +12,7 @@ public class ActorInputEvents : MonoBehaviour
     [field: SerializeField]
     private UnityEvent OnFireButtonReleased { get; set; }
 
-    private Vector2 lastPointerPosition;
+    public Vector2 LastPointerPosition { get; private set; }
 
     public void OnMovementKeyPressedCallback(Vector2 inputAxis)
     {
@@ -23,7 +23,7 @@ public class ActorInputEvents : MonoBehaviour
     public void OnPointerPositionChangedCallback(Vector2 pointerPosition)
     {
         if (this.enabled == false) return;
-        lastPointerPosition = pointerPosition;
+        LastPointerPosition = pointerPosition;
         OnPointerPositionChanged?.Invoke(pointerPosition);
     }
 
@@ -42,7 +42,7 @@ public class ActorInputEvents : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawSphere(lastPointerPosition, .2f);
+        Gizmos.DrawSphere(LastPointerPosition, .2f);
     }
 
     private void Update()

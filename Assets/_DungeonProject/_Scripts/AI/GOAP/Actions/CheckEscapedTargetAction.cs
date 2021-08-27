@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckEscapedTargetAction : GoapActionBase
 {
     [field: SerializeField] public override float Cost { get; set; } = 0;
-    [SerializeField] float targetEscapedPositionOffset = .2f;
+    [SerializeField] float targetEscapedPositionOffset = .5f;
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {
@@ -20,12 +20,46 @@ public class CheckEscapedTargetAction : GoapActionBase
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
         yield return new KeyValuePair<string, object>("EscapedTargetChecked", false);
-    }
+    }    
 
     public override IEnumerator<PerformState> perform(GameObject agent)
     {
+        LookAround(90);
+
+        float time = 0;
+        while (time < 2)
+        {
+            time += Time.deltaTime;
+            yield return PerformState.succeed;
+        }
+
+        LookAround(-180);
+
+        time = 0;
+        while (time < 2)
+        {
+            time += Time.deltaTime;
+            yield return PerformState.succeed;
+        }
+
         data.EscapedTargetChecked = true;
         yield break;
+    }
+
+    //IEnumerator<PerformState> WaitForSeconds(float seconds)
+    //{
+    //    float time = 0;
+    //    while(time < seconds)
+    //    {
+    //        time += Time.deltaTime;
+    //        yield return PerformState.succeed;
+    //    }
+    //}
+
+    public void LookAround(float angle)
+    {
+        Vector2 pointerDirection = Quaternion.Euler(0, 0, angle) * (data.LastTargetPosition - transform.position);
+        inputEvents.OnPointerPositionChangedCallback((Vector2)transform.position + pointerDirection);
     }
 
     public override bool isInRange()

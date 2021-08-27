@@ -172,13 +172,6 @@ public abstract class GoapAgent : MonoBehaviour {
 
 		performActionState = new FSMState((fsm, gameObj) => {
 
-			if (!hasActionPlan()) {
-				Debug.Log("<color=red>Done actions</color>");
-				fsm.popState();
-				fsm.pushState(idleState);				
-				return;
-			}
-
 			if (hasActionPlan()) {
 				IGoapAction action = CurrentActions.Peek();
 				IEnumerator<PerformState> enumerator = currentEnumerators.Peek();
@@ -196,20 +189,20 @@ public abstract class GoapAgent : MonoBehaviour {
 					}
 					else
                     {
+						plannerCallbackReceiver.ForEach(x => x.actionFinished(action));
 						currentEnumerators.Dequeue();
 						FinishedActions.Add(CurrentActions.Dequeue());
 #if UNITY_EDITOR
 						GUI.changed = true;
 #endif
 					}		
-				} else {
-					fsm.pushState(moveToState);
-				}
+				} else fsm.pushState(moveToState);
 
 			} else {
+				Debug.Log("<color=red>Done actions</color>");
 				fsm.popState();
 				fsm.pushState(idleState);
-				plannerCallbackReceiver.ForEach(x => x.actionsFinished());
+				return;
 			}
 
 		},
