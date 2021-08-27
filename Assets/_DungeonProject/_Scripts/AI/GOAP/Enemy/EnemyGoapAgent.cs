@@ -59,13 +59,11 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
         return true;
     }
 
-    private void StopAgent()
-    {
-        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
-        inputEvents.OnPointerPositionChangedCallback(transform.position);
-    }
-
     #region Callbacks
+    public void actionBegin(IGoapAction beginningAction)
+    {
+        StopAgent();
+    }
     public void actionFinished(IGoapAction finishedAction)
     {
         StopAgent();
@@ -83,6 +81,11 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     }
     #endregion
 
+    private void StopAgent()
+    {
+        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+        inputEvents.OnPointerPositionChangedCallback(transform.position);
+    }
 
     #region FindChaseTarget Logic
     private IEnumerable<GameObject> FindChaseTargets()
@@ -122,6 +125,6 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
             1 << LayerMask.NameToLayer("Obstacle"));
 
         return hit.collider != null;
-    }
+    }    
     #endregion
 }
