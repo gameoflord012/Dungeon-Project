@@ -5,24 +5,20 @@ using UnityEngine.Events;
 public class EnemyTaskData : MonoBehaviour
 {
     public UnityEvent<GameObject> OnTargetChanged;
-    public Vector3 LastTargetPosition { get; private set; }
 
+    [field: SerializeField] public Vector3 LastTargetPosition { get; set; }
+    [SerializeField] public bool EscapedTargetChecked = true;
     [SerializeField] private GameObject target;
+
     public GameObject Target
     {
         get => target;
         set
         {
-            if (target != null) LastTargetPosition = target.transform.position;
             if (target == value) return;
             target = value;            
             OnTargetChanged?.Invoke(target);
         }
-    }
-
-    private void Awake()
-    {
-        target = FindObjectOfType<PlayerInputHandler>().gameObject;
     }
 
     private void Start()

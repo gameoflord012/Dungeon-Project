@@ -129,6 +129,8 @@ public abstract class GoapAgent : MonoBehaviour {
 				Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, WorldState, CurrentGoalState);
 				if (plan != null)
 				{
+					Debug.Log("<color=green>Plan Found:</color>" + goalStateProvider.GetType().Name);
+
 					FinishedActions = new HashSet<IGoapAction>();
 					CurrentActions = plan;
 					currentEnumerators = GetIEnumerator(plan, gameObj);
@@ -141,7 +143,7 @@ public abstract class GoapAgent : MonoBehaviour {
 				}
 				else
 				{
-					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(CurrentGoalState));
+					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(CurrentGoalState));					
 					plannerCallbackReceiver.ForEach(x => x.planFailed(goalStateProvider));
 				}
 			}

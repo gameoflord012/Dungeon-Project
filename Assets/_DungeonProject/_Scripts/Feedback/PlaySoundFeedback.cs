@@ -9,7 +9,12 @@ public class PlaySoundFeedback : Feedback
     [Header("If AudioSource is not specified")]
     [Space(10)]
     [SerializeField] float volume = 1f;
+
+# pragma warning disable 0414
+
     [SerializeField, Range(0, 1)] float spatialBlend = 0;
+
+#pragma warning restore 0414
 
     private void Awake()
     {

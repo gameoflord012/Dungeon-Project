@@ -95,7 +95,7 @@ public class GoapPlanner
 				// apply the action's effects to the parent state
 				HashSet<KeyValuePair<string,object>> currentState = populateState (parent.state, new HashSet<KeyValuePair<string, object>>(action.GetEffects()));
 				//Debug.Log(GoapAgent.prettyPrint(currentState));
-				Node node = new Node(parent, parent.runningCost+action.Cost, currentState, action);
+				Node node = new Node(parent, parent.runningCost + action.Cost, currentState, action);
 
 				if (inState(goal, currentState)) {
 					// we found a solution!

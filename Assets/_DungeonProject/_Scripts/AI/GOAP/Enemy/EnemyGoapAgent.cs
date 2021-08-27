@@ -28,13 +28,28 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
         base.Update();
 
         List<GameObject> chaseTargets = FindChaseTargets().ToList();
-        if (chaseTargets.Count == 0) data.Target = null;
+        if (chaseTargets.Count == 0)
+        {
+            if (data.Target != null)
+            {
+                data.EscapedTargetChecked = false;
+                data.LastTargetPosition = data.Target.transform.position;
+                data.Target = null;
+            }
+        }
         else if (!chaseTargets.Contains(data.Target)) data.Target = chaseTargets[0];
+    }
+
+    public void OnAgentBeingAttacked(Damager damager)
+    {
+        data.EscapedTargetChecked = false;
+        data.LastTargetPosition = damager.damageDealer.transform.position;
     }
 
     public IEnumerable<KeyValuePair<string, object>> GetWorldState()
     {
         yield return new KeyValuePair<string, object>("HasTarget", data.Target != null);
+        yield return new KeyValuePair<string, object>("EscapedTargetChecked", data.EscapedTargetChecked);
     }
 
     protected override bool moveAgent(IGoapAction nextAction)

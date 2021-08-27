@@ -12,7 +12,7 @@ public class PatrolAction : GoapActionBase
 
     public override bool checkProceduralPrecondition(GameObject agent)
     {        
-        return currentPathNode != null && data.Target == null;
+        return currentPathNode != null && data.Target == null && data.EscapedTargetChecked;
     }
 
     public override IEnumerator<PerformState> perform(GameObject agent)
