@@ -8,24 +8,25 @@ using System.Linq;
 public sealed class GoapAgent : MonoBehaviour {
 
 	[SerializeField] GoapMono[] goaps;
+	[SerializeField] private FSM stateMachine;
 
-	[SerializeField]
-	private FSM stateMachine;
-
-	private FSMState idleState; // finds something to do
-	private FSMState moveToState; // moves to a target
-	private FSMState performActionState; // performs an action
-	
+	private IWorldStateProvider[] worldStateProviders;
+	private IGoalStateProvider[] goalStateProviders;
+	private IReceivePlannerCallbacks[] plannerCallbackReceiver;
 	private GoapPlanner planner;
 
+	private FSMState idleState;
+	private FSMState moveToState;
+	private FSMState performActionState;
+	
 	private HashSet<IGoapAction> availableActions;
 	private Queue<IEnumerator<PerformState>> currentEnumerators;
 	private Queue<IGoapAction> currentActions;	
 	private HashSet<IGoapAction> finishedActions;
 	
 	private HashSet<KeyValuePair<string, object>> worldState;
-	private HashSet<KeyValuePair<string, object>> goalState;
-	private IGoap currentGoap; // this is the implementing class that provides our world data and listens to feedback on planning
+	private HashSet<KeyValuePair<string, object>> currentGoalState;
+	private IGoapAgent currentGoapAgent;
 
     public HashSet<KeyValuePair<string, object>> WorldState { 
 		get => worldState;
@@ -37,20 +38,20 @@ public sealed class GoapAgent : MonoBehaviour {
 #endif
 		}
 	}
-    public HashSet<KeyValuePair<string, object>> GoalState { 
-		get => goalState;
+    public HashSet<KeyValuePair<string, object>> CurrentGoalState { 
+		get => currentGoalState;
 		set
 		{
-			goalState = value;
+			currentGoalState = value;
 #if UNITY_EDITOR
 			GUI.changed = true;
 #endif
 		}
 	}
-    public IGoap CurrentGoap { 
-		get => currentGoap; 
+    public IGoapAgent CurrentGoapAgent { 
+		get => currentGoapAgent; 
 		set { 
-			currentGoap = value;
+			currentGoapAgent = value;
 #if UNITY_EDITOR
 			GUI.changed = true;
 #endif
@@ -79,34 +80,25 @@ public sealed class GoapAgent : MonoBehaviour {
 #if UNITY_EDITOR
     public string GetCurrentGoapName()
     {
-		if (CurrentGoap == null) return "Not available";
-		return CurrentGoap.GetType().Name;
+		if (CurrentGoapAgent == null) return "Not available";
+		return CurrentGoapAgent.GetType().Name;
     }
-
 	public IEnumerable<IGoapAction> GetCurrentActions()
     {
 		return CurrentActions;
     }
-
 	public IEnumerable<IGoapAction> GetFinisedAction()
     {
 		return FinishedActions;
     }
-
-	public IEnumerable<KeyValuePair<string, object>> GetWorldStates()
-    {
-		if (CurrentGoap == null)
-			return Enumerable.Empty<KeyValuePair<string, object>>();
-
-		return WorldState;
+	public IEnumerable<KeyValuePair<string, object>> GetWorldState()
+    {		
+		return Enumerable.Empty<KeyValuePair<string, object>>();
     }
-
-	public IEnumerable<KeyValuePair<string, object>> GetGoalStates()
+	public IEnumerable<KeyValuePair<string, object>> GetGoalState()
 	{
-		if (CurrentGoap == null)
-			return Enumerable.Empty<KeyValuePair<string, object>>();
-
-		return GoalState;
+		if (hasActionPlan()) return CurrentGoalState;
+		return Enumerable.Empty<KeyValuePair<string, object>>();		
 	}	
 #endif
 
@@ -124,89 +116,47 @@ public sealed class GoapAgent : MonoBehaviour {
 		loadActions ();
 	}
 	
-
 	void Update () {
 		stateMachine.Update (this.gameObject);
 	}
 
-
-	public void addAction(IGoapAction a) {
-		availableActions.Add (a);
-	}
-
-	public IGoapAction getAction(Type action) {
-		foreach (IGoapAction g in availableActions) {
-			if (g.GetType().Equals(action) )
-			    return g;
-		}
-		return null;
-	}
-
-	public void removeAction(IGoapAction action) {
-		availableActions.Remove (action);
-	}
-
-	private bool hasActionPlan() {
-		return CurrentActions.Count > 0;
-	}
-
 	private void createIdleState() {
 		idleState = new FSMState((fsm, gameObj) => {
-			CurrentGoap = null;
 
-			foreach(IGoap goap in goaps)
+			WorldState = GetProvidersWorldState();
+
+			foreach (IGoalStateProvider goalStateProvider in goalStateProviders)
             {
-				WorldState = goap.getWorldState();
-				GoalState = goap.createGoalState();
+                CurrentGoalState = new HashSet<KeyValuePair<string, object>>(goalStateProvider.GetGoalState());
 
-				Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, WorldState, GoalState);
+				Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, WorldState, CurrentGoalState);
 				if (plan != null)
 				{
 					FinishedActions = new HashSet<IGoapAction>();
 					CurrentActions = plan;
 					currentEnumerators = GetIEnumerator(plan, gameObj);
-					goap.planFound(GoalState, plan);
+					plannerCallbackReceiver.ForEach(x => x.planFound(goalStateProvider, plan));
 
 					fsm.popState();
 					fsm.pushState(performActionState);
-
-					CurrentGoap = goap;
 					break;
 
 				}
 				else
 				{
-					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(GoalState));
-					goap.planFailed(GoalState);
+					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(CurrentGoalState));
+					plannerCallbackReceiver.ForEach(x => x.planFailed(goalStateProvider));
 				}
 			}
 		},
 
 		"IdleState");
 	}
-
-    private Queue<IEnumerator<PerformState>> GetIEnumerator(Queue<IGoapAction> actions, GameObject gameObj)
-    {
-		Queue<IEnumerator<PerformState>> result = new Queue<IEnumerator<PerformState>>();
-		foreach (IGoapAction action in actions) result.Enqueue(action.perform(gameObj));
-		return result;
-    }
-
     private void createMoveToState() {
 		moveToState = new FSMState((fsm, gameObj) => {
-			// move the game object
 
 			IGoapAction action = CurrentActions.Peek();
-			//if (action.requiresInRange() && action.Target == null) {
-			//	Debug.Log("<color=red>Fatal error:</color> Action requires a target but has none. Planning failed. You did not assign the target in your Action.checkProceduralPrecondition()");
-			//	fsm.popState(); // move
-			//	fsm.popState(); // perform
-			//	fsm.pushState(idleState);
-			//	return;
-			//}
-
-			// get the agent to move itself
-			if ( CurrentGoap.moveAgent(action) ) {
+			if ( CurrentGoapAgent.moveAgent(action) ) {
 				fsm.popState();
 			}
 			else
@@ -214,40 +164,19 @@ public sealed class GoapAgent : MonoBehaviour {
 				fsm.popState(); // move
 				fsm.popState(); // perform
 				fsm.pushState(idleState);
-				CurrentGoap.planAborted(action);
+				plannerCallbackReceiver.ForEach(x => x.planAborted(action));
 			}
-
-			/*MovableComponent movable = (MovableComponent) gameObj.GetComponent(typeof(MovableComponent));
-			if (movable == null) {
-				Debug.Log("<color=red>Fatal error:</color> Trying to move an Agent that doesn't have a MovableComponent. Please give it one.");
-				fsm.popState(); // move
-				fsm.popState(); // perform
-				fsm.pushState(idleState);
-				return;
-			}
-
-			float step = movable.moveSpeed * Time.deltaTime;
-			gameObj.transform.position = Vector3.MoveTowards(gameObj.transform.position, action.target.transform.position, step);
-
-			if (gameObj.transform.position.Equals(action.target.transform.position) ) {
-				// we are at the target location, we are done
-				action.setInRange(true);
-				fsm.popState();
-			}*/
 		},
 		"MoveToState");
 	}
-	
 	private void createPerformActionState() {
 
 		performActionState = new FSMState((fsm, gameObj) => {
-			// perform the action
+
 			if (!hasActionPlan()) {
-				// no actions to perform
 				Debug.Log("<color=red>Done actions</color>");
 				fsm.popState();
-				fsm.pushState(idleState);
-				CurrentGoap.actionsFinished();
+				fsm.pushState(idleState);				
 				return;
 			}
 
@@ -262,7 +191,8 @@ public sealed class GoapAgent : MonoBehaviour {
 						{
 							fsm.popState();
 							fsm.pushState(idleState);
-							CurrentGoap.planAborted(action);
+							//CurrentGoap.planAborted(action);
+							plannerCallbackReceiver.ForEach(x => x.planAborted(action));
 						}						
 					}
 					else
@@ -278,35 +208,50 @@ public sealed class GoapAgent : MonoBehaviour {
 				}
 
 			} else {
-				// no actions left, move to Plan state
 				fsm.popState();
 				fsm.pushState(idleState);
-				CurrentGoap.actionsFinished();
+				plannerCallbackReceiver.ForEach(x => x.actionsFinished());
 			}
 
 		},
 		"PerformState");
 	}
 
-	private void findDataProvider() {
-		//foreach (Component comp in gameObject.GetComponents(typeof(Component)) ) {
-		//	if ( typeof(IGoap).IsAssignableFrom(comp.GetType()) ) {
-		//		currentGoap = (IGoap)comp;
-		//		return;
-		//	}
-		//}
+	private bool hasActionPlan()
+	{
+		return CurrentActions.Count > 0;
 	}
+	private void findDataProvider() {
+		worldStateProviders = GetComponentsInChildren<IWorldStateProvider>();
+		goalStateProviders = GetComponentsInChildren<IGoalStateProvider>();
+		plannerCallbackReceiver = GetComponentsInParent<IReceivePlannerCallbacks>();
+		CurrentGoapAgent = GetComponentInParent<IGoapAgent>();
 
+	}
+	private HashSet<KeyValuePair<string, object>> GetProvidersWorldState()
+	{
+		HashSet<KeyValuePair<string, object>> result = new HashSet<KeyValuePair<string, object>>();
+
+		foreach (IWorldStateProvider worldStateProvider in worldStateProviders)
+			result.UnionWith(worldStateProvider.GetWorldState());
+
+		return result;
+	}
+	private Queue<IEnumerator<PerformState>> GetIEnumerator(Queue<IGoapAction> actions, GameObject gameObj)
+	{
+		Queue<IEnumerator<PerformState>> result = new Queue<IEnumerator<PerformState>>();
+		foreach (IGoapAction action in actions) result.Enqueue(action.perform(gameObj));
+		return result;
+	}
 	private void loadActions ()
 	{
 		IGoapAction[] actions = gameObject.GetComponents<IGoapAction>();
-		foreach (IGoapAction a in actions) {
-			availableActions.Add (a);
-		}
-		//Debug.Log("Found actions: "+prettyPrint(actions));
+		foreach (IGoapAction a in actions) availableActions.Add(a);
+		
 	}
 
-	public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {
+    #region Prints
+    public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {
 		String s = "";
 		foreach (KeyValuePair<string,object> kvp in state) {
 			s += kvp.Key + ":" + kvp.Value.ToString();
@@ -314,7 +259,6 @@ public sealed class GoapAgent : MonoBehaviour {
 		}
 		return s;
 	}
-
 	public static string prettyPrint(Queue<IGoapAction> actions) {
 		String s = "";
 		foreach (IGoapAction a in actions) {
@@ -324,7 +268,6 @@ public sealed class GoapAgent : MonoBehaviour {
 		s += "GOAL";
 		return s;
 	}
-
 	public static string prettyPrint(IGoapAction[] actions) {
 		String s = "";
 		foreach (IGoapAction a in actions) {
@@ -333,9 +276,9 @@ public sealed class GoapAgent : MonoBehaviour {
 		}
 		return s;
 	}
-
 	public static string prettyPrint(IGoapAction action) {
 		String s = ""+action.GetType().Name;
 		return s;
 	}
+    #endregion
 }

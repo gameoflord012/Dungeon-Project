@@ -15,7 +15,6 @@ public class GoapAgentEditor : Editor
 
         if (Application.isPlaying)
         {            
-            //EditorGUILayout.LabelField($"CurrentState:  { goapAgent.GetCurrentFSMName()}", EditorStyles.boldLabel);
             EditorGUILayout.LabelField($"<b>CurrentGoap:</b>  {goapAgent.GetCurrentGoapName()}", richText);
 
             EditorGUILayout.Space(5);
@@ -35,7 +34,7 @@ public class GoapAgentEditor : Editor
             EditorGUILayout.LabelField("WorldStates:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
-                foreach (var worldState in goapAgent.GetWorldStates())
+                foreach (var worldState in goapAgent.GetWorldState())
                     EditorGUILayout.LabelField(worldState.Key + ": " + worldState.Value);
             }
             EditorGUI.indentLevel--;
@@ -44,7 +43,7 @@ public class GoapAgentEditor : Editor
             EditorGUILayout.LabelField("GoalStates:", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
             {
-                foreach (var goalState in goapAgent.GetGoalStates())
+                foreach (var goalState in goapAgent.GetGoalState())
                     EditorGUILayout.LabelField(goalState.Key + ": " + goalState.Value);
             }
             EditorGUI.indentLevel--;

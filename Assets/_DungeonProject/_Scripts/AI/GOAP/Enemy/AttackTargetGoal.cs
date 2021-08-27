@@ -28,19 +28,15 @@ public class AttackTargetGoal : GoapMono
             data.Target = chaseTarget;
     }
 
-    public override HashSet<KeyValuePair<string, object>> createGoalState()
+    public override IEnumerable<KeyValuePair<string, object>> GetGoalState()
     {
-        HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
-        //goal.Add(new KeyValuePair<string, object>("Patrol", true));        
-        goal.Add(new KeyValuePair<string, object>("AttackTarget", true));
-        return goal;
+        //yield return new KeyValuePair<string, object>("Patrol", true);
+        yield return new KeyValuePair<string, object>("AttackTarget", true);
     }
 
-    public override HashSet<KeyValuePair<string, object>> getWorldState()
+    public override IEnumerable<KeyValuePair<string, object>> GetWorldState()
     {
-        HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
-        goal.Add(new KeyValuePair<string, object>("HasTarget", data.Target != null));
-        return goal;
+        yield return new KeyValuePair<string, object>("HasTarget", data.Target != null);
     }
 
     public override bool moveAgent(IGoapAction nextAction)
@@ -56,6 +52,7 @@ public class AttackTargetGoal : GoapMono
         inputEvents.OnPointerPositionChangedCallback(transform.position);
     }
 
+    #region FindChaseTarget Logic
     private IEnumerable<GameObject> FindChaseTargets()
     {
         // Close range check
@@ -80,12 +77,10 @@ public class AttackTargetGoal : GoapMono
             }
         }
     }
-
     private GameObject GetTarget(GameObject go)
     {
         return go.GetComponentInParent<ActorMovement>().gameObject;
     }
-
     private bool ObscuredByObstacle(Vector2 targetPosition)
     {
         RaycastHit2D hit = Physics2D.Raycast(
@@ -96,4 +91,5 @@ public class AttackTargetGoal : GoapMono
 
         return hit.collider != null;
     }
+    #endregion
 }
