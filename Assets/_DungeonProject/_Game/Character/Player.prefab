@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 1
   particlePrefab: {fileID: 3729015431615333968, guid: f0a686f50f4146e48bef55a90d9b2d86, type: 3}
+  destroyAfterPlaying: 1
 --- !u!1 &3467104085159373899
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetWhenDestroyed: 1
   particlePrefab: {fileID: 2750178324825384596, guid: 27908c1275a06b44496726b1d8929bde, type: 3}
+  destroyAfterPlaying: 1
 --- !u!114 &2780840257909129909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +586,10 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 8d73e9d190b7e524e98edd615db5b07d, type: 3}
+    - target: {fileID: 4122378092661557378, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7096140450645632210, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: maxHealth
       value: 50

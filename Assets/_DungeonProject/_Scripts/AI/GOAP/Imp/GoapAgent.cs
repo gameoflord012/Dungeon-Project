@@ -7,7 +7,6 @@ using System.Linq;
 
 public sealed class GoapAgent : MonoBehaviour {
 
-	[SerializeField] GoapMono[] goaps;
 	[SerializeField] private FSM stateMachine;
 
 	private IWorldStateProvider[] worldStateProviders;
@@ -120,7 +119,8 @@ public sealed class GoapAgent : MonoBehaviour {
 		stateMachine.Update (this.gameObject);
 	}
 
-	private void createIdleState() {
+    #region States
+    private void createIdleState() {
 		idleState = new FSMState((fsm, gameObj) => {
 
 			WorldState = GetProvidersWorldState();
@@ -216,8 +216,9 @@ public sealed class GoapAgent : MonoBehaviour {
 		},
 		"PerformState");
 	}
+    #endregion
 
-	private bool hasActionPlan()
+    private bool hasActionPlan()
 	{
 		return CurrentActions.Count > 0;
 	}
@@ -226,7 +227,7 @@ public sealed class GoapAgent : MonoBehaviour {
 		goalStateProviders = GetComponentsInChildren<IGoalStateProvider>();
 		plannerCallbackReceiver = GetComponentsInParent<IReceivePlannerCallbacks>();
 		CurrentGoapAgent = GetComponentInParent<IGoapAgent>();
-
+		if (CurrentGoapAgent == null) Debug.LogError("Goap required at least one class implemted IGoapAgent");
 	}
 	private HashSet<KeyValuePair<string, object>> GetProvidersWorldState()
 	{
@@ -245,7 +246,7 @@ public sealed class GoapAgent : MonoBehaviour {
 	}
 	private void loadActions ()
 	{
-		IGoapAction[] actions = gameObject.GetComponents<IGoapAction>();
+		IGoapAction[] actions = GetComponentsInChildren<IGoapAction>();
 		foreach (IGoapAction a in actions) availableActions.Add(a);
 		
 	}
