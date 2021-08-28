@@ -73,7 +73,7 @@ public class CheckEscapedTargetAction : GoapActionBase
 
     public override bool isInRange()
     {
-        return (data.LastTargetPosition - transform.position).LengthSmalllerThan(data.DistanceOffset);
+        return (data.LastTargetPosition - transform.position).LengthSmalllerThan(data.DestinationOffset);
     }
 
     public override Vector3 GetTargetPosition()

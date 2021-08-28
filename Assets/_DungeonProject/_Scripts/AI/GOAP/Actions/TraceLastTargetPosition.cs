@@ -23,7 +23,7 @@ public class TraceLastTargetPosition : GoapActionBase
 
     public override bool isInRange()
     {
-        return (transform.position - data.LastTargetPosition).LengthSmalllerThan(data.DistanceOffset);
+        return (transform.position - data.LastTargetPosition).LengthSmalllerThan(data.DestinationOffset);
     }
 
     public override Vector3 GetTargetPosition()

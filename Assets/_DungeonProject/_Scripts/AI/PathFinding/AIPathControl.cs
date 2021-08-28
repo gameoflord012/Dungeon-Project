@@ -21,7 +21,7 @@ public class AIPathControl : MonoBehaviour
 
     private void Awake()
     {
-        seeker = GetComponent<Seeker>();
+        seeker = GetComponent<Seeker>();        
     }
 
     public void SetDestination(Vector2 destination, float destinationOffset = .2f)
@@ -63,6 +63,11 @@ public class AIPathControl : MonoBehaviour
             currentVectorPathIndex++;
             OnWaypointUpdate?.Invoke(GetCurrentWaypoint());
         }
+    }
+
+    public Vector2 GetCurrentDestination()
+    {
+        return path.vectorPath[path.vectorPath.Count - 1];
     }
 
     public Vector2 GetCurrentWaypoint()

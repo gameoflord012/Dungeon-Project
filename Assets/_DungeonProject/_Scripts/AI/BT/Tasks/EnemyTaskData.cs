@@ -9,7 +9,7 @@ public class EnemyTaskData : MonoBehaviour
     [field: SerializeField] public Vector3 LastTargetPosition { get; set; }
     [SerializeField] public bool EscapedTargetChecked = true;
     [SerializeField] private GameObject target;
-    [field: SerializeField] public float DistanceOffset { get; private set; } = .2f;
+    [field: SerializeField] public float DestinationOffset { get; private set; } = .2f;
 
     public GameObject Target
     {

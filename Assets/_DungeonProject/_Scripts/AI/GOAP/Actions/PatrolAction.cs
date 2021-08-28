@@ -9,6 +9,13 @@ public class PatrolAction : GoapActionBase
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        if (currentPathNode == null)
+            currentPathNode = FindObjectOfType<PathNode>();
+    }
+
     public override bool checkProceduralPrecondition(GoapAgent agent)
     {        
         return currentPathNode != null && data.Target == null && data.EscapedTargetChecked;
@@ -38,7 +45,7 @@ public class PatrolAction : GoapActionBase
 
     public override bool isInRange()
     {
-        return (currentPathNode.transform.position - transform.position).LengthSmalllerThan(data.DistanceOffset);
+        return (currentPathNode.transform.position - transform.position).LengthSmalllerThan(data.DestinationOffset);
     }
 
     public override Vector3 GetTargetPosition()

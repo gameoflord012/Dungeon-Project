@@ -54,9 +54,14 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
     protected override bool moveAgent(IGoapAction nextAction)
     {
-        Debug.Log(nextAction.GetType().Name + "<color=red>Is moving</color>");
-        inputEvents.OnMovementKeyPressedCallback(nextAction.GetTargetPosition() - transform.position);
-        inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
+        //Debug.Log(nextAction.GetType().Name + "<color=red>Is moving</color>");
+
+        if (pathControl.IsSearchingForPath ||
+            (pathControl.GetCurrentDestination() - (Vector2)nextAction.GetTargetPosition()).LengthSmalllerThan(data.DestinationOffset))
+            return true;
+
+        pathControl.SetDestination(nextAction.GetTargetPosition(), data.DestinationOffset);
+
         return true;
     }
 
