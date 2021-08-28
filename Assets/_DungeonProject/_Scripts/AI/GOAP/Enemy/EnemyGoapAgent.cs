@@ -59,17 +59,15 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
     protected override bool moveAgent(IGoapAction nextAction)
     {
-        //Debug.Log(nextAction.GetType().Name + "<color=red>Is moving</color>");
-
         inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
 
         if (pathControl.HasPath() && 
                 (pathControl.IsSearchingForPath ||
                 (pathControl.GetCurrentDestination() - (Vector2)nextAction.GetTargetPosition()).LengthSmalllerThan(data.DestinationOffset)))
             return true;
-
+#if DEBUG_GOAP
         Debug.Log("<color=blue>Refind path</color>");
-
+#endif
         if(timeSinceLastProcessPath > timeBetweenProcessPath)
         {            
             pathControl.SetDestination(nextAction.GetTargetPosition(), data.DestinationOffset);
@@ -79,18 +77,22 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
         return true;
     }
 
-    #region Callbacks
+#region Callbacks
     public void actionBegin(IGoapAction beginningAction)
     {
     }
     public void actionFinished(IGoapAction finishedAction)
     {
+#if DEBUG_GOAP
         Debug.Log($"<color=green>Action finished</color> {finishedAction.GetType().Name}");
+#endif
         StopAgent();
     }    
     public void planAborted(IGoapAction aborter)
     {
+#if DEBUG_GOAP
         Debug.Log("<color=red>Plan Aborted</color>");
+#endif
         StopAgent();
     }
     public void planFailed(IGoalStateProvider goalStateProvider)
@@ -100,14 +102,14 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     public void planFound(IGoalStateProvider goalStateProvider, Queue<IGoapAction> actions)
     {
     }
-    #endregion
+#endregion
 
     public void StopAgent()
     {
         pathControl.StopMoving();
     }
 
-    #region FindChaseTarget Logic
+#region FindChaseTarget Logic
     private IEnumerable<GameObject> FindChaseTargets()
     {
         // Close range check
@@ -146,7 +148,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
         return hit.collider != null;
     }
-    #endregion
+#endregion
 
     private void OnDrawGizmos()
     {

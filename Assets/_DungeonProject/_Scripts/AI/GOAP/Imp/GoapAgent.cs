@@ -92,7 +92,7 @@ public abstract class GoapAgent : MonoBehaviour {
 	}	
 #endif
 
-	protected virtual void Start () {		
+	protected virtual void Start () {
 		stateMachine = new FSM ();
 		availableActions = new HashSet<IGoapAction> ();
 		CurrentActions = new Queue<IGoapAction> ();
@@ -112,8 +112,9 @@ public abstract class GoapAgent : MonoBehaviour {
 
 	public void Replan()
 	{
+#if DEBUG_GOAP
 		Debug.Log("<color=red>Replan!</color>");
-
+#endif
 		if(hasActionPlan())
 			plannerCallbackReceiver.ForEach(x => x.planAborted(CurrentActions.Peek()));
 
@@ -134,8 +135,9 @@ public abstract class GoapAgent : MonoBehaviour {
 				Queue<IGoapAction> plan = planner.plan(this, availableActions, WorldState, CurrentGoalState);
 				if (plan != null)
 				{
+#if DEBUG_GOAP
 					Debug.Log("<color=green>Plan Found:</color>" + goalStateProvider.GetType().Name);
-
+#endif
 					FinishedActions = new HashSet<IGoapAction>();
 					CurrentActions = plan;
 					currentEnumerators = GetIEnumerator(plan, gameObj);
@@ -184,7 +186,9 @@ public abstract class GoapAgent : MonoBehaviour {
 				if (action.isInRange()) {
 					if(enumerator.Current == PerformState._default)
                     {
+#if DEBUG_GOAP
 						Debug.Log($"<color=yellow>Action Start:</color> {prettyPrint(action)}");
+#endif
 						plannerCallbackReceiver.ForEach(x => x.actionBegin(action));
 					}
 
@@ -210,7 +214,9 @@ public abstract class GoapAgent : MonoBehaviour {
 				} else fsm.pushState(moveToState);
 
 			} else {
+#if DEBUG_GOAP
 				Debug.Log("<color=red>Done actions</color>");
+#endif
 				fsm.popState();
 				fsm.pushState(idleState);
 				return;
@@ -219,7 +225,7 @@ public abstract class GoapAgent : MonoBehaviour {
 		},
 		"PerformState");
 	}
-    #endregion
+#endregion
 
     private bool hasActionPlan()
 	{
@@ -254,7 +260,7 @@ public abstract class GoapAgent : MonoBehaviour {
 
 	protected abstract bool moveAgent(IGoapAction nextAction);
 
-	#region Prints
+#region Prints
 	public static string prettyPrint(HashSet<KeyValuePair<string,object>> state) {
 		String s = "";
 		foreach (KeyValuePair<string,object> kvp in state) {
@@ -284,5 +290,5 @@ public abstract class GoapAgent : MonoBehaviour {
 		String s = ""+action.GetType().Name;
 		return s;
 	}
-    #endregion
+#endregion
 }
