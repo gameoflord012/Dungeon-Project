@@ -17,7 +17,7 @@ public class AIPathControl : MonoBehaviour
     public UnityEvent<Vector2> OnPathFindingDirectionUpdate;
     public UnityEvent<Vector2> OnWaypointUpdate;
 
-    public bool IsSearchingForPath { get => path == null || !seeker.IsDone(); }
+    public bool IsSearchingForPath { get => !seeker.IsDone(); }
 
     private void Awake()
     {
@@ -63,6 +63,18 @@ public class AIPathControl : MonoBehaviour
             currentVectorPathIndex++;
             OnWaypointUpdate?.Invoke(GetCurrentWaypoint());
         }
+    }
+
+    public void StopMoving()
+    {
+        seeker.CancelCurrentPathRequest();
+        OnPathFindingDirectionUpdate?.Invoke(Vector2.zero);
+        path = null;
+    }
+
+    public bool HasPath()
+    {
+        return path != null;
     }
 
     public Vector2 GetCurrentDestination()

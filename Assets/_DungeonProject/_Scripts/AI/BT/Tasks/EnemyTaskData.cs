@@ -24,8 +24,7 @@ public class EnemyTaskData : MonoBehaviour
 
     private void Start()
     {
-        if (target != null)
-            OnTargetChanged?.Invoke(Target);
+        if (target != null) Target = target;
     }
 
     public Vector2 GetTargetPosition()

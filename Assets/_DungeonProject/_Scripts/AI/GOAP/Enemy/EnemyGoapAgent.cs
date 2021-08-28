@@ -7,11 +7,14 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 {
     [SerializeField] LayerMask targetLayerMask;
     [SerializeField] float closeRangeDetectDistance = 2f;
+    [SerializeField] float timeBetweenProcessPath = .1f;
 
     protected ActorInputEvents inputEvents;
     protected AIPathControl pathControl;
     protected EnemyTaskData data;
     protected FOV fov;
+
+    private float timeSinceLastProcessPath = Mathf.Infinity;
 
     private void Awake()
     {
@@ -38,6 +41,8 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
             }
         }
         else if (!chaseTargets.Contains(data.Target)) data.Target = chaseTargets[0];
+
+        timeSinceLastProcessPath += Time.deltaTime;
     }
 
     public void OnAgentBeingAttacked(Damager damager)
@@ -56,11 +61,20 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     {
         //Debug.Log(nextAction.GetType().Name + "<color=red>Is moving</color>");
 
-        if (pathControl.IsSearchingForPath ||
-            (pathControl.GetCurrentDestination() - (Vector2)nextAction.GetTargetPosition()).LengthSmalllerThan(data.DestinationOffset))
+        inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
+
+        if (pathControl.HasPath() && 
+                (pathControl.IsSearchingForPath ||
+                (pathControl.GetCurrentDestination() - (Vector2)nextAction.GetTargetPosition()).LengthSmalllerThan(data.DestinationOffset)))
             return true;
 
-        pathControl.SetDestination(nextAction.GetTargetPosition(), data.DestinationOffset);
+        Debug.Log("<color=blue>Refind path</color>");
+
+        if(timeSinceLastProcessPath > timeBetweenProcessPath)
+        {            
+            pathControl.SetDestination(nextAction.GetTargetPosition(), data.DestinationOffset);
+            timeSinceLastProcessPath = 0;
+        }
 
         return true;
     }
@@ -71,9 +85,12 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     }
     public void actionFinished(IGoapAction finishedAction)
     {
+        Debug.Log($"<color=green>Action finished</color> {finishedAction.GetType().Name}");
+        StopAgent();
     }    
     public void planAborted(IGoapAction aborter)
     {
+        Debug.Log("<color=red>Plan Aborted</color>");
         StopAgent();
     }
     public void planFailed(IGoalStateProvider goalStateProvider)
@@ -87,7 +104,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
     public void StopAgent()
     {
-        inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
+        pathControl.StopMoving();
     }
 
     #region FindChaseTarget Logic

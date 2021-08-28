@@ -112,6 +112,11 @@ public abstract class GoapAgent : MonoBehaviour {
 
 	public void Replan()
 	{
+		Debug.Log("<color=red>Replan!</color>");
+
+		if(hasActionPlan())
+			plannerCallbackReceiver.ForEach(x => x.planAborted(CurrentActions.Peek()));
+
 		stateMachine.Clear();
 		stateMachine.pushState(idleState);
 	}
@@ -143,7 +148,7 @@ public abstract class GoapAgent : MonoBehaviour {
 				}
 				else
 				{
-					Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(CurrentGoalState));					
+					//Debug.Log("<color=orange>Failed Plan:</color>" + prettyPrint(CurrentGoalState));					
 					plannerCallbackReceiver.ForEach(x => x.planFailed(goalStateProvider));
 				}
 			}
