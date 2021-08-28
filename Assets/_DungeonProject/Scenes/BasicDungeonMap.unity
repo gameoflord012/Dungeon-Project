@@ -3533,17 +3533,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!114 &86675550 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 86675550, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-  m_PrefabInstance: {fileID: 875369243}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f827c6b3da560b241a970015d6bd92c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &120792984
 GameObject:
   m_ObjectHideFlags: 0
@@ -3824,46 +3813,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 534013939}
     m_Modifications:
-    - target: {fileID: 86675550, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: closeRangeDetectDistance
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1182231224, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: targetEscapedPositionOffset
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 86675550}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: OnAgentBeingAttacked
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: EnemyGoapAgent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1841511394128000525, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
-      propertyPath: OnActorTakeDamage.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7279633043216054677, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: m_RootOrder
       value: 0

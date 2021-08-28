@@ -54,6 +54,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
     protected override bool moveAgent(IGoapAction nextAction)
     {
+        Debug.Log(nextAction.GetType().Name + "<color=red>Is moving</color>");
         inputEvents.OnMovementKeyPressedCallback(nextAction.GetTargetPosition() - transform.position);
         inputEvents.OnPointerPositionChangedCallback(nextAction.GetTargetPosition());
         return true;
@@ -62,11 +63,9 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     #region Callbacks
     public void actionBegin(IGoapAction beginningAction)
     {
-        StopAgent();
     }
     public void actionFinished(IGoapAction finishedAction)
     {
-        StopAgent();
     }    
     public void planAborted(IGoapAction aborter)
     {
@@ -84,7 +83,6 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     public void StopAgent()
     {
         inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
-        inputEvents.OnPointerPositionChangedCallback(transform.position);
     }
 
     #region FindChaseTarget Logic
@@ -125,6 +123,12 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
             1 << LayerMask.NameToLayer("Obstacle"));
 
         return hit.collider != null;
-    }    
+    }
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, closeRangeDetectDistance);
+    }
 }

@@ -67,7 +67,7 @@ public class CheckEscapedTargetAction : GoapActionBase
 
     public void LookAround(float angle)
     {
-        Vector2 pointerDirection = Quaternion.Euler(0, 0, angle) * (data.LastTargetPosition - transform.position);
+        Vector2 pointerDirection = Quaternion.Euler(0, 0, angle) * (data.LastTargetPosition - transform.position).normalized;
         inputEvents.OnPointerPositionChangedCallback((Vector2)transform.position + pointerDirection);
     }
 
