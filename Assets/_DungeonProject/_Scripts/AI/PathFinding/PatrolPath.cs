@@ -23,7 +23,9 @@ public class PatrolPath : MonoBehaviour
     public PathNode CreateNode(PathNode fromNode)
     {
         GameObject GO = new GameObject("New node");
+#if UNITY_EDITOR
         Undo.RegisterCreatedObjectUndo(GO, "Create new Node");
+#endif
 
         PathNode newNode = GO.AddComponent<PathNode>();
         newNode.transform.SetParent(transform);

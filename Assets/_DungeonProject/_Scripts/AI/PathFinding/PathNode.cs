@@ -27,28 +27,36 @@ public class PathNode : MonoBehaviour
 
     private void OnEnable()
     {
+#if UNITY_EDITOR
         Selection.selectionChanged += OnSelectionChanged;
+#endif
     }
 
     private void OnDisable()
     {
+#if UNITY_EDITOR
         Selection.selectionChanged -= OnSelectionChanged;
+#endif
     }
 
     private void OnSelectionChanged()
     {
+#if UNITY_EDITOR
         isSelected = Selection.activeGameObject == gameObject;
 
         if (isSelected)
         {
             SceneViewExtension.Focus();
         }
+#endif
     }
 
     public void AddNeighbor(PathNode neighbor)
     {
         if (neighbor == this || neighbors.Contains(neighbor)) return;
+#if UNITY_EDITOR
         Undo.RecordObject(this, "Add neighbor");
+#endif
         neighbors.Add(neighbor);
     }
 

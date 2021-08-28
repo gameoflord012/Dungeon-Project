@@ -2,6 +2,7 @@
 
 public static class SceneViewExtension
 {
+#if UNITY_EDITOR
     public static void Focus()
     {
         if (SceneView.sceneViews.Count > 0)
@@ -10,4 +11,5 @@ public static class SceneViewExtension
             sceneView.Focus();
         }
     }
+#endif
 }
