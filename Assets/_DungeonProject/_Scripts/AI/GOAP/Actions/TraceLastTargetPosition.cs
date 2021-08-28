@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class TraceLastTargetPosition : GoapActionBase
 {
-    [field: SerializeField]
-    public override float Cost { get; set; } = 0;
-
-    [SerializeField] float destinationOffset = .2f;
+    [field: SerializeField] public override float Cost { get; set; } = 1;
 
     public override IEnumerable<KeyValuePair<string, object>> GetEffects()
     {
@@ -19,14 +16,14 @@ public class TraceLastTargetPosition : GoapActionBase
         yield break;
     }
 
-    public override IEnumerator<PerformState> perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GoapAgent agent)
     {
         yield break;
     }
 
     public override bool isInRange()
     {
-        return (transform.position - data.LastTargetPosition).sqrMagnitude < destinationOffset * destinationOffset;
+        return (transform.position - data.LastTargetPosition).LengthSmalllerThan(data.DistanceOffset);
     }
 
     public override Vector3 GetTargetPosition()

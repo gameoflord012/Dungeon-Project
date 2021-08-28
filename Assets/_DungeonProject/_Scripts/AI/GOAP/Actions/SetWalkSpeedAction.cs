@@ -18,7 +18,7 @@ public class SetWalkSpeedAction : GoapActionBase
         yield break;
     }
 
-    public override IEnumerator<PerformState> perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GoapAgent agent)
     {
         movement.SetMovementData(walkingMovementData);
         yield break;

@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class PatrolAction : GoapActionBase
 {
-    [SerializeField] float patrolDestinationOffset = .2f;
+    [field: SerializeField] public override float Cost { get; set; } = 1;
+
     [SerializeField] PathNode currentPathNode;
     [SerializeField] MovementDataSO patrolMovementData;
 
-    [field: SerializeField] public override float Cost { get; set; } = 1;
-
-    public override bool checkProceduralPrecondition(GameObject agent)
+    public override bool checkProceduralPrecondition(GoapAgent agent)
     {        
         return currentPathNode != null && data.Target == null && data.EscapedTargetChecked;
     }
 
-    public override IEnumerator<PerformState> perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GoapAgent agent)
     {
         yield return AdvancedPath() ? PerformState.succeed : PerformState.falied;
     }
@@ -38,8 +37,8 @@ public class PatrolAction : GoapActionBase
     }
 
     public override bool isInRange()
-    {        
-        return (currentPathNode.transform.position - transform.position).sqrMagnitude < patrolDestinationOffset * patrolDestinationOffset;
+    {
+        return (currentPathNode.transform.position - transform.position).LengthSmalllerThan(data.DistanceOffset);
     }
 
     public override Vector3 GetTargetPosition()

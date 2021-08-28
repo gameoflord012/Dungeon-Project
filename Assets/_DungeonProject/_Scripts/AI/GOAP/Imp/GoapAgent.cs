@@ -126,7 +126,7 @@ public abstract class GoapAgent : MonoBehaviour {
             {
                 CurrentGoalState = new HashSet<KeyValuePair<string, object>>(goalStateProvider.GetGoalState());
 
-				Queue<IGoapAction> plan = planner.plan(gameObject, availableActions, WorldState, CurrentGoalState);
+				Queue<IGoapAction> plan = planner.plan(this, availableActions, WorldState, CurrentGoalState);
 				if (plan != null)
 				{
 					Debug.Log("<color=green>Plan Found:</color>" + goalStateProvider.GetType().Name);
@@ -179,7 +179,6 @@ public abstract class GoapAgent : MonoBehaviour {
 				if (action.isInRange()) {
 					if(enumerator.Current == PerformState._default)
                     {
-						Debug.Log(enumerator.Current);
 						Debug.Log($"<color=yellow>Action Start:</color> {prettyPrint(action)}");
 						plannerCallbackReceiver.ForEach(x => x.actionBegin(action));
 					}
@@ -238,7 +237,7 @@ public abstract class GoapAgent : MonoBehaviour {
 	private Queue<IEnumerator<PerformState>> GetIEnumerator(Queue<IGoapAction> actions, GameObject gameObj)
 	{
 		Queue<IEnumerator<PerformState>> result = new Queue<IEnumerator<PerformState>>();
-		foreach (IGoapAction action in actions) result.Enqueue(action.perform(gameObj));
+		foreach (IGoapAction action in actions) result.Enqueue(action.perform(this));
 		return result;
 	}
 	private void loadActions ()

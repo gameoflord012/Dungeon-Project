@@ -81,7 +81,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
     }
     #endregion
 
-    private void StopAgent()
+    public void StopAgent()
     {
         inputEvents.OnMovementKeyPressedCallback(Vector2.zero);
         inputEvents.OnPointerPositionChangedCallback(transform.position);

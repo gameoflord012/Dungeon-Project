@@ -5,9 +5,8 @@ using UnityEngine;
 public class CheckEscapedTargetAction : GoapActionBase
 {
     [field: SerializeField] public override float Cost { get; set; } = 0;
-    [SerializeField] float targetEscapedPositionOffset = .5f;
 
-    public override bool checkProceduralPrecondition(GameObject agent)
+    public override bool checkProceduralPrecondition(GoapAgent agent)
     {
         return data.Target == null;
     }
@@ -20,11 +19,13 @@ public class CheckEscapedTargetAction : GoapActionBase
     public override IEnumerable<KeyValuePair<string, object>> GetPreconditions()
     {
         yield return new KeyValuePair<string, object>("EscapedTargetChecked", false);
-        yield return new KeyValuePair<string, object>("Walking", true);
+        yield return new KeyValuePair<string, object>("Running", true);
     }    
 
-    public override IEnumerator<PerformState> perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GoapAgent agent)
     {
+        ((EnemyGoapAgent)agent).StopAgent();
+
         float time = 0;
         while (time < 1)
         {
@@ -72,7 +73,7 @@ public class CheckEscapedTargetAction : GoapActionBase
 
     public override bool isInRange()
     {
-        return (data.LastTargetPosition - transform.position).sqrMagnitude < targetEscapedPositionOffset * targetEscapedPositionOffset;
+        return (data.LastTargetPosition - transform.position).LengthSmalllerThan(data.DistanceOffset);
     }
 
     public override Vector3 GetTargetPosition()

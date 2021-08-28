@@ -22,9 +22,9 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
 
     public abstract IEnumerable<KeyValuePair<string, object>> GetEffects();
     public abstract IEnumerable<KeyValuePair<string, object>> GetPreconditions();
-    public abstract IEnumerator<PerformState> perform(GameObject agent);
+    public abstract IEnumerator<PerformState> perform(GoapAgent agent);
 
-    public virtual bool checkProceduralPrecondition(GameObject agent) { return true; }
+    public virtual bool checkProceduralPrecondition(GoapAgent agent) { return true; }
     public virtual void OnTargetChanged(GameObject target) { }
     public virtual bool isInRange() { return true; }
     public virtual void reset() { }

@@ -35,7 +35,7 @@ public class AttackAction : GoapActionBase
         yield return new KeyValuePair<string, object>("Running", true);
     }
 
-    public override bool checkProceduralPrecondition(GameObject agent)
+    public override bool checkProceduralPrecondition(GoapAgent agent)
     {
         return timeSinceLastAttack > timeBetweenAttacks;
     }
@@ -43,10 +43,10 @@ public class AttackAction : GoapActionBase
     public override bool isInRange()
     {
         if (data.Target == null) return true;
-        return (data.Target.transform.position - transform.position).sqrMagnitude < attackRange * attackRange;
+        return (data.Target.transform.position - transform.position).LengthSmalllerThan(attackRange);
     }
 
-    public override IEnumerator<PerformState> perform(GameObject agent)
+    public override IEnumerator<PerformState> perform(GoapAgent agent)
     {
         if (data.Target == null) yield return PerformState.falied;
 

@@ -3824,6 +3824,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 534013939}
     m_Modifications:
+    - target: {fileID: 86675550, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
+      propertyPath: closeRangeDetectDistance
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1182231224, guid: 2b3f06f570fa4814395034366d2368c6, type: 3}
       propertyPath: targetEscapedPositionOffset
       value: 2

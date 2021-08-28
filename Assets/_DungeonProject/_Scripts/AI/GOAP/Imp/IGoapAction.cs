@@ -9,8 +9,8 @@ public interface IGoapAction {
 	float Cost { get; set; }
 
 	void reset();
-	bool checkProceduralPrecondition(GameObject agent);
+	bool checkProceduralPrecondition(GoapAgent agent);
 	Vector3 GetTargetPosition();
-	IEnumerator<PerformState> perform(GameObject agent);
+	IEnumerator<PerformState> perform(GoapAgent agent);
 	bool isInRange();
 }
