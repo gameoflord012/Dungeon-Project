@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2230022132641471958}
   - component: {fileID: 2230022132641471952}
   - component: {fileID: 2230022132641471955}
+  - component: {fileID: 1714153019427145711}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -143,6 +144,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fdcb4a2f6e9ae1419a5ca12e6b6160e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1714153019427145711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230022132641471956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000e114c7236f2fc2747dc08d234dd3820d7dc01d5b71f0841ccbc7f74745b4f75d17918ae165b3a6274dd116cca1d204d9
+  m_ShapePath:
+  - {x: -0.32955074, y: 0.07285899, z: 0}
+  - {x: 0.20858765, y: 0.07285893, z: 0}
+  - {x: 0.16762257, y: 0.71905434, z: 0}
+  - {x: -0.18515444, y: 0.70443046, z: 0}
+  m_ShapePathHash: -563630731
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -173902
 --- !u!1 &2230022133185030984
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,6 +396,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnActorTakeDamageImpactDirection:
+    m_PersistentCalls:
+      m_Calls: []
   OnActorHealthReachZero:
     m_PersistentCalls:
       m_Calls: []
@@ -521,6 +551,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd945b55200679c4fbac2bfa0354b825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnFeedbackPlayed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7287461980396436967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,6 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1b8f2b852ae4b4e83b631e8ee0b2e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetWhenDestroyed: 1
   audioSource: {fileID: 0}
   audioClip: {fileID: 0}
   volume: 1

@@ -1,0 +1,276 @@
+fileFormatVersion: 2
+guid: b3940da84a2b14f4f85ab60d71069215
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7706889424284633441
+    second: goblet2flameani-sheet_0
+  - first:
+      213: 2286200593383925974
+    second: goblet2flameani-sheet_1
+  - first:
+      213: 4143356386585666209
+    second: goblet2flameani-sheet_2
+  - first:
+      213: 1193513219303755132
+    second: goblet2flameani-sheet_3
+  - first:
+      213: -2125711351075538586
+    second: goblet2flameani-sheet_4
+  - first:
+      213: 1030011098265343618
+    second: goblet2flameani-sheet_5
+  - first:
+      213: 5002201302244156451
+    second: goblet2flameani-sheet_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.49183005, y: 0.093837455}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16943b9391f54fa60800000000000000
+      internalID: 7706889424284633441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.089927554}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8afeda3573abf10800000000000000
+      internalID: 2286200593383925974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.49183002, y: 0.10165725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a2e8406ea8208930800000000000000
+      internalID: 4143356386585666209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.49183002, y: 0.10165725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d455f03f5309010800000000000000
+      internalID: 1193513219303755132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5000003, y: 0.10165725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6697028e9c4ff72e0800000000000000
+      internalID: -2125711351075538586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.48774487, y: 0.09774735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 286d0daf2a55b4e00800000000000000
+      internalID: 1030011098265343618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: goblet2flameani-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 19.142857
+        height: 20
+      alignment: 9
+      pivot: {x: 0.48365974, y: 0.09774735}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3246243e4936b6540800000000000000
+      internalID: 5002201302244156451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
