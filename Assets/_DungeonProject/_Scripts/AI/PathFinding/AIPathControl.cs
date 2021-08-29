@@ -15,7 +15,7 @@ public class AIPathControl : MonoBehaviour
     private int currentVectorPathIndex = 0;
 
     public UnityEvent<Vector2> OnPathFindingDirectionUpdate;
-    public UnityEvent<Vector2> OnWaypointUpdate;
+    public UnityEvent<Vector2> OnWaypointUpdate;    
 
     public bool IsSearchingForPath { get => !seeker.IsDone(); }
 
@@ -24,7 +24,7 @@ public class AIPathControl : MonoBehaviour
         seeker = GetComponent<Seeker>();        
     }
 
-    public void SetDestination(Vector2 destination, float destinationOffset = .2f)
+    public void SetDestination(Vector2 destination, float destinationOffset = .1f)
     {
         enabled = true;
         seeker.CancelCurrentPathRequest();
@@ -46,15 +46,9 @@ public class AIPathControl : MonoBehaviour
         path = p;
     }
 
-    public bool IsDestinationReached()
-    {
-        if (path == null) return seeker.IsDone(); // return false if seeker is calculating path
-        return currentVectorPathIndex >= path.vectorPath.Count;
-    }
-
     private void FixedUpdate()
     {
-        if (path == null || IsDestinationReached()) return;
+        if (path == null) return;
 
         OnPathFindingDirectionUpdate?.Invoke(GetCurrentWaypoint() - (Vector2)transform.position);
 

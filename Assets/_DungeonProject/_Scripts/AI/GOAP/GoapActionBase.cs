@@ -6,7 +6,7 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
 {
     protected ActorInputEvents inputEvents;
     protected ActorMovement movement;
-    protected EnemyTaskData data;
+    protected EnemyWorldData data;
     protected AIPathControl pathControl;    
 
     public abstract float Cost { get; set; }
@@ -14,7 +14,7 @@ public abstract class GoapActionBase : MonoBehaviour, IGoapAction
     protected virtual void Awake()
     {        
         movement = GetComponentInParent<ActorMovement>();
-        data = GetComponentInParent<EnemyTaskData>();
+        data = GetComponentInParent<EnemyWorldData>();
         inputEvents = GetComponentInParent<ActorInputEvents>();
         pathControl = GetComponentInParent<AIPathControl>();
         data.OnTargetChanged.AddListener(OnTargetChanged);

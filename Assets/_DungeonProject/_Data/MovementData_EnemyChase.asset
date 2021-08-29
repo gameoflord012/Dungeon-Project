@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 7
   acceleration: 5
-  deacceleration: 8
+  deacceleration: 10
   velocityThreshold: 6

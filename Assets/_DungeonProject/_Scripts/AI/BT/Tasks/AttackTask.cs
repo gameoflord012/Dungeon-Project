@@ -1,64 +1,64 @@
-﻿using Panda;
-using System.Collections;
-using UnityEngine;
+﻿//using Panda;
+//using System.Collections;
+//using UnityEngine;
 
-public class AttackTask : EnemyTaskBase
-{
-    [SerializeField] float attackRange = 1f;
-    [SerializeField] float timeBetweenAttacks = .3f;
+//public class AttackTask : EnemyTaskBase
+//{
+//    [SerializeField] float attackRange = 1f;
+//    [SerializeField] float timeBetweenAttacks = .3f;
 
-    float timeSinceLastAttack = Mathf.Infinity;
-    Health health;
+//    float timeSinceLastAttack = Mathf.Infinity;
+//    Health health;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        health = GetComponentInParent<Health>();
-    }
+//    protected override void Awake()
+//    {
+//        base.Awake();
+//        health = GetComponentInParent<Health>();
+//    }
 
-    [Task]
-    public bool IsInAttackRange()
-    {
-        if (Task.isInspected)
-        {
-            Task.current.debugInfo = "Target: " + data.GetTargetPosition();
-        }
+//    [Task]
+//    public bool IsInAttackRange()
+//    {
+//        if (Task.isInspected)
+//        {
+//            Task.current.debugInfo = "Target: " + data.GetTargetPosition();
+//        }
 
-        if (data.Target == null) return false;        
-        return ((Vector2)transform.position - data.GetTargetPosition()).sqrMagnitude < attackRange * attackRange;        
-    }
+//        if (data.Target == null) return false;        
+//        return ((Vector2)transform.position - data.GetTargetPosition()).sqrMagnitude < attackRange * attackRange;        
+//    }
 
-    [Task]
-    public void AttackTarget()
-    {
-        if(timeSinceLastAttack > timeBetweenAttacks)
-        {
-            if (data.Target.TryGetComponent(out Health targetHealth))
-            {
-                AttackBehaviour(targetHealth);
-                Task.current.Succeed();
-            }
-            else
-            {
-                Task.current.Fail();
-            }
-        }        
-    }
+//    [Task]
+//    public void AttackTarget()
+//    {
+//        if(timeSinceLastAttack > timeBetweenAttacks)
+//        {
+//            if (data.Target.TryGetComponent(out Health targetHealth))
+//            {
+//                AttackBehaviour(targetHealth);
+//                Task.current.Succeed();
+//            }
+//            else
+//            {
+//                Task.current.Fail();
+//            }
+//        }        
+//    }
 
-    private void AttackBehaviour(Health targetHealth)
-    {
-        if (health != null && health.IsDead) return;
+//    private void AttackBehaviour(Health targetHealth)
+//    {
+//        if (health != null && health.IsDead) return;
 
-        timeSinceLastAttack = 0;
+//        timeSinceLastAttack = 0;
 
-        inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
-        movement.StopMoving();
+//        inputEvents.OnPointerPositionChangedCallback(data.GetTargetPosition());
+//        movement.StopMoving();
 
-        targetHealth.TakeDamage(damager);
-    }
+//        targetHealth.TakeDamage(damager);
+//    }
 
-    private void Update()
-    {
-        timeSinceLastAttack += Time.deltaTime;
-    }
-}
+//    private void Update()
+//    {
+//        timeSinceLastAttack += Time.deltaTime;
+//    }
+//}

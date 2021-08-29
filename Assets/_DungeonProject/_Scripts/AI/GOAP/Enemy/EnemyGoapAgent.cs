@@ -11,7 +11,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 
     protected ActorInputEvents inputEvents;
     protected AIPathControl pathControl;
-    protected EnemyTaskData data;
+    protected EnemyWorldData data;
     protected FOV fov;
 
     private float timeSinceLastProcessPath = Mathf.Infinity;
@@ -21,7 +21,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
         pathControl = GetComponentInParent<AIPathControl>();
         inputEvents = GetComponentInParent<ActorInputEvents>();
         fov = inputEvents.GetComponentInChildren<FOV>();
-        data = GetComponentInParent<EnemyTaskData>();
+        data = GetComponentInParent<EnemyWorldData>();
 
         data.OnTargetChanged.AddListener(x => Replan());
     }
@@ -70,7 +70,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 #endif
         if(timeSinceLastProcessPath > timeBetweenProcessPath)
         {            
-            pathControl.SetDestination(nextAction.GetTargetPosition(), data.DestinationOffset);
+            pathControl.SetDestination(nextAction.GetTargetPosition());
             timeSinceLastProcessPath = 0;
         }
 
@@ -86,7 +86,7 @@ public class EnemyGoapAgent : GoapAgent, IReceivePlannerCallbacks, IWorldStatePr
 #if DEBUG_GOAP
         Debug.Log($"<color=green>Action finished</color> {finishedAction.GetType().Name}");
 #endif
-        StopAgent();
+        // StopAgent();
     }    
     public void planAborted(IGoapAction aborter)
     {

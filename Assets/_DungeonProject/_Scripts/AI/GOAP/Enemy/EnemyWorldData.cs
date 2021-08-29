@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyTaskData : MonoBehaviour
+public class EnemyWorldData : MonoBehaviour
 {
     public UnityEvent<GameObject> OnTargetChanged;
 
@@ -17,7 +17,7 @@ public class EnemyTaskData : MonoBehaviour
         set
         {
             if (target == value) return;
-            target = value;            
+            target = value;
             OnTargetChanged?.Invoke(target);
         }
     }

@@ -272,7 +272,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2296887430564829439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f35f03144dcbb4fa5ab42c09b9eb8f, type: 3}
+  m_Script: {fileID: 11500000, guid: db41ccc16eb51aa41b370d7edf547b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   OnTargetChanged:
@@ -885,7 +885,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1714153019427145711, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_InstanceId
-      value: -177418
+      value: -43298
       objectReference: {fileID: 0}
     - target: {fileID: 1714153019427145711, guid: 4d58176e9fc540d4d9ba6a825e3b5e6f, type: 3}
       propertyPath: m_ShapePathHash
