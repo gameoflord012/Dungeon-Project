@@ -15,8 +15,19 @@ public class DialogueUI : MonoBehaviour
     string[] dialogues = null;
     int currentIndex = 0;
 
+    private void Start()
+    {
+        nextButton.onClick.AddListener(Next);
+        skipButton.onClick.AddListener(Skip);
+        quitButton.onClick.AddListener(Quit);
+
+        gameObject.SetActive(false);
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
+        gameObject.SetActive(true);
+
         if (dialogue.IsStartBySpeaker())
             speakerNames = new string[2] { dialogue.GetSpeakerName(), "player" };
         else

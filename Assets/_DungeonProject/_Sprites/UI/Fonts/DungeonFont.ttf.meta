@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ca120e763fdbe413889ccb1aa601416f
+guid: 9e406c158d8ce4652964e4ae50e748b1
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - KenVector Future
+  - DungeonFont
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

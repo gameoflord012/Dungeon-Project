@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b59353bf49a7f47f9b13573e541d202a
+guid: 0b35e89d936224a0ab51cb6b05022d8a
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - KenVector Future Thin
+  - MinimalPixel2
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
