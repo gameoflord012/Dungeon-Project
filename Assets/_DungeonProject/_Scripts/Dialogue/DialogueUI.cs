@@ -10,6 +10,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] Button nextButton;
     [SerializeField] Button skipButton;
     [SerializeField] Button quitButton;
+    [SerializeField] TextWriter textWriter;
 
     string[] speakerNames = null;
     string[] dialogues = null;
@@ -60,7 +61,7 @@ public class DialogueUI : MonoBehaviour
     private void RefreshUI()
     {
         speaker.text = speakerNames[currentIndex % 2];
-        dialogue.text = dialogues[currentIndex];
+        StartCoroutine(textWriter.WaitForTyping(dialogue, dialogues[currentIndex]));
 
         if (!HasNext())
             SetActiveButtons(true);
