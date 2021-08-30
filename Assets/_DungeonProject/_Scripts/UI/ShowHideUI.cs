@@ -15,6 +15,9 @@ public class ShowHideUI : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(triggerKeyCode))
+        {
             showHideObject.SetActive(!showHideObject.activeSelf);
+            Time.timeScale = 1 - Time.timeScale;
+        }
     }
 }
