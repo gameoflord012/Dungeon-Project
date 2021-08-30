@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] Slider healthSlider;
     [SerializeField]
     [Range(0, 500)]
     private float currentHealth = 50, maxHealth = 50;
@@ -26,8 +28,13 @@ public class Health : MonoBehaviour
             {
                 OnActorHealthReachZero?.Invoke();
                 return;
-            }            
+            }
         }
+    }
+
+    private void Start()
+    {
+        healthSlider.value = 100 * (currentHealth / maxHealth);
     }
 
     public void TakeDamage(Damager damager)
@@ -37,7 +44,9 @@ public class Health : MonoBehaviour
         CurrentHealth -= damager.Damage;
         OnActorTakeDamage?.Invoke(damager);
         OnActorTakeDamageImpactDirection?.Invoke(transform.position - damager.transform.position);
-        
+
+        healthSlider.value = 100 * (currentHealth / maxHealth);
+
         //Debug.Log(damager + " Attack " + this);
     }
 }

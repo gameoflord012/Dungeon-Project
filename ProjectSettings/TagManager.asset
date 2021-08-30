@@ -77,3 +77,6 @@ TagManager:
   - name: FOV
     uniqueID: 3640971937
     locked: 0
+  - name: In Game UI
+    uniqueID: 2334693435
+    locked: 0
