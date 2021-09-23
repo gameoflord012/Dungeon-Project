@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2247594346994935819}
   - component: {fileID: 2779592350390449844}
   - component: {fileID: 7419677523992634233}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: WeaponBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b01d96c1e734ee449b81dc0849ca24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageDealer: {fileID: 0}
   <Damage>k__BackingField: 10
   <KnockbackStrength>k__BackingField: 15
   <WaitTimeAfterKnockingback>k__BackingField: 0.5
